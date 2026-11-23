@@ -87,7 +87,7 @@ ${endScene(plan, 3240)}`;
     end,
     stops: [0, stair, map, cta].map((t, i) => ({ t, y: i * 1080 })),
     map,
-    points: slots.map(([x, y]) => [x + 250, y + 100]),
+    points: slots.map(([x, y]) => [x + 430, y + 158]),
     logo: plan.logo,
   };
   const extra = `

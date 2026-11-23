@@ -30,7 +30,7 @@ export function launchFilm(brief, opts = {}) {
       (row, i) => `<div class="row${row.hot ? " hot" : ""}" data-at="${(time.ui + 0.4 + i * 0.16).toFixed(2)}">
         <i class="av">${row.who}</i>
         <span><b>${esc(row.title)}</b><small>${esc(row.name)} · ${row.time}</small></span>
-        <u style="width:${row.pct}%"></u>
+        <span class="meter"><u style="width:${row.pct}%"></u></span>
         <em class="before">${row.tag}</em>${row.hot ? '<em class="after">Scheduled</em>' : ""}
       </div>`,
     )
@@ -111,8 +111,9 @@ export function launchFilm(brief, opts = {}) {
 .row span{display:flex;flex-direction:column;gap:2px;min-width:180px}
 .row b{font-size:15px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
 .row small{color:${plan.muted};font-size:12px}
-.row u{height:6px;border-radius:99px;background:${plan.accent};text-decoration:none;flex:1;max-width:120px}
-.row em{font-style:normal;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:560}
+.meter{width:96px;height:6px;border-radius:99px;background:#E4E7EE;flex:none;margin-left:auto}
+.meter u{display:block;height:100%;border-radius:99px;background:${plan.accent};text-decoration:none}
+.row em{margin-left:12px;font-style:normal;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:560;flex:none}
 .row em.before{color:${plan.accent};background:#fff}
 .row em.after{display:none;color:#fff;background:${plan.accent}}
 .row.show em.before{display:none}

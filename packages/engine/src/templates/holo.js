@@ -28,7 +28,7 @@ export function holoFilm(brief, opts = {}) {
   const bodies = [
     `<div class="mail"><b>To Maya Chen · 9:41</b><p>${esc(plan.problem)}</p><p>I kept your last three replies in the same tone.</p><p>Draft saved. Nothing has been sent.</p></div><div class="stat"><b data-count="12" data-from="${(cards + 0.6).toFixed(2)}">0</b><small>drafts today</small></div>`,
     `<div class="threads"><div><i>MC</i><span><b>Maya Chen</b><small>9:41 · Follow-up</small></span></div><div><i>JL</i><span><b>Jules Okonkwo</b><small>8:15 · Waiting</small></span></div><div><i>AR</i><span><b>Ari Rahman</b><small>Yesterday · Sent</small></span></div></div><div class="stat"><b data-count="48" data-from="${(cards + 1.1).toFixed(2)}">0</b><small>open threads</small></div>`,
-    `<div class="approve"><b>Ready for Thursday, 2:00</b><p>${esc(plan.features[2] || plan.features[0])}</p><em>Approve</em></div><div class="stat"><b data-count="6" data-from="${(cards + 1.6).toFixed(2)}">0</b><small>waiting on you</small></div>`,
+    `<div class="approve"><b>Ready for Thursday, 2:00</b><em>Approve</em></div><div class="stat"><b data-count="6" data-from="${(cards + 1.6).toFixed(2)}">0</b><small>waiting on you</small></div>`,
   ];
   const cardHtml = plan.features
     .slice(0, 3)
@@ -59,13 +59,14 @@ export function holoFilm(brief, opts = {}) {
 .hcard h3{font-size:32px;font-weight:560;letter-spacing:-.045em;line-height:1.05;color:${plan.ink}}
 .hcard .stat{margin-top:auto;display:flex;align-items:baseline;gap:8px}
 .hcard .stat b{font-size:42px;letter-spacing:-.05em}
-.mail p,.approve p{font-size:16px;line-height:1.4}
+.mail p{font-size:16px;line-height:1.45;margin:0}
+.approve{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .threads{display:flex;flex-direction:column;gap:10px}
 .threads div{display:flex;gap:10px;align-items:center}
 .threads i{width:36px;height:36px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:12px}
 .threads span{display:flex;flex-direction:column}
 .threads small{letter-spacing:0;text-transform:none;font-weight:500;color:${plan.muted}}
-.approve em{align-self:flex-start;font-style:normal;background:#fff;color:${plan.accentDeep};border-radius:12px;padding:10px 14px;font-weight:560}
+.approve em{font-style:normal;background:#fff;color:${plan.accentDeep};border-radius:12px;padding:10px 16px;font-weight:560}
 .centerWord{position:absolute;left:0;right:0;top:430px;text-align:center;font-size:168px;font-weight:560;letter-spacing:-.07em;opacity:0}
 `;
 

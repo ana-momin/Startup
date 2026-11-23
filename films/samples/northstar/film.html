@@ -51,8 +51,9 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .row span{display:flex;flex-direction:column;gap:2px;min-width:180px}
 .row b{font-size:15px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
 .row small{color:#5B6275;font-size:12px}
-.row u{height:6px;border-radius:99px;background:#0E7C66;text-decoration:none;flex:1;max-width:120px}
-.row em{font-style:normal;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:560}
+.meter{width:96px;height:6px;border-radius:99px;background:#E4E7EE;flex:none;margin-left:auto}
+.meter u{display:block;height:100%;border-radius:99px;background:#0E7C66;text-decoration:none}
+.row em{margin-left:12px;font-style:normal;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:560;flex:none}
 .row em.before{color:#0E7C66;background:#fff}
 .row em.after{display:none;color:#fff;background:#0E7C66}
 .row.show em.before{display:none}
@@ -113,32 +114,32 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
       <div class="list"><div class="row" data-at="8.24">
         <i class="av">AM</i>
         <span><b>Spring launch</b><small>Amina M. · 9:14</small></span>
-        <u style="width:82%"></u>
+        <span class="meter"><u style="width:82%"></u></span>
         <em class="before">Draft</em>
       </div><div class="row hot" data-at="8.40">
         <i class="av">JK</i>
         <span><b>Brand-matched drafts</b><small>Jamal K. · 9:41</small></span>
-        <u style="width:64%"></u>
+        <span class="meter"><u style="width:64%"></u></span>
         <em class="before">Review</em><em class="after">Scheduled</em>
       </div><div class="row" data-at="8.56">
         <i class="av">RS</i>
         <span><b>One shared board</b><small>Rafi S. · 10:06</small></span>
-        <u style="width:48%"></u>
+        <span class="meter"><u style="width:48%"></u></span>
         <em class="before">Queued</em>
       </div><div class="row" data-at="8.72">
         <i class="av">NL</i>
         <span><b>Approval before anything goes live</b><small>Noor L. · 10:22</small></span>
-        <u style="width:30%"></u>
+        <span class="meter"><u style="width:30%"></u></span>
         <em class="before">Hold</em>
       </div><div class="row" data-at="8.88">
         <i class="av">OT</i>
         <span><b>Thursday post</b><small>Omar T. · 11:02</small></span>
-        <u style="width:100%"></u>
+        <span class="meter"><u style="width:100%"></u></span>
         <em class="before">Live</em>
       </div><div class="row" data-at="9.04">
         <i class="av">SK</i>
         <span><b>Caption pass</b><small>Sami K. · 11:18</small></span>
-        <u style="width:55%"></u>
+        <span class="meter"><u style="width:55%"></u></span>
         <em class="before">Draft</em>
       </div></div>
       <div class="chart"><div class="bar"><b style="height:36%"></b><small>Mon</small></div><div class="bar"><b style="height:52%"></b><small>Tue</small></div><div class="bar"><b style="height:44%"></b><small>Wed</small></div><div class="bar"><b style="height:78%"></b><small>Thu</small></div><div class="bar"><b style="height:60%"></b><small>Fri</small></div><div class="bar"><b style="height:28%"></b><small>Sat</small></div><div class="bar"><b style="height:48%"></b><small>Sun</small></div></div>
