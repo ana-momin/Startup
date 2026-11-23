@@ -1,4 +1,4 @@
-import { base, cue, esc, initials, lastAt, lineHtml, shortLabel } from "../copy.js";
+import { base, cue, esc, initials, lastAt, letterLine, lineHtml, shortLabel } from "../copy.js";
 import { endScene, page } from "../shell.js";
 
 function timing(last, n) {
@@ -83,7 +83,7 @@ export function launchFilm(brief, opts = {}) {
   const css = `
 .url{color:${plan.accent}}
 .kicker{font-size:26px;font-weight:500;opacity:0}
-.product{font-weight:560;letter-spacing:-.06em;line-height:.95;opacity:0}
+.product{font-weight:560;letter-spacing:-.06em;line-height:.95;color:${plan.ink}}
 .nameRow{display:flex;align-items:center;gap:22px}
 .swap{margin-top:16px;font-size:40px;font-weight:560;letter-spacing:-.04em;opacity:0}
 .uiStage{transform-origin:50% 50%}
@@ -158,13 +158,13 @@ export function launchFilm(brief, opts = {}) {
 
   const body = `
 <section class="scene" style="top:0;background:radial-gradient(120% 80% at 50% 120%, ${plan.accentDeep} 0%, #070b14 58%)"><div class="mid stack">${hook}</div></section>
-<section class="scene" style="top:1080px;background:${plan.bg}"><div class="mid">
+<section class="scene" style="top:1080px"><div class="mid">
   <div class="kicker" data-at="${(time.name + 0.15).toFixed(2)}" data-tone="ink">Introducing</div>
-  <div class="nameRow"><img class="logo" alt=""><div class="product" data-at="${(time.name + 0.4).toFixed(2)}" data-tone="ink" style="font-size:${Math.min(plan.nameSize, 140)}px">${esc(plan.name)}</div></div>
+  <div class="nameRow"><img class="logo" alt=""><div class="product letters" style="font-size:${plan.name.length > 10 ? 120 : plan.name.length > 7 ? 200 : 280}px">${letterLine(plan.name, time.name + 0.18, 0.045)}</div></div>
   <div class="swap" data-at="${(time.name + 0.9).toFixed(2)}" data-tone="ink">You get ${esc(shortLabel(plan.features[0]))}</div>
   <div class="sweep" data-a="${(time.name + 0.55).toFixed(2)}" data-b="${(time.name + 1.35).toFixed(2)}"></div>
 </div></section>
-<section class="scene" style="top:2160px;background:${plan.bg}"><div class="mid"><div id="uiStage" class="uiStage"><div class="window">
+<section class="scene" style="top:2160px"><div class="mid"><div id="uiStage" class="uiStage"><div class="window">
   <aside class="side"><div class="mark"><img class="logo" alt="" style="height:22px"><i class="dot"></i>${esc(plan.name)}</div>${navHtml}</aside>
   <div class="main">
     <div class="col">
@@ -178,16 +178,16 @@ export function launchFilm(brief, opts = {}) {
   <div id="toast" class="toast">Scheduled for Thursday, 2:00</div>
   <div id="cur" class="cursor" style="color:${plan.accent}"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
 </div></div></div></section>
-<section class="scene" style="top:3240px;background:${plan.bg}">
+<section class="scene" style="top:3240px">
   <div class="head" data-at="${(time.features + 0.08).toFixed(2)}" data-tone="ink">What it does</div>
   <div id="track" class="track">${cards}</div>
 </section>
-<section class="scene" style="top:4320px;background:${plan.bg}"><div class="mid">
+<section class="scene" style="top:4320px"><div class="mid">
   <div class="flowHead" data-at="${(time.flow + 0.1).toFixed(2)}" data-tone="ink">How it comes together</div>
   <div class="rail"><i id="dot"></i></div>
   <div class="steps">${steps}</div>
 </div></section>
-${endScene(plan, 5400)}`;
+${endScene(plan, 5400, time.cta)}`;
 
   const per = time.span / Math.max(plan.features.length, 1);
   const state = {

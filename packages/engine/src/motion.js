@@ -6,13 +6,16 @@
 
 export const MS = {
   word: 280,
+  letter: 45,
   fade: 420,
   slide: 680,
   stagger: 160,
   count: 1100,
-  hold: 1600,
+  /** A layer keeps moving. No frame is fully frozen longer than this. */
+  drift: 400,
   hook: 3000,
   press: 160,
+  push: 8,
 };
 
 /** 8-based spacing, in px. Index 1 is 8. */

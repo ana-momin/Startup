@@ -8,13 +8,19 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .line{display:flex;justify-content:center;gap:.26em;font-weight:560;letter-spacing:-.055em;line-height:1.02;white-space:nowrap}
 .line span{display:inline-block;opacity:0}
+.letters{display:flex;justify-content:center;gap:0.012em;font-weight:560;letter-spacing:-.06em;line-height:.92;white-space:nowrap}
+.letters span{display:inline-block;opacity:0}
 .stack{display:flex;flex-direction:column;align-items:center;gap:14px}
 .logo{display:none;height:64px;width:auto}
-.ctaName{font-size:26px;font-weight:500;color:#5B6275}
-.url{font-size:42px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:10px}
+.ctaName{font-size:84px;font-weight:560;letter-spacing:-.055em;color:#0D1222}
+.url{font-size:36px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:18px}
+.endRule{width:120px;height:3px;border-radius:99px;margin-top:22px;transform-origin:0 50%}
 .badge{position:fixed;top:22px;left:22px;z-index:20;font-size:13px;font-weight:560;letter-spacing:.12em;text-transform:uppercase;color:#0D1222;background:#fff;border-radius:999px;padding:7px 12px;box-shadow:0 0 0 1px rgba(13,18,34,.18),0 8px 20px rgba(0,0,0,.28)}
-#back{position:absolute;inset:0;width:1920px;pointer-events:none}
-.orb{position:absolute;width:460px;height:460px;border-radius:99px;opacity:.22;filter:blur(30px)}
+#back{position:absolute;left:0;top:0;width:1920px;height:9000px;pointer-events:none}
+#grid{position:absolute;left:0;top:0;width:1920px;height:9000px;pointer-events:none;opacity:.8;background-image:linear-gradient(rgba(13,18,34,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(13,18,34,.08) 1px,transparent 1px);background-size:64px 64px}
+#grain{position:fixed;inset:0;width:1920px;height:1080px;pointer-events:none;opacity:.045;z-index:15}
+.orb{position:absolute;width:520px;height:520px;border-radius:99px;opacity:.16;filter:blur(46px)}
+.speck{position:absolute;width:7px;height:7px;border-radius:99px;opacity:.45}
 .caret{display:inline-block;width:2px;height:.85em;background:currentColor;margin-left:3px;vertical-align:-1px}
 .sweep{position:absolute;top:0;width:160px;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);pointer-events:none;opacity:0}
 .cursor{position:absolute;z-index:6;width:28px;height:28px;pointer-events:none}
@@ -24,7 +30,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 
 .url{color:#0E7C66}
 .kicker{font-size:26px;font-weight:500;opacity:0}
-.product{font-weight:560;letter-spacing:-.06em;line-height:.95;opacity:0}
+.product{font-weight:560;letter-spacing:-.06em;line-height:.95;color:#0D1222}
 .nameRow{display:flex;align-items:center;gap:22px}
 .swap{margin-top:16px;font-size:40px;font-weight:560;letter-spacing:-.04em;opacity:0}
 .uiStage{transform-origin:50% 50%}
@@ -97,17 +103,19 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .step em{font-style:normal;color:#5B6275;font-size:16px}
 
 </style></head><body>
-<div id="back"><i class="orb" data-drift="0.7" style="left:80px;top:160px;background:#0E7C66"></i><i class="orb" data-drift="1.2" style="left:1380px;top:1240px;background:#0E7C66"></i><i class="orb" data-drift="0.7" style="left:80px;top:2320px;background:#0E7C66"></i><i class="orb" data-drift="1.2" style="left:1380px;top:3400px;background:#0E7C66"></i><i class="orb" data-drift="0.7" style="left:80px;top:4480px;background:#0E7C66"></i><i class="orb" data-drift="1.2" style="left:1380px;top:5560px;background:#0E7C66"></i></div>
+<div id="back"><i class="orb" data-drift="0.7" style="left:80px;top:160px;background:#0E7C66"></i><i class="orb" data-drift="1.2" style="left:1380px;top:1240px;background:#0E7C66"></i><i class="orb" data-drift="0.7" style="left:80px;top:2320px;background:#0E7C66"></i><i class="orb" data-drift="1.2" style="left:1380px;top:3400px;background:#0E7C66"></i><i class="orb" data-drift="0.7" style="left:80px;top:4480px;background:#0E7C66"></i><i class="orb" data-drift="1.2" style="left:1380px;top:5560px;background:#0E7C66"></i><i class="speck" data-drift="0.50" style="left:0px;top:0px;background:#0E7C66"></i><i class="speck" data-drift="0.75" style="left:211px;top:347px;background:#0E7C66"></i><i class="speck" data-drift="1.00" style="left:422px;top:694px;background:#0E7C66"></i><i class="speck" data-drift="1.25" style="left:633px;top:1041px;background:#0E7C66"></i><i class="speck" data-drift="0.50" style="left:844px;top:1388px;background:#0E7C66"></i><i class="speck" data-drift="0.75" style="left:1055px;top:1735px;background:#0E7C66"></i><i class="speck" data-drift="1.00" style="left:1266px;top:2082px;background:#0E7C66"></i><i class="speck" data-drift="1.25" style="left:1477px;top:2429px;background:#0E7C66"></i><i class="speck" data-drift="0.50" style="left:1688px;top:2776px;background:#0E7C66"></i><i class="speck" data-drift="0.75" style="left:99px;top:3123px;background:#0E7C66"></i><i class="speck" data-drift="1.00" style="left:310px;top:3470px;background:#0E7C66"></i><i class="speck" data-drift="1.25" style="left:521px;top:3817px;background:#0E7C66"></i><i class="speck" data-drift="0.50" style="left:732px;top:4164px;background:#0E7C66"></i><i class="speck" data-drift="0.75" style="left:943px;top:4511px;background:#0E7C66"></i><i class="speck" data-drift="1.00" style="left:1154px;top:4858px;background:#0E7C66"></i><i class="speck" data-drift="1.25" style="left:1365px;top:5205px;background:#0E7C66"></i></div>
+<div id="grid"></div>
+<svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
 <div class="badge">Sample product</div>
 <div id="world">
 <section class="scene" style="top:0;background:radial-gradient(120% 80% at 50% 120%, #08302f 0%, #070b14 58%)"><div class="mid stack"><div class="line" style="font-size:104px"><span data-at="0.22" data-tone="light">Launch</span><span data-at="0.5" data-tone="light">posts</span><span data-at="0.78" data-tone="light">take</span><span data-at="1.06" data-tone="light">a</span><span data-at="1.34" data-tone="light">week</span></div><div class="line" style="font-size:104px"><span data-at="1.8" data-tone="light">and</span><span data-at="2.08" data-tone="light">still</span><span data-at="2.36" data-tone="light">look</span><span data-at="2.64" data-tone="light">generic</span></div></div></section>
-<section class="scene" style="top:1080px;background:#F6F7F9"><div class="mid">
+<section class="scene" style="top:1080px"><div class="mid">
   <div class="kicker" data-at="3.64" data-tone="ink">Introducing</div>
-  <div class="nameRow"><img class="logo" alt=""><div class="product" data-at="3.89" data-tone="ink" style="font-size:140px">Northstar</div></div>
+  <div class="nameRow"><img class="logo" alt=""><div class="product letters" style="font-size:200px"><span data-rise="3.67">N</span><span data-rise="3.72">o</span><span data-rise="3.76">r</span><span data-rise="3.81">t</span><span data-rise="3.85">h</span><span data-rise="3.9">s</span><span data-rise="3.94">t</span><span data-rise="3.99">a</span><span data-rise="4.03">r</span></div></div>
   <div class="swap" data-at="4.39" data-tone="ink">You get Brand-matched</div>
   <div class="sweep" data-a="4.04" data-b="4.84"></div>
 </div></section>
-<section class="scene" style="top:2160px;background:#F6F7F9"><div class="mid"><div id="uiStage" class="uiStage"><div class="window">
+<section class="scene" style="top:2160px"><div class="mid"><div id="uiStage" class="uiStage"><div class="window">
   <aside class="side"><div class="mark"><img class="logo" alt="" style="height:22px"><i class="dot"></i>Northstar</div><div class="navbtn">Home</div><div class="navbtn on">Drafts</div><div class="navbtn">Calendar</div><div class="navbtn">Approvals</div><div class="navbtn">Archive</div></aside>
   <div class="main">
     <div class="col">
@@ -151,19 +159,21 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
   <div id="toast" class="toast">Scheduled for Thursday, 2:00</div>
   <div id="cur" class="cursor" style="color:#0E7C66"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
 </div></div></div></section>
-<section class="scene" style="top:3240px;background:#F6F7F9">
+<section class="scene" style="top:3240px">
   <div class="head" data-at="17.02" data-tone="ink">What it does</div>
   <div id="track" class="track"><article class="fcard"><span>Draft</span><h3>Brand-matched drafts</h3><div class="mock doc"><u></u><s></s><s></s><em>Brand-matched drafts</em></div></article><article class="fcard"><span>This week</span><h3>One shared board</h3><div class="mock board"><div class="mini"><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:86%"></b><b style="height:55%"></b><b style="height:30%"></b><b style="height:44%"></b></div><small>Mon to Sun · 18 posts</small></div></article><article class="fcard"><span>Thread</span><h3>Approval before anything goes live</h3><div class="mock thread"><div class="bubble">Launch posts take a week and still look generic.</div><div class="bubble me">Hold Thursday. One more pass.</div></div></article></div>
 </section>
-<section class="scene" style="top:4320px;background:#F6F7F9"><div class="mid">
+<section class="scene" style="top:4320px"><div class="mid">
   <div class="flowHead" data-at="25.34" data-tone="ink">How it comes together</div>
   <div class="rail"><i id="dot"></i></div>
   <div class="steps"><div class="step"><small>01</small><b>Launch posts</b><em>The snag</em></div><div class="step"><small>02</small><b>Northstar</b><em>The product</em></div><div class="step"><small>03</small><b>Go live</b><em>northstar.example</em></div></div>
 </div></section>
-<section class="scene" style="top:5400px;background:#F6F7F9"><div class="mid">
+<section class="scene" style="top:5400px"><div class="mid">
     <img class="logo" alt="">
     <div class="ctaName">Northstar</div>
-    <div class="url" style="color:#0E7C66">northstar.example</div>
+    <div class="url letters" style="color:#0E7C66"><span data-rise="29.91">n</span><span data-rise="29.94">o</span><span data-rise="29.97">r</span><span data-rise="30.01">t</span><span data-rise="30.04">h</span><span data-rise="30.07">s</span><span data-rise="30.1">t</span><span data-rise="30.13">a</span><span data-rise="30.17">r</span><span data-rise="30.2">.</span><span data-rise="30.23">e</span><span data-rise="30.26">x</span><span data-rise="30.29">a</span><span data-rise="30.33">m</span><span data-rise="30.36">p</span><span data-rise="30.39">l</span><span data-rise="30.42">e</span></div>
+    <div class="endRule" style="background:#0E7C66" data-grow="30.07"></div>
+    <div class="sweep" data-a="29.97" data-b="30.84"></div>
   </div></section></div>
 <script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.68,"end":33.84,"stops":[{"t":0,"y":0},{"t":3.49,"y":1080},{"t":7.84,"y":2160},{"t":16.94,"y":3240},{"t":25.24,"y":4320},{"t":29.79,"y":5400}],"ui":7.84,"features":16.94,"per":2.766666666666667,"flow":25.24,"logo":null,"n":3}</script>
 <script>
@@ -183,20 +193,35 @@ const mix = (a, b, p) => {
   return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * p)).join(",") + ")";
 };
 function camera(t) {
-  let y = STATE.stops[0].y;
+  const stops = STATE.stops;
+  let y = stops[0].y;
+  let zoom = 1 + Math.min(t, 8) * 0.007;
   let blur = 0;
-  for (let i = 1; i < STATE.stops.length; i++) {
-    const start = STATE.stops[i].t;
+  for (let i = 1; i < stops.length; i++) {
+    const start = stops[i].t;
     if (t < start) break;
-    const p = q5(seg(t, start, start + STATE.slide));
-    y = lerp(STATE.stops[i - 1].y, STATE.stops[i].y, p);
     const u = seg(t, start, start + STATE.slide);
-    if (u > 0 && u < 1) blur = Math.sin(Math.PI * u) * 4;
+    const p = q5(u);
+    y = lerp(stops[i - 1].y, stops[i].y, p);
+    if (u > 0 && u < 1) {
+      blur = Math.sin(Math.PI * u) * 3.2;
+      zoom = lerp(1.1, 1, p);
+    } else {
+      const held = Math.max(0, t - (start + STATE.slide));
+      zoom = 1 + Math.min(held, 8) * 0.007;
+    }
   }
-  $("world").style.transform = "translateY(" + (-y) + "px)";
-  $("world").style.filter = blur > 0.3 ? "blur(" + blur.toFixed(2) + "px)" : "none";
+  const world = $("world");
+  world.style.transformOrigin = "960px " + (y + 540) + "px";
+  world.style.transform = "translateY(" + (-y) + "px) scale(" + zoom.toFixed(4) + ")";
+  world.style.filter = blur > 0.35 ? "blur(" + blur.toFixed(2) + "px)" : "none";
   const back = $("back");
-  if (back) back.style.transform = "translateY(" + (-y * 0.45) + "px)";
+  if (back) {
+    back.style.transformOrigin = "960px " + (y * 0.32 + 540) + "px";
+    back.style.transform = "translateY(" + (-y * 0.32) + "px) scale(" + (1 + (zoom - 1) * 0.45).toFixed(4) + ")";
+  }
+  const grid = $("grid");
+  if (grid) grid.style.transform = "translate(" + (Math.sin(t * 0.22) * 16).toFixed(1) + "px," + (-y * 0.62).toFixed(1) + "px)";
 }
 function paint(t) {
   document.querySelectorAll("[data-at]").forEach((el) => {
@@ -205,9 +230,19 @@ function paint(t) {
     const light = el.dataset.tone === "light";
     el.style.opacity = String(p);
     el.style.color = mix(light ? "#D5DAE6" : STATE.grey, light ? "#FFFFFF" : STATE.ink, p);
+    if (el.tagName === "SPAN") el.style.transform = "translateY(" + ((1 - p) * 18).toFixed(1) + "px)";
+  });
+  document.querySelectorAll("[data-rise]").forEach((el) => {
+    const p = eo(seg(t, +el.dataset.rise, +el.dataset.rise + 0.34));
+    el.style.opacity = String(p);
+    el.style.transform = "translateY(" + ((1 - p) * 26).toFixed(1) + "px)";
   });
   document.querySelectorAll("[data-fade]").forEach((el) => {
     el.style.opacity = String(eo(seg(t, +el.dataset.fade, +el.dataset.fade + 0.45)));
+  });
+  document.querySelectorAll("[data-grow]").forEach((el) => {
+    const p = q5(seg(t, +el.dataset.grow, +el.dataset.grow + 0.5));
+    el.style.transform = "scaleX(" + p.toFixed(3) + ")";
   });
   document.querySelectorAll("[data-drift]").forEach((el) => {
     const k = +el.dataset.drift || 1;
@@ -227,9 +262,22 @@ function paint(t) {
     el.style.transform = "translateX(" + lerp(-220, 1760, q5(p)) + "px)";
   });
   document.querySelectorAll("[data-pop]").forEach((el) => {
+    if (el.dataset.float) return;
     const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.45);
     const s = p <= 0 ? 0.92 : p >= 1 ? 1 : back(p);
     el.style.transform = "scale(" + s.toFixed(3) + ")";
+  });
+  document.querySelectorAll("[data-float]").forEach((el) => {
+    const k = +el.dataset.float || 1;
+    const dx = Math.sin(t * 0.55 + k * 1.7) * 5;
+    const dy = Math.cos(t * 0.4 + k) * 4;
+    let s = 1;
+    if (el.dataset.pop) {
+      const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.42);
+      s = p <= 0 ? 0.9 : p >= 1 ? 1 : back(p);
+    }
+    if (el.dataset.at) el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4)));
+    el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px) scale(" + s.toFixed(3) + ")";
   });
 }
 function render(t) {

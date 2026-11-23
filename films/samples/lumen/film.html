@@ -8,13 +8,19 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .line{display:flex;justify-content:center;gap:.26em;font-weight:560;letter-spacing:-.055em;line-height:1.02;white-space:nowrap}
 .line span{display:inline-block;opacity:0}
+.letters{display:flex;justify-content:center;gap:0.012em;font-weight:560;letter-spacing:-.06em;line-height:.92;white-space:nowrap}
+.letters span{display:inline-block;opacity:0}
 .stack{display:flex;flex-direction:column;align-items:center;gap:14px}
 .logo{display:none;height:64px;width:auto}
-.ctaName{font-size:26px;font-weight:500;color:#5B6275}
-.url{font-size:42px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:10px}
+.ctaName{font-size:84px;font-weight:560;letter-spacing:-.055em;color:#0D1222}
+.url{font-size:36px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:18px}
+.endRule{width:120px;height:3px;border-radius:99px;margin-top:22px;transform-origin:0 50%}
 .badge{position:fixed;top:22px;left:22px;z-index:20;font-size:13px;font-weight:560;letter-spacing:.12em;text-transform:uppercase;color:#0D1222;background:#fff;border-radius:999px;padding:7px 12px;box-shadow:0 0 0 1px rgba(13,18,34,.18),0 8px 20px rgba(0,0,0,.28)}
-#back{position:absolute;inset:0;width:1920px;pointer-events:none}
-.orb{position:absolute;width:460px;height:460px;border-radius:99px;opacity:.22;filter:blur(30px)}
+#back{position:absolute;left:0;top:0;width:1920px;height:9000px;pointer-events:none}
+#grid{position:absolute;left:0;top:0;width:1920px;height:9000px;pointer-events:none;opacity:.8;background-image:linear-gradient(rgba(13,18,34,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(13,18,34,.08) 1px,transparent 1px);background-size:64px 64px}
+#grain{position:fixed;inset:0;width:1920px;height:1080px;pointer-events:none;opacity:.045;z-index:15}
+.orb{position:absolute;width:520px;height:520px;border-radius:99px;opacity:.16;filter:blur(46px)}
+.speck{position:absolute;width:7px;height:7px;border-radius:99px;opacity:.45}
 .caret{display:inline-block;width:2px;height:.85em;background:currentColor;margin-left:3px;vertical-align:-1px}
 .sweep{position:absolute;top:0;width:160px;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);pointer-events:none;opacity:0}
 .cursor{position:absolute;z-index:6;width:28px;height:28px;pointer-events:none}
@@ -23,39 +29,51 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 
 
 .pill{padding:28px 48px;border-radius:999px;background:linear-gradient(100deg, #818ae8, #3D4BDB 45%, #172253);box-shadow:0 20px 60px rgba(13,18,34,.12)}
-.giant{font-weight:560;letter-spacing:-.07em;line-height:.9;background:linear-gradient(100deg, #172253, #3D4BDB 40%, #818ae8);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0}
-.field{background:
-  linear-gradient(90deg, #818ae8 0%, #3D4BDB 22%, #172253 50%, #3D4BDB 78%, #818ae8 100%)}
+.giant{font-weight:560;letter-spacing:-.07em;line-height:.9}
+.giant span{background:linear-gradient(100deg, #172253, #3D4BDB 40%, #818ae8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.field{background:radial-gradient(90% 80% at 18% 10%, #818ae8 0%, #3D4BDB 46%, #172253 100%)}
 .glass{width:920px;height:92px;border-radius:999px;background:rgba(255,255,255,.88);box-shadow:0 16px 50px rgba(13,18,34,.12);display:flex;align-items:center;padding:0 18px 0 32px;gap:16px}
 .glass p{flex:1;font-size:28px;font-weight:500;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0}
 .send{width:64px;height:64px;border-radius:99px;background:#fff;color:#3D4BDB;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 0 1px rgba(13,18,34,.06)}
 .chip{margin-top:22px;background:#fff;color:#3D4BDB;border-radius:99px;padding:8px 14px;font-weight:560;opacity:0}
-.hcard{position:absolute;background:#fff;color:#0D1222;border-radius:28px;box-shadow:0 24px 60px rgba(13,18,34,.12);padding:28px;display:flex;flex-direction:column;gap:12px;opacity:0}
+.hcard{position:absolute;width:424px;height:416px;background:#fff;color:#0D1222;border-radius:28px;box-shadow:0 24px 60px rgba(13,18,34,.12);padding:28px;display:flex;flex-direction:column;gap:14px;opacity:0}
 .hcard.wash{background:linear-gradient(165deg, #3D4BDB 0%, #172253 100%);color:#fff}
 .hcard.wash h3,.hcard.wash p,.hcard.wash b,.hcard.wash small,.hcard.wash span{color:#fff}
 .hcard.wash small{color:rgba(255,255,255,.78)}
 .hcard small{font-size:13px;font-weight:560;letter-spacing:.08em;text-transform:uppercase;color:#3D4BDB}
 .hcard h3{font-size:32px;font-weight:560;letter-spacing:-.045em;line-height:1.05;color:#0D1222}
-.hcard .stat{margin-top:auto;display:flex;align-items:baseline;gap:8px}
-.hcard .stat b{font-size:42px;letter-spacing:-.05em}
-.mail p{font-size:16px;line-height:1.45;margin:0}
-.approve{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.hcard .stat{margin-top:12px;display:flex;flex-direction:column;gap:4px}
+.hcard .stat b{font-size:84px;letter-spacing:-.06em;line-height:.9}
+.mail p{font-size:18px;line-height:1.4;margin:0}
+.quiet{font-size:18px;line-height:1.4;color:#5B6275}
+.hcard.wash .quiet{color:rgba(255,255,255,.82)}
+.approve{margin-top:auto;align-self:flex-start;font-style:normal;background:#fff;color:#172253;border-radius:14px;padding:14px 22px;font-weight:560;font-size:20px}
+.who{display:flex;gap:12px;align-items:center;margin-top:8px}
+.who i{width:44px;height:44px;border-radius:99px;background:#e8e9fb;color:#3D4BDB;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560}
+.hcard.wash .who i{background:rgba(255,255,255,.16);color:#fff}
+.who span{font-size:16px;line-height:1.35}
+.nmeter{margin-top:auto;height:8px;border-radius:99px;background:rgba(13,18,34,.08)}
+.hcard.wash .nmeter{background:rgba(255,255,255,.2)}
+.nmeter u{display:block;height:100%;border-radius:99px;background:#3D4BDB;text-decoration:none}
+.hcard.wash .nmeter u{background:#fff}
 .threads{display:flex;flex-direction:column;gap:10px}
 .threads div{display:flex;gap:10px;align-items:center}
 .threads i{width:36px;height:36px;border-radius:99px;background:#e8e9fb;color:#3D4BDB;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:12px}
 .threads span{display:flex;flex-direction:column}
 .threads small{letter-spacing:0;text-transform:none;font-weight:500;color:#5B6275}
 .approve em{font-style:normal;background:#fff;color:#172253;border-radius:12px;padding:10px 16px;font-weight:560}
-.centerWord{position:absolute;left:0;right:0;top:430px;text-align:center;font-size:168px;font-weight:560;letter-spacing:-.07em;opacity:0}
+.centerWord{position:absolute;left:0;right:0;top:28px;text-align:center;font-size:72px;font-weight:560;letter-spacing:-.06em;color:#0D1222}
 
 </style></head><body>
-<div id="back"><i class="orb" data-drift="0.7" style="left:80px;top:160px;background:#3D4BDB"></i><i class="orb" data-drift="1.2" style="left:1380px;top:1240px;background:#3D4BDB"></i><i class="orb" data-drift="0.7" style="left:80px;top:2320px;background:#3D4BDB"></i><i class="orb" data-drift="1.2" style="left:1380px;top:3400px;background:#3D4BDB"></i><i class="orb" data-drift="0.7" style="left:80px;top:4480px;background:#3D4BDB"></i><i class="orb" data-drift="1.2" style="left:1380px;top:5560px;background:#3D4BDB"></i></div>
+<div id="back"><i class="orb" data-drift="0.7" style="left:80px;top:160px;background:#3D4BDB"></i><i class="orb" data-drift="1.2" style="left:1380px;top:1240px;background:#3D4BDB"></i><i class="orb" data-drift="0.7" style="left:80px;top:2320px;background:#3D4BDB"></i><i class="orb" data-drift="1.2" style="left:1380px;top:3400px;background:#3D4BDB"></i><i class="orb" data-drift="0.7" style="left:80px;top:4480px;background:#3D4BDB"></i><i class="orb" data-drift="1.2" style="left:1380px;top:5560px;background:#3D4BDB"></i><i class="speck" data-drift="0.50" style="left:0px;top:0px;background:#3D4BDB"></i><i class="speck" data-drift="0.75" style="left:211px;top:347px;background:#3D4BDB"></i><i class="speck" data-drift="1.00" style="left:422px;top:694px;background:#3D4BDB"></i><i class="speck" data-drift="1.25" style="left:633px;top:1041px;background:#3D4BDB"></i><i class="speck" data-drift="0.50" style="left:844px;top:1388px;background:#3D4BDB"></i><i class="speck" data-drift="0.75" style="left:1055px;top:1735px;background:#3D4BDB"></i><i class="speck" data-drift="1.00" style="left:1266px;top:2082px;background:#3D4BDB"></i><i class="speck" data-drift="1.25" style="left:1477px;top:2429px;background:#3D4BDB"></i><i class="speck" data-drift="0.50" style="left:1688px;top:2776px;background:#3D4BDB"></i><i class="speck" data-drift="0.75" style="left:99px;top:3123px;background:#3D4BDB"></i><i class="speck" data-drift="1.00" style="left:310px;top:3470px;background:#3D4BDB"></i><i class="speck" data-drift="1.25" style="left:521px;top:3817px;background:#3D4BDB"></i><i class="speck" data-drift="0.50" style="left:732px;top:4164px;background:#3D4BDB"></i><i class="speck" data-drift="0.75" style="left:943px;top:4511px;background:#3D4BDB"></i><i class="speck" data-drift="1.00" style="left:1154px;top:4858px;background:#3D4BDB"></i><i class="speck" data-drift="1.25" style="left:1365px;top:5205px;background:#3D4BDB"></i></div>
+<div id="grid"></div>
+<svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
 <div class="badge">Sample product</div>
 <div id="world">
-<section class="scene" style="top:0;background:#F6F7F9"><div class="mid"><div class="pill"><div class="line" style="font-size:64px"><span data-at="0.22" data-tone="light">Follow-ups</span><span data-at="0.5" data-tone="light">sit</span><span data-at="0.78" data-tone="light">in</span><span data-at="1.06" data-tone="light">the</span><span data-at="1.34" data-tone="light">inbox</span></div><div class="line" style="font-size:64px"><span data-at="1.8" data-tone="light">until</span><span data-at="2.08" data-tone="light">the</span><span data-at="2.36" data-tone="light">week</span><span data-at="2.64" data-tone="light">is</span><span data-at="2.92" data-tone="light">gone</span></div></div></div></section>
-<section class="scene" style="top:1080px;background:#F6F7F9"><div class="mid">
+<section class="scene" style="top:0"><div class="mid"><div class="pill"><div class="line" style="font-size:64px"><span data-at="0.22" data-tone="light">Follow-ups</span><span data-at="0.5" data-tone="light">sit</span><span data-at="0.78" data-tone="light">in</span><span data-at="1.06" data-tone="light">the</span><span data-at="1.34" data-tone="light">inbox</span></div><div class="line" style="font-size:64px"><span data-at="1.8" data-tone="light">until</span><span data-at="2.08" data-tone="light">the</span><span data-at="2.36" data-tone="light">week</span><span data-at="2.64" data-tone="light">is</span><span data-at="2.92" data-tone="light">gone</span></div></div></div></section>
+<section class="scene" style="top:1080px"><div class="mid">
   <img class="logo" alt="">
-  <div class="giant" data-fade="4.02" style="font-size:220px">Lumen</div>
+  <div class="giant letters" style="font-size:300px"><span data-rise="3.94">L</span><span data-rise="3.99">u</span><span data-rise="4.04">m</span><span data-rise="4.09">e</span><span data-rise="4.14">n</span></div>
   <div class="sweep" data-a="4.27" data-b="5.12"></div>
 </div></section>
 <section class="scene field" style="top:2160px"><div class="mid">
@@ -66,28 +84,51 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
   <div id="chip" class="chip">Queued</div>
   <div id="cur" class="cursor" style="color:#fff"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
 </div></section>
-<section class="scene" style="top:3240px;background:#F6F7F9">
-  <div class="centerWord" data-at="12.94" data-tone="ink">Lumen</div>
-  <article class="hcard wash" style="left:48px;top:150px;width:620px;height:460px" data-at="13.02" data-pop="13.02">
+<section class="scene" style="top:3240px">
+  <div class="centerWord letters"><span data-rise="12.87">L</span><span data-rise="12.91">u</span><span data-rise="12.95">m</span><span data-rise="12.99">e</span><span data-rise="13.03">n</span></div>
+  <article class="hcard wash" style="left:80px;top:150px" data-at="12.97" data-pop="12.97" data-float="0.70">
         <small>Drafts the reply</small>
-        <h3>Drafts the reply</h3>
-        <div class="mail"><b>To Maya Chen · 9:41</b><p>Follow-ups sit in the inbox until the week is gone.</p><p>I kept your last three replies in the same tone.</p><p>Draft saved. Nothing has been sent.</p></div><div class="stat"><b data-count="12" data-from="13.42">0</b><small>drafts today</small></div>
-      </article><article class="hcard" style="left:1280px;top:70px;width:580px;height:420px" data-at="13.18" data-pop="13.18">
+        <h3>To Maya Chen</h3>
+        <div class="mail"><p>Follow-ups sit in the inbox until the week is gone.</p><p>Draft saved. Nothing has been sent.</p></div>
+      </article><article class="hcard" style="left:528px;top:150px" data-at="13.09" data-pop="13.09" data-float="0.85">
         <small>Finds the right thread</small>
-        <h3>Finds the right thread</h3>
-        <div class="threads"><div><i>MC</i><span><b>Maya Chen</b><small>9:41 · Follow-up</small></span></div><div><i>JL</i><span><b>Jules Okonkwo</b><small>8:15 · Waiting</small></span></div><div><i>AR</i><span><b>Ari Rahman</b><small>Yesterday · Sent</small></span></div></div><div class="stat"><b data-count="48" data-from="13.92">0</b><small>open threads</small></div>
-      </article><article class="hcard wash" style="left:1240px;top:560px;width:620px;height:440px" data-at="13.34" data-pop="13.34">
+        <h3>Open threads</h3>
+        <div class="threads"><div><i>MC</i><span><b>Maya Chen</b><small>9:41 · Follow-up</small></span></div><div><i>JO</i><span><b>Jules Okonkwo</b><small>8:15 · Waiting</small></span></div><div><i>AR</i><span><b>Ari Rahman</b><small>Yesterday · Sent</small></span></div></div>
+      </article><article class="hcard wash" style="left:976px;top:150px" data-at="13.21" data-pop="13.21" data-float="1.00">
         <small>Asks before it sends</small>
-        <h3>Asks before it sends</h3>
-        <div class="approve"><b>Ready for Thursday, 2:00</b><em>Approve</em></div><div class="stat"><b data-count="6" data-from="14.42">0</b><small>waiting on you</small></div>
+        <h3>Thursday, 2:00</h3>
+        <p class="quiet">Nothing goes out until you say so.</p><em id="approve" class="approve">Approve</em>
+      </article><article class="hcard" style="left:1424px;top:150px" data-at="13.33" data-pop="13.33" data-float="1.15">
+        <small>Follow-up</small>
+        <h3>Maya Chen</h3>
+        <div class="who"><i>MC</i><span>9:41 · The thread is still open</span></div><p class="quiet">Same tone as the last three notes.</p><div class="nmeter"><u style="width:64%"></u></div>
+      </article><article class="hcard wash" style="left:80px;top:590px" data-at="13.45" data-pop="13.45" data-float="1.30">
+        <small>Waiting</small>
+        <h3>Jules Okonkwo</h3>
+        <div class="who"><i>JO</i><span>8:15 · Waiting on a reply</span></div><p class="quiet">Held since this morning.</p><div class="nmeter"><u style="width:40%"></u></div>
+      </article><article class="hcard" style="left:528px;top:590px" data-at="13.57" data-pop="13.57" data-float="0.70">
+        <small>Sent</small>
+        <h3>Ari Rahman</h3>
+        <div class="who"><i>AR</i><span>Yesterday · Already sent</span></div><p class="quiet">Closed. Nothing else to send.</p><div class="nmeter"><u style="width:100%"></u></div>
+      </article><article class="hcard wash" style="left:976px;top:590px" data-at="13.69" data-pop="13.69" data-float="0.85">
+        <small>Today</small>
+        
+        <div class="stat"><b data-count="12" data-from="13.62">0</b><small>drafts in the queue</small></div>
+      </article><article class="hcard" style="left:1424px;top:590px" data-at="13.81" data-pop="13.81" data-float="1.00">
+        <small>On you</small>
+        
+        <div class="stat"><b data-count="6" data-from="13.92">0</b><small>waiting on a yes</small></div>
       </article>
+  <div id="cur2" class="cursor" style="color:#3D4BDB"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring2" class="ring"></i></div>
 </section>
-<section class="scene" style="top:4320px;background:#F6F7F9"><div class="mid">
+<section class="scene" style="top:4320px"><div class="mid">
     <img class="logo" alt="">
     <div class="ctaName">Lumen</div>
-    <div class="url" style="color:#3D4BDB">lumen.example</div>
+    <div class="url letters" style="color:#3D4BDB"><span data-rise="28.74">l</span><span data-rise="28.77">u</span><span data-rise="28.8">m</span><span data-rise="28.84">e</span><span data-rise="28.87">n</span><span data-rise="28.9">.</span><span data-rise="28.93">e</span><span data-rise="28.96">x</span><span data-rise="29">a</span><span data-rise="29.03">m</span><span data-rise="29.06">p</span><span data-rise="29.09">l</span><span data-rise="29.12">e</span></div>
+    <div class="endRule" style="background:#3D4BDB" data-grow="28.90"></div>
+    <div class="sweep" data-a="28.80" data-b="29.67"></div>
   </div></section></div>
-<script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.7,"end":32.77,"stops":[{"t":0,"y":0},{"t":3.82,"y":1080},{"t":8.02,"y":2160},{"t":12.82,"y":3240},{"t":28.62,"y":4320}],"glass":8.02,"cards":12.82,"logo":null}</script>
+<script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.7,"end":32.77,"stops":[{"t":0,"y":0},{"t":3.82,"y":1080},{"t":8.02,"y":2160},{"t":12.82,"y":3240},{"t":28.62,"y":4320}],"glass":8.02,"cards":12.82,"hit":15.17,"logo":null}</script>
 <script>
 const $ = (id) => document.getElementById(id);
 const STATE = JSON.parse(document.getElementById("state").textContent);
@@ -105,20 +146,35 @@ const mix = (a, b, p) => {
   return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * p)).join(",") + ")";
 };
 function camera(t) {
-  let y = STATE.stops[0].y;
+  const stops = STATE.stops;
+  let y = stops[0].y;
+  let zoom = 1 + Math.min(t, 8) * 0.007;
   let blur = 0;
-  for (let i = 1; i < STATE.stops.length; i++) {
-    const start = STATE.stops[i].t;
+  for (let i = 1; i < stops.length; i++) {
+    const start = stops[i].t;
     if (t < start) break;
-    const p = q5(seg(t, start, start + STATE.slide));
-    y = lerp(STATE.stops[i - 1].y, STATE.stops[i].y, p);
     const u = seg(t, start, start + STATE.slide);
-    if (u > 0 && u < 1) blur = Math.sin(Math.PI * u) * 4;
+    const p = q5(u);
+    y = lerp(stops[i - 1].y, stops[i].y, p);
+    if (u > 0 && u < 1) {
+      blur = Math.sin(Math.PI * u) * 3.2;
+      zoom = lerp(1.1, 1, p);
+    } else {
+      const held = Math.max(0, t - (start + STATE.slide));
+      zoom = 1 + Math.min(held, 8) * 0.007;
+    }
   }
-  $("world").style.transform = "translateY(" + (-y) + "px)";
-  $("world").style.filter = blur > 0.3 ? "blur(" + blur.toFixed(2) + "px)" : "none";
+  const world = $("world");
+  world.style.transformOrigin = "960px " + (y + 540) + "px";
+  world.style.transform = "translateY(" + (-y) + "px) scale(" + zoom.toFixed(4) + ")";
+  world.style.filter = blur > 0.35 ? "blur(" + blur.toFixed(2) + "px)" : "none";
   const back = $("back");
-  if (back) back.style.transform = "translateY(" + (-y * 0.45) + "px)";
+  if (back) {
+    back.style.transformOrigin = "960px " + (y * 0.32 + 540) + "px";
+    back.style.transform = "translateY(" + (-y * 0.32) + "px) scale(" + (1 + (zoom - 1) * 0.45).toFixed(4) + ")";
+  }
+  const grid = $("grid");
+  if (grid) grid.style.transform = "translate(" + (Math.sin(t * 0.22) * 16).toFixed(1) + "px," + (-y * 0.62).toFixed(1) + "px)";
 }
 function paint(t) {
   document.querySelectorAll("[data-at]").forEach((el) => {
@@ -127,9 +183,19 @@ function paint(t) {
     const light = el.dataset.tone === "light";
     el.style.opacity = String(p);
     el.style.color = mix(light ? "#D5DAE6" : STATE.grey, light ? "#FFFFFF" : STATE.ink, p);
+    if (el.tagName === "SPAN") el.style.transform = "translateY(" + ((1 - p) * 18).toFixed(1) + "px)";
+  });
+  document.querySelectorAll("[data-rise]").forEach((el) => {
+    const p = eo(seg(t, +el.dataset.rise, +el.dataset.rise + 0.34));
+    el.style.opacity = String(p);
+    el.style.transform = "translateY(" + ((1 - p) * 26).toFixed(1) + "px)";
   });
   document.querySelectorAll("[data-fade]").forEach((el) => {
     el.style.opacity = String(eo(seg(t, +el.dataset.fade, +el.dataset.fade + 0.45)));
+  });
+  document.querySelectorAll("[data-grow]").forEach((el) => {
+    const p = q5(seg(t, +el.dataset.grow, +el.dataset.grow + 0.5));
+    el.style.transform = "scaleX(" + p.toFixed(3) + ")";
   });
   document.querySelectorAll("[data-drift]").forEach((el) => {
     const k = +el.dataset.drift || 1;
@@ -149,9 +215,22 @@ function paint(t) {
     el.style.transform = "translateX(" + lerp(-220, 1760, q5(p)) + "px)";
   });
   document.querySelectorAll("[data-pop]").forEach((el) => {
+    if (el.dataset.float) return;
     const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.45);
     const s = p <= 0 ? 0.92 : p >= 1 ? 1 : back(p);
     el.style.transform = "scale(" + s.toFixed(3) + ")";
+  });
+  document.querySelectorAll("[data-float]").forEach((el) => {
+    const k = +el.dataset.float || 1;
+    const dx = Math.sin(t * 0.55 + k * 1.7) * 5;
+    const dy = Math.cos(t * 0.4 + k) * 4;
+    let s = 1;
+    if (el.dataset.pop) {
+      const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.42);
+      s = p <= 0 ? 0.9 : p >= 1 ? 1 : back(p);
+    }
+    if (el.dataset.at) el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4)));
+    el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px) scale(" + s.toFixed(3) + ")";
   });
 }
 function render(t) {
@@ -178,15 +257,23 @@ Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]).th
 
 
 function extra(t) {
-  document.querySelectorAll(".hcard").forEach((el) => {
-    el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4)));
-  });
   const move = q5(seg(t, STATE.glass + 0.8, STATE.glass + 1.55));
   $("cur").style.left = lerp(700, 1340, move) + "px";
   $("cur").style.top = lerp(640, 520, move) + "px";
+  const pressing = t >= STATE.glass + 1.55 && t < STATE.glass + 1.75;
+  $("cur").style.transform = "scale(" + (pressing ? 0.82 : 1) + ")";
   const click = seg(t, STATE.glass + 1.55, STATE.glass + 1.9);
   $("ring").style.opacity = String(click > 0 && click < 1 ? 1 - click : 0);
   $("chip").style.opacity = String(eo(seg(t, STATE.glass + 1.7, STATE.glass + 2.05)));
+  const move2 = q5(seg(t, STATE.cards + 1.15, STATE.cards + 2.2));
+  $("cur2").style.left = lerp(240, 1040, move2) + "px";
+  $("cur2").style.top = lerp(860, 500, move2) + "px";
+  const pressing2 = t >= STATE.hit && t < STATE.hit + 0.18;
+  $("cur2").style.transform = "scale(" + (pressing2 ? 0.82 : 1) + ")";
+  const click2 = seg(t, STATE.hit, STATE.hit + 0.35);
+  $("ring2").style.opacity = String(click2 > 0 && click2 < 1 ? 1 - click2 : 0);
+  const btn = document.getElementById("approve");
+  if (btn && t > STATE.hit) btn.textContent = "Approved";
 }
 </script>
 </body></html>

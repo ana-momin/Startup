@@ -16,6 +16,11 @@
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
+  "overrides": {
+    "zod": "4.6.7",
+    "@vercel/cli-config": "0.4.0",
+    "@vercel/oidc": "4.0.9"
+  },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",

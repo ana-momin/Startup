@@ -10,8 +10,9 @@ Rules taken from the Pond films in this repo (especially Introducing Pond for AI
 | Word fade | 420 ms | Grey to ink, or light grey to white on a dark open. |
 | Scene slide | 680 ms | Quint in-out. Camera moves only here, and on a kinetic line. |
 | Stagger | 160 ms | Next row, card, or node. |
+| Letter stagger | 45 ms | A name or a URL, one letter at a time, already in its final place. |
 | Count-up | 1100 ms | A number draws itself. Expo out. |
-| Hold | 1600 ms minimum | After the last item has arrived, leave it still so it can be read. |
+| Drift | under 400 ms frozen | The camera keeps a slow push (about 0.7% a second). Free cards drift a few pixels. A cut is a zoom-through, not a hard jump. |
 | Hook | under 3000 ms | The problem is readable before 3 seconds. |
 
 ## Easing
@@ -28,8 +29,9 @@ Rules taken from the Pond films in this repo (especially Introducing Pond for AI
 
 - Words appear in their final place. Grey, then ink.
 - Rows and cards stagger in. They do not push their neighbours.
-- A 2D camera slide between scenes. A slower background layer moves at about half speed (parallax). No 3D.
+- A 2D camera slide between scenes, with a zoom-through (scale about 1.10 down to 1) on the cut. During the scene the frame keeps a slow push. A background glow moves at about a third of the speed, and a grid at about two thirds. No 3D, no tilt.
 - A light band may cross a word once (a sweep). It does not loop.
+- Product names and the closing URL reveal per letter. Body lines reveal per word, rising about 18 px as they fade in.
 - A cursor moves, presses (scale 0.82 for about 160 ms), then a result appears.
 - Numbers count up once.
 - A caret blinks in a text field.

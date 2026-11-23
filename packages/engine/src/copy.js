@@ -37,6 +37,19 @@ export function lineHtml(line, tone = "ink") {
   return line.map((w) => `<span data-at="${w.at}" data-tone="${tone}">${esc(w.text)}</span>`).join("");
 }
 
+/** Per-letter reveal. Spaces stay put so the word never reflows. */
+export function letterLine(text, start = 0, every = 0.04, attr = "data-rise") {
+  let i = 0;
+  return [...String(text)]
+    .map((ch) => {
+      if (ch === " ") return " ";
+      const at = +(start + i * every).toFixed(2);
+      i += 1;
+      return `<span ${attr}="${at}">${esc(ch)}</span>`;
+    })
+    .join("");
+}
+
 export function shortLabel(feature) {
   const raw = words(feature);
   const kept = raw.filter((w) => !STOP.has(w.toLowerCase()));
