@@ -1,4 +1,5 @@
 import { base, cue, esc, initials, lastAt, letterLine, lineHtml, shortLabel } from "../copy.js";
+import { clusterSlots, depthFor, layoutVariant, slideDir } from "../layout.js";
 import { endScene, page } from "../shell.js";
 
 function timing(last, n) {
@@ -15,6 +16,8 @@ function timing(last, n) {
 
 export function launchFilm(brief, opts = {}) {
   const plan = base(brief);
+  const variant = layoutVariant(brief);
+  const dir = slideDir(variant);
   const time = timing(lastAt(plan.hook), plan.features.length);
   const hook = plan.hook.map((line) => `<div class="line" style="font-size:${plan.hookSize}px">${lineHtml(line, "light")}</div>`).join("");
   const tasks = [
@@ -60,16 +63,22 @@ export function launchFilm(brief, opts = {}) {
   ]
     .map(([who, time, text]) => `<div class="msg"><i>${who}</i><p><b>${time}</b> ${esc(text)}</p></div>`)
     .join("");
-  const cards = plan.features
+  const cardFace = (title, i) => {
+    const kind = ["doc", "board", "thread"][i % 3];
+    const body =
+      kind === "board"
+        ? `<div class="mini">${[40, 70, 48, 86, 55, 30, 44].map((h) => `<b style="height:${h}%"></b>`).join("")}</div><small>Mon to Sun · 18 posts</small>`
+        : kind === "thread"
+          ? `<div class="bubble">${esc(plan.problem.slice(0, 80))}</div><div class="bubble me">Hold Thursday. One more pass.</div>`
+          : `<u></u><s></s><s></s><em>${esc(title)}</em>`;
+    return `<span>${["Draft", "This week", "Thread"][i % 3]}</span><h3>${esc(title)}</h3><div class="mock ${kind}">${body}</div>`;
+  };
+  const cards = plan.features.map((title, i) => `<article class="fcard">${cardFace(title, i)}</article>`).join("");
+  const cluster = plan.features
     .map((title, i) => {
-      const kind = ["doc", "board", "thread"][i % 3];
-      const body =
-        kind === "board"
-          ? `<div class="mini">${[40, 70, 48, 86, 55, 30, 44].map((h, n) => `<b style="height:${h}%"></b>`).join("")}</div><small>Mon to Sun · 18 posts</small>`
-          : kind === "thread"
-            ? `<div class="bubble">${esc(plan.problem.slice(0, 80))}</div><div class="bubble me">Hold Thursday. One more pass.</div>`
-            : `<u></u><s></s><s></s><em>${esc(title)}</em>`;
-      return `<article class="fcard"><span>${["Draft", "This week", "Thread"][i % 3]}</span><h3>${esc(title)}</h3><div class="mock ${kind}">${body}</div></article>`;
+      const [x, y] = clusterSlots(plan.features.length, variant)[i];
+      const depth = depthFor(i, 0);
+      return `<article class="fcard" style="position:absolute;left:${x}px;top:${y}px" data-at="${(time.features + 0.2 + i * 0.16).toFixed(2)}" data-pop="${(time.features + 0.2 + i * 0.16).toFixed(2)}" data-depth="${depth.depth}" data-scale="${depth.scale}" data-z="${depth.z}" data-float="${(0.8 + i * 0.3).toFixed(2)}">${cardFace(title, i)}</article>`;
     })
     .join("");
   const steps = [
@@ -157,10 +166,15 @@ export function launchFilm(brief, opts = {}) {
 `;
 
   const body = `
-<section class="scene" style="top:0;background:radial-gradient(120% 80% at 50% 120%, ${plan.accentDeep} 0%, #070b14 58%)"><div class="mid stack">${hook}</div></section>
-<section class="scene" style="top:1080px"><div class="mid">
+<section class="scene" style="top:0;background:radial-gradient(120% 80% at 50% 120%, ${plan.accentDeep} 0%, #070b14 58%)" data-variant="${variant}">
+  <div class="crop" style="color:#fff" data-slide="0.2" data-from="${dir.from}" data-to="${dir.to}" data-dur="2.6">${esc(plan.name)}</div>
+  <div class="mid stack">${hook}</div>
+</section>
+<section class="scene" style="top:1080px">
+  <div class="crop" style="color:${plan.accent}" data-slide="${time.name}" data-from="${dir.to}" data-to="${dir.from}" data-dur="2.6">${esc(plan.name)}</div>
+  <div class="mid">
   <div class="kicker" data-at="${(time.name + 0.15).toFixed(2)}" data-tone="ink">Introducing</div>
-  <div class="nameRow"><img class="logo" alt=""><div class="product letters" style="font-size:${plan.name.length > 10 ? 120 : plan.name.length > 7 ? 200 : 280}px">${letterLine(plan.name, time.name + 0.18, 0.045)}</div></div>
+  <div class="nameRow"><img class="logo" alt=""><div class="product letters" data-punch="${(time.name + 0.4).toFixed(2)}" style="font-size:${plan.name.length > 10 ? 120 : plan.name.length > 7 ? 200 : 280}px">${letterLine(plan.name, time.name + 0.18, 0.045)}</div></div>
   <div class="swap" data-at="${(time.name + 0.9).toFixed(2)}" data-tone="ink">You get ${esc(shortLabel(plan.features[0]))}</div>
   <div class="sweep" data-a="${(time.name + 0.55).toFixed(2)}" data-b="${(time.name + 1.35).toFixed(2)}"></div>
 </div></section>
@@ -180,7 +194,7 @@ export function launchFilm(brief, opts = {}) {
 </div></div></div></section>
 <section class="scene" style="top:3240px">
   <div class="head" data-at="${(time.features + 0.08).toFixed(2)}" data-tone="ink">What it does</div>
-  <div id="track" class="track">${cards}</div>
+  ${variant === 0 ? `<div id="track" class="track">${cards}</div>` : `<div class="crop" style="color:${plan.accent};top:80px" data-slide="${time.features}" data-from="${dir.from}" data-to="${dir.to}" data-dur="3">${esc(plan.name)}</div>${cluster}`}
 </section>
 <section class="scene" style="top:4320px"><div class="mid">
   <div class="flowHead" data-at="${(time.flow + 0.1).toFixed(2)}" data-tone="ink">How it comes together</div>
@@ -223,14 +237,17 @@ function extra(t) {
   const hot = document.querySelector(".row.hot");
   if (hot) hot.classList.toggle("show", t > STATE.ui + 2.05);
   $("toast").style.opacity = String(eo(seg(t, STATE.ui + 2.1, STATE.ui + 2.4)));
-  const n = document.querySelectorAll("#track .fcard").length || 1;
-  let idx = 0;
-  for (let i = 1; i < n; i++) {
-    const at = STATE.features + i * STATE.per;
-    if (t < at - 0.45) break;
-    idx = i - 1 + q5(seg(t, at - 0.45, at));
+  const track = $("track");
+  if (track) {
+    const n = track.querySelectorAll(".fcard").length || 1;
+    let idx = 0;
+    for (let i = 1; i < n; i++) {
+      const at = STATE.features + i * STATE.per;
+      if (t < at - 0.45) break;
+      idx = i - 1 + q5(seg(t, at - 0.45, at));
+    }
+    track.style.transform = "translateX(" + ((1920 - 460) / 2 - idx * 488) + "px)";
   }
-  $("track").style.transform = "translateX(" + ((1920 - 460) / 2 - idx * 488) + "px)";
   document.querySelectorAll(".step").forEach((el, i) => {
     const at = STATE.flow + 0.35 + i * 0.55;
     el.style.opacity = String(eo(seg(t, at, at + 0.35)));

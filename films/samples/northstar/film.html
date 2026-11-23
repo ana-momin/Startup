@@ -5,7 +5,8 @@
 html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-family:G,sans-serif;color:#0D1222;-webkit-font-smoothing:antialiased}
 #world{position:absolute;left:0;top:0;width:1920px}
 .scene{position:absolute;left:0;width:1920px;height:1080px;overflow:hidden}
-.mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2}
+.crop{position:absolute;top:-220px;left:0;z-index:0;font-size:720px;font-weight:560;letter-spacing:-.085em;line-height:.76;white-space:nowrap;pointer-events:none;opacity:0}
 .line{display:flex;justify-content:center;gap:.26em;font-weight:560;letter-spacing:-.055em;line-height:1.02;white-space:nowrap}
 .line span{display:inline-block;opacity:0}
 .letters{display:flex;justify-content:center;gap:0.012em;font-weight:560;letter-spacing:-.06em;line-height:.92;white-space:nowrap}
@@ -108,10 +109,15 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 <svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
 <div class="badge">Sample product</div>
 <div id="world">
-<section class="scene" style="top:0;background:radial-gradient(120% 80% at 50% 120%, #08302f 0%, #070b14 58%)"><div class="mid stack"><div class="line" style="font-size:104px"><span data-at="0.22" data-tone="light">Launch</span><span data-at="0.5" data-tone="light">posts</span><span data-at="0.78" data-tone="light">take</span><span data-at="1.06" data-tone="light">a</span><span data-at="1.34" data-tone="light">week</span></div><div class="line" style="font-size:104px"><span data-at="1.8" data-tone="light">and</span><span data-at="2.08" data-tone="light">still</span><span data-at="2.36" data-tone="light">look</span><span data-at="2.64" data-tone="light">generic</span></div></div></section>
-<section class="scene" style="top:1080px"><div class="mid">
+<section class="scene" style="top:0;background:radial-gradient(120% 80% at 50% 120%, #08302f 0%, #070b14 58%)" data-variant="1">
+  <div class="crop" style="color:#fff" data-slide="0.2" data-from="980" data-to="-1500" data-dur="2.6">Northstar</div>
+  <div class="mid stack"><div class="line" style="font-size:104px"><span data-at="0.22" data-tone="light">Launch</span><span data-at="0.5" data-tone="light">posts</span><span data-at="0.78" data-tone="light">take</span><span data-at="1.06" data-tone="light">a</span><span data-at="1.34" data-tone="light">week</span></div><div class="line" style="font-size:104px"><span data-at="1.8" data-tone="light">and</span><span data-at="2.08" data-tone="light">still</span><span data-at="2.36" data-tone="light">look</span><span data-at="2.64" data-tone="light">generic</span></div></div>
+</section>
+<section class="scene" style="top:1080px">
+  <div class="crop" style="color:#0E7C66" data-slide="3.49" data-from="-1500" data-to="980" data-dur="2.6">Northstar</div>
+  <div class="mid">
   <div class="kicker" data-at="3.64" data-tone="ink">Introducing</div>
-  <div class="nameRow"><img class="logo" alt=""><div class="product letters" style="font-size:200px"><span data-rise="3.67">N</span><span data-rise="3.72">o</span><span data-rise="3.76">r</span><span data-rise="3.81">t</span><span data-rise="3.85">h</span><span data-rise="3.9">s</span><span data-rise="3.94">t</span><span data-rise="3.99">a</span><span data-rise="4.03">r</span></div></div>
+  <div class="nameRow"><img class="logo" alt=""><div class="product letters" data-punch="3.89" style="font-size:200px"><span data-rise="3.67">N</span><span data-rise="3.72">o</span><span data-rise="3.76">r</span><span data-rise="3.81">t</span><span data-rise="3.85">h</span><span data-rise="3.9">s</span><span data-rise="3.94">t</span><span data-rise="3.99">a</span><span data-rise="4.03">r</span></div></div>
   <div class="swap" data-at="4.39" data-tone="ink">You get Brand-matched</div>
   <div class="sweep" data-a="4.04" data-b="4.84"></div>
 </div></section>
@@ -161,7 +167,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 </div></div></div></section>
 <section class="scene" style="top:3240px">
   <div class="head" data-at="17.02" data-tone="ink">What it does</div>
-  <div id="track" class="track"><article class="fcard"><span>Draft</span><h3>Brand-matched drafts</h3><div class="mock doc"><u></u><s></s><s></s><em>Brand-matched drafts</em></div></article><article class="fcard"><span>This week</span><h3>One shared board</h3><div class="mock board"><div class="mini"><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:86%"></b><b style="height:55%"></b><b style="height:30%"></b><b style="height:44%"></b></div><small>Mon to Sun · 18 posts</small></div></article><article class="fcard"><span>Thread</span><h3>Approval before anything goes live</h3><div class="mock thread"><div class="bubble">Launch posts take a week and still look generic.</div><div class="bubble me">Hold Thursday. One more pass.</div></div></article></div>
+  <div class="crop" style="color:#0E7C66;top:80px" data-slide="16.94" data-from="980" data-to="-1500" data-dur="3">Northstar</div><article class="fcard" style="position:absolute;left:371px;top:84px" data-at="17.14" data-pop="17.14" data-depth="0" data-scale="1" data-z="8" data-float="0.80"><span>Draft</span><h3>Brand-matched drafts</h3><div class="mock doc"><u></u><s></s><s></s><em>Brand-matched drafts</em></div></article><article class="fcard" style="position:absolute;left:947px;top:118px" data-at="17.30" data-pop="17.30" data-depth="1.1" data-scale="0.9" data-z="5" data-float="1.10"><span>This week</span><h3>One shared board</h3><div class="mock board"><div class="mini"><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:86%"></b><b style="height:55%"></b><b style="height:30%"></b><b style="height:44%"></b></div><small>Mon to Sun · 18 posts</small></div></article><article class="fcard" style="position:absolute;left:333px;top:377px" data-at="17.46" data-pop="17.46" data-depth="1.7" data-scale="0.84" data-z="3" data-float="1.40"><span>Thread</span><h3>Approval before anything goes live</h3><div class="mock thread"><div class="bubble">Launch posts take a week and still look generic.</div><div class="bubble me">Hold Thursday. One more pass.</div></div></article>
 </section>
 <section class="scene" style="top:4320px"><div class="mid">
   <div class="flowHead" data-at="25.34" data-tone="ink">How it comes together</div>
@@ -261,13 +267,46 @@ function paint(t) {
     el.style.opacity = p > 0 && p < 1 ? "0.9" : "0";
     el.style.transform = "translateX(" + lerp(-220, 1760, q5(p)) + "px)";
   });
+  document.querySelectorAll("[data-slide]").forEach((el) => {
+    const dur = +el.dataset.dur || 2.4;
+    const p = q5(seg(t, +el.dataset.slide, +el.dataset.slide + dur));
+    const x = lerp(+el.dataset.from || -900, +el.dataset.to || 900, p);
+    el.style.transform = "translateX(" + x.toFixed(1) + "px)";
+    el.style.opacity = p > 0 && p < 1 ? "0.16" : "0";
+  });
+  document.querySelectorAll("[data-punch]").forEach((el) => {
+    const times = String(el.dataset.punch).split(",").map(Number);
+    let s = 1;
+    for (const at of times) {
+      const p = seg(t, at, at + 0.28);
+      if (p > 0 && p < 1) s = 1 + Math.sin(p * Math.PI) * 0.12;
+    }
+    el.style.transform = "scale(" + s.toFixed(3) + ")";
+  });
   document.querySelectorAll("[data-pop]").forEach((el) => {
-    if (el.dataset.float) return;
+    if (el.dataset.float || el.hasAttribute("data-depth")) return;
     const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.45);
     const s = p <= 0 ? 0.92 : p >= 1 ? 1 : back(p);
     el.style.transform = "scale(" + s.toFixed(3) + ")";
   });
+  document.querySelectorAll("[data-depth]").forEach((el) => {
+    const d = +el.dataset.depth || 0;
+    const k = +(el.dataset.float || d + 1);
+    const amp = 5 + d * 8;
+    const dx = Math.sin(t * 0.42 + k * 1.7) * amp;
+    const dy = Math.cos(t * 0.31 + k) * amp * 0.65;
+    let s = +(el.dataset.scale || 1);
+    if (el.dataset.pop) {
+      const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.42);
+      s *= p <= 0 ? 0.88 : p >= 1 ? 1 : back(p);
+    }
+    if (el.dataset.at) el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.38)));
+    el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px) scale(" + s.toFixed(3) + ")";
+    el.style.filter = d > 0.25 ? "blur(" + (d * 1.15).toFixed(2) + "px)" : "none";
+    if (el.dataset.z) el.style.zIndex = el.dataset.z;
+  });
   document.querySelectorAll("[data-float]").forEach((el) => {
+    if (el.hasAttribute("data-depth")) return;
     const k = +el.dataset.float || 1;
     const dx = Math.sin(t * 0.55 + k * 1.7) * 5;
     const dy = Math.cos(t * 0.4 + k) * 4;
@@ -322,14 +361,17 @@ function extra(t) {
   const hot = document.querySelector(".row.hot");
   if (hot) hot.classList.toggle("show", t > STATE.ui + 2.05);
   $("toast").style.opacity = String(eo(seg(t, STATE.ui + 2.1, STATE.ui + 2.4)));
-  const n = document.querySelectorAll("#track .fcard").length || 1;
-  let idx = 0;
-  for (let i = 1; i < n; i++) {
-    const at = STATE.features + i * STATE.per;
-    if (t < at - 0.45) break;
-    idx = i - 1 + q5(seg(t, at - 0.45, at));
+  const track = $("track");
+  if (track) {
+    const n = track.querySelectorAll(".fcard").length || 1;
+    let idx = 0;
+    for (let i = 1; i < n; i++) {
+      const at = STATE.features + i * STATE.per;
+      if (t < at - 0.45) break;
+      idx = i - 1 + q5(seg(t, at - 0.45, at));
+    }
+    track.style.transform = "translateX(" + ((1920 - 460) / 2 - idx * 488) + "px)";
   }
-  $("track").style.transform = "translateX(" + ((1920 - 460) / 2 - idx * 488) + "px)";
   document.querySelectorAll(".step").forEach((el, i) => {
     const at = STATE.flow + 0.35 + i * 0.55;
     el.style.opacity = String(eo(seg(t, at, at + 0.35)));

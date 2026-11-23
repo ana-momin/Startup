@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { acceptFill } from "../src/direct.js";
 import { chooseTemplate, compose, SAMPLE_BRIEF, SAMPLES, screenText } from "../src/index.js";
+import { constellation, layoutVariant } from "../src/layout.js";
 import { beats } from "../src/motion.js";
 
 test("halal screen declines gambling, betting, adult, alcohol and drugs", () => {
@@ -80,6 +81,27 @@ test("a name cannot inject markup into the film", () => {
 
 test("stagger beats follow the shared motion scale", () => {
   assert.deepEqual(beats(1, 3), [1, 1.16, 1.32]);
+});
+
+test("two briefs pick different layouts, and the same brief does not", () => {
+  assert.equal(layoutVariant(SAMPLE_BRIEF), layoutVariant(SAMPLE_BRIEF));
+  const names = ["Amber", "Bright", "Cedar", "Delta", "Echo", "Fern", "Grove", "Harbor"];
+  const flipped = names
+    .map((name) => ({ ...SAMPLE_BRIEF, name, problem: name + " waits on a draft for days." }))
+    .find((brief) => layoutVariant(brief) !== layoutVariant(SAMPLE_BRIEF));
+  assert.ok(flipped);
+  const a = compose(SAMPLE_BRIEF);
+  const b = compose(flipped);
+  assert.match(a.html, new RegExp(`data-variant="${layoutVariant(SAMPLE_BRIEF)}"`));
+  assert.match(b.html, new RegExp(`data-variant="${layoutVariant(flipped)}"`));
+  assert.match(a.html, /data-slide=/);
+  assert.match(compose(SAMPLES[1]).html, /data-depth=/);
+  for (const v of [0, 1, 2]) {
+    const hero = constellation(8, v, 2)[2];
+    assert.ok(hero[0] >= 0 && hero[0] + 460 <= 1920, `hero x ${v}`);
+    assert.ok(hero[1] >= 0 && hero[1] + 380 <= 1080, `hero y ${v}`);
+  }
+  assert.doesNotMatch(a.html + b.html, /perspective|rotateX|rotateY|matrix3d|rotate\(/i);
 });
 
 test("workflow uses the shared queue, not an empty stair", () => {

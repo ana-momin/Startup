@@ -1,4 +1,5 @@
 import { base, cue, esc, lastAt, lineHtml, words } from "../copy.js";
+import { layoutVariant, slideDir } from "../layout.js";
 import { beats } from "../motion.js";
 import { endScene, page } from "../shell.js";
 
@@ -9,6 +10,8 @@ import { endScene, page } from "../shell.js";
  */
 export function workflowFilm(brief, opts = {}) {
   const plan = base(brief);
+  const variant = layoutVariant(brief);
+  const dir = slideDir(variant);
   const last = lastAt(plan.hook);
   const stair = Math.max(3.4, +(last + 0.85).toFixed(2));
   const shift = stair - 3.4;
@@ -50,10 +53,12 @@ export function workflowFilm(brief, opts = {}) {
     })),
     { title: "Go live", sub: plan.hostname, who: "GO", name: "Ready", clock: "Thursday", tag: "Live" },
   ].slice(0, 6);
-  const slots = [
+  const grid = [
     [36, 24], [620, 24], [1204, 24],
-    [36, 430], [620, 430], [1204, 430],
-  ].slice(0, nodes.length);
+    [36, 390], [620, 390], [1204, 390],
+  ];
+  const order = variant === 1 ? [1, 2, 0, 4, 5, 3] : variant === 2 ? [2, 0, 1, 5, 3, 4] : [0, 1, 2, 3, 4, 5];
+  const slots = order.map((i) => grid[i]).slice(0, nodes.length);
   const skip = new Set(["your", "the", "a", "an", "in", "of", "for", "to", "and", "with", "on", "it", "from", "that", "this", "one"]);
   const mark = (title) => {
     const parts = words(title).filter((w) => !skip.has(w.toLowerCase()));
@@ -122,7 +127,9 @@ export function workflowFilm(brief, opts = {}) {
 .boardHead{height:72px;display:flex;align-items:center;gap:12px;padding:0 28px;border-bottom:1px solid ${plan.line};flex:none}
 .boardHead b{font-size:20px;letter-spacing:-.03em}
 .boardHead small{color:${plan.muted}}
-.boardHead span{margin-left:auto;background:${plan.accentSoft};color:${plan.accent};border-radius:99px;padding:6px 12px;font-weight:560;font-size:14px}
+.boardHead span{margin-left:auto;background:${plan.accentSoft};color:${plan.accent};border-radius:99px;padding:6px 12px;font-weight:560;font-size:14px;display:flex;align-items:center;gap:6px}
+.boardHead span b{font-size:22px;letter-spacing:-.04em}
+.boardHead em{font-style:normal}
 .board{position:relative;flex:1;background-image:radial-gradient(${plan.line} 1.2px, transparent 1.2px);background-size:22px 22px}
 .wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .wires line{stroke:${plan.accent};stroke-width:2;stroke-dasharray:6 8;opacity:.55}
@@ -147,7 +154,10 @@ export function workflowFilm(brief, opts = {}) {
 `;
 
   const body = `
-<section class="scene" style="top:0;background:radial-gradient(90% 80% at 50% 100%, ${plan.accentSoft} 0%, ${plan.bg} 55%)"><div class="mid"><div class="stack hookWord">${hook}</div></div></section>
+<section class="scene" style="top:0;background:radial-gradient(90% 80% at 50% 100%, ${plan.accentSoft} 0%, ${plan.bg} 55%)" data-variant="${variant}">
+  <div class="crop" style="color:${plan.accent}" data-slide="0.15" data-from="${dir.from}" data-to="${dir.to}" data-dur="2.8">${esc(plan.name)}</div>
+  <div class="mid"><div class="stack hookWord">${hook}</div></div>
+</section>
 <section class="scene" style="top:1080px"><div class="mid"><div class="qwin">
   <header><i class="dot"></i><b>${esc(plan.name)}</b><small>Queue · ${esc(plan.hostname)}</small><span>${plan.features.length} open</span></header>
   <div class="qbody">
@@ -157,8 +167,9 @@ export function workflowFilm(brief, opts = {}) {
 </div></div></section>
 <section class="scene" style="top:2160px">
   <div class="panel">
-    <header class="boardHead"><i class="dot"></i><b>How ${esc(plan.name)} runs</b><small>${esc(plan.hostname)}</small><span>${nodes.length} steps</span></header>
+    <header class="boardHead"><i class="dot"></i><b>How ${esc(plan.name)} runs</b><small>${esc(plan.hostname)}</small><span><b data-count="${nodes.length}" data-from="${(map + 0.45).toFixed(2)}" data-punch="${(map + 5.15).toFixed(2)}">0</b> <em id="runState">open</em></span></header>
     <div class="board">
+      <div class="crop" style="color:${plan.accent};top:-80px;font-size:420px" data-slide="${map}" data-from="${dir.from}" data-to="${dir.to}" data-dur="5.5">LIVE</div>
       <svg class="wires" viewBox="0 0 1840 936">${wires}</svg>
       <i id="traveler"></i>${nodeHtml}
       <div id="cur" class="cursor" style="color:${plan.accent}"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
@@ -176,13 +187,26 @@ ${endScene(plan, 3240, cta)}`;
     map,
     points: slots.map(([x, y]) => [x + 520, y + 168]),
     hit: +(map + 5.15).toFixed(2),
+    hotX: slots[slots.length - 1][0] + 470,
+    hotY: slots[slots.length - 1][1] + 22,
     logo: plan.logo,
   };
   const extra = `
 function extra(t) {
-  document.querySelectorAll(".stair,.node").forEach((el) => {
+  document.querySelectorAll(".qrow").forEach((el) => {
     el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.35)));
   });
+  document.querySelectorAll(".node").forEach((el) => {
+    el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.35)));
+    const hero = el.classList.contains("hot");
+    const p = q5(seg(t, STATE.hit, STATE.hit + 0.55));
+    const s = hero ? lerp(1, 1.08, p) : lerp(1, 0.98, p);
+    el.style.transform = "scale(" + s.toFixed(3) + ")";
+    el.style.filter = "none";
+    if (hero) el.style.zIndex = "6";
+  });
+  const runState = document.getElementById("runState");
+  if (runState) runState.textContent = t > STATE.hit ? "closed" : "open";
   const pts = STATE.points;
   let travel = q5(seg(t, STATE.map + 0.9, STATE.map + 4.4));
   if (t > STATE.map + 4.4) {
@@ -199,8 +223,8 @@ function extra(t) {
   $("traveler").style.top = (y - 8) + "px";
   const move = q5(seg(t, STATE.map + 4.45, STATE.hit - 0.08));
   $("cur").style.opacity = String(eo(seg(t, STATE.map + 4.3, STATE.map + 4.65)));
-  $("cur").style.left = lerp(280, 1660, move) + "px";
-  $("cur").style.top = lerp(180, 446, move) + "px";
+  $("cur").style.left = lerp(200, STATE.hotX, move) + "px";
+  $("cur").style.top = lerp(80, STATE.hotY, move) + "px";
   const pressing = t >= STATE.hit && t < STATE.hit + 0.18;
   $("cur").style.transform = "scale(" + (pressing ? 0.82 : 1) + ")";
   const click = seg(t, STATE.hit, STATE.hit + 0.36);

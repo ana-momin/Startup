@@ -32,6 +32,8 @@ Rules taken from the Pond films in this repo (especially Introducing Pond for AI
 - A 2D camera slide between scenes, with a zoom-through (scale about 1.10 down to 1) on the cut. During the scene the frame keeps a slow push. A background glow moves at about a third of the speed, and a grid at about two thirds. No 3D, no tilt.
 - A light band may cross a word once (a sweep). It does not loop.
 - Product names and the closing URL reveal per letter. Body lines reveal per word, rising about 18 px as they fade in.
+- A word may be larger than the frame and slide behind the headline. The headline stays sharp and readable. The big word is a texture. It punches in scale about 12% on a sound hit, then settles.
+- Cards may sit in a loose overlapping ring. The front card is full size and sharp. Cards behind it are smaller, drifted, and blurred. Scale, offset, and blur only. No tilt.
 - A cursor moves, presses (scale 0.82 for about 160 ms), then a result appears.
 - Numbers count up once.
 - A caret blinks in a text field.

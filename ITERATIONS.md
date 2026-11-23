@@ -48,4 +48,34 @@ All three samples rendered to mp4 with effects only, mixed near −22. Stills pu
 
 Honest scores next to Introducing Pond: **Northstar 8.5, Lumen 8.5, Relay 8.**
 
-None is a 9. Pond still crops type off the frame, overlaps a dozen cards, and moves them as a loose field. Ours are upright, on a grid, and readable. That is as far as these templates should go without turning into a copy of one film.
+None of those five passes was a 9. The named gap was cropped type and a loose ring of cards.
+
+## Pass 6 — cropped type and a card ring
+
+A word larger than the frame now slides behind the headline and scales up on the sound hit. The headline stays sharp. Lumen’s cards left the grid for a ring: smaller blurred cards behind, one sharp card in front. The layout comes from a hash of the brief, so two briefs do not share a frame.
+
+Stills: the big word was right, and the headline was readable. The front card was cut off the bottom edge. Relay’s cursor still aimed at the old corner, so it missed Live.
+
+Scores: Northstar 8.5, Lumen 8, Relay 8.
+
+## Pass 7 — the front card stays on screen
+
+The front card is pinned inside the frame. Relay’s cursor aims at whichever card is Go live, and the count finishes at “6 closed”.
+
+Stills: Approve is on screen. The cursor sits on Live. One back card still showed only “Rahman”, the rest of the name tucked under the front card.
+
+Scores: Northstar 8.5, Lumen 8.5, Relay 8.5.
+
+## Pass 8 — no sliced names
+
+A back card that would sit under the front card is pushed out, so the name stays whole. Ari Rahman is a full card. Approve still reads.
+
+Score did not move. Northstar 8.5, Lumen 8.5, Relay 8.5.
+
+## Pass 9 — stop
+
+Another pass over the same frames. The ring, the cropped word, and the Relay close are doing the job they were built for. Tightening the overlap further would turn the ring back into a grid. That is not a gain.
+
+Scores stay 8.5, 8.5, 8.5. Two passes with no movement, so this stops.
+
+Still not a 9. Pond’s cards are busier, and its type is sometimes the whole frame with no second line under it. Ours keep a readable headline on top of the big word, and the front card is a real control (Approve, or Live) rather than a poster. A paid film should still be finished by a person.

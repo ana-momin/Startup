@@ -5,7 +5,8 @@
 html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-family:G,sans-serif;color:#0D1222;-webkit-font-smoothing:antialiased}
 #world{position:absolute;left:0;top:0;width:1920px}
 .scene{position:absolute;left:0;width:1920px;height:1080px;overflow:hidden}
-.mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2}
+.crop{position:absolute;top:-220px;left:0;z-index:0;font-size:720px;font-weight:560;letter-spacing:-.085em;line-height:.76;white-space:nowrap;pointer-events:none;opacity:0}
 .line{display:flex;justify-content:center;gap:.26em;font-weight:560;letter-spacing:-.055em;line-height:1.02;white-space:nowrap}
 .line span{display:inline-block;opacity:0}
 .letters{display:flex;justify-content:center;gap:0.012em;font-weight:560;letter-spacing:-.06em;line-height:.92;white-space:nowrap}
@@ -58,7 +59,9 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .boardHead{height:72px;display:flex;align-items:center;gap:12px;padding:0 28px;border-bottom:1px solid #E6E8EE;flex:none}
 .boardHead b{font-size:20px;letter-spacing:-.03em}
 .boardHead small{color:#5B6275}
-.boardHead span{margin-left:auto;background:#e2eef2;color:#0E7490;border-radius:99px;padding:6px 12px;font-weight:560;font-size:14px}
+.boardHead span{margin-left:auto;background:#e2eef2;color:#0E7490;border-radius:99px;padding:6px 12px;font-weight:560;font-size:14px;display:flex;align-items:center;gap:6px}
+.boardHead span b{font-size:22px;letter-spacing:-.04em}
+.boardHead em{font-style:normal}
 .board{position:relative;flex:1;background-image:radial-gradient(#E6E8EE 1.2px, transparent 1.2px);background-size:22px 22px}
 .wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .wires line{stroke:#0E7490;stroke-width:2;stroke-dasharray:6 8;opacity:.55}
@@ -87,7 +90,10 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 <svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
 <div class="badge">Sample product</div>
 <div id="world">
-<section class="scene" style="top:0;background:radial-gradient(90% 80% at 50% 100%, #e2eef2 0%, #F6F7F9 55%)"><div class="mid"><div class="stack hookWord"><div class="line" style="font-size:104px"><span data-at="0.22" data-tone="ink">Handoffs</span><span data-at="0.5" data-tone="ink">between</span><span data-at="0.78" data-tone="ink">tools</span><span data-at="1.06" data-tone="ink">still</span></div><div class="line" style="font-size:104px"><span data-at="1.52" data-tone="ink">happen</span><span data-at="1.8" data-tone="ink">by</span><span data-at="2.08" data-tone="ink">hand</span></div></div></div></section>
+<section class="scene" style="top:0;background:radial-gradient(90% 80% at 50% 100%, #e2eef2 0%, #F6F7F9 55%)" data-variant="1">
+  <div class="crop" style="color:#0E7490" data-slide="0.15" data-from="980" data-to="-1500" data-dur="2.8">Relay</div>
+  <div class="mid"><div class="stack hookWord"><div class="line" style="font-size:104px"><span data-at="0.22" data-tone="ink">Handoffs</span><span data-at="0.5" data-tone="ink">between</span><span data-at="0.78" data-tone="ink">tools</span><span data-at="1.06" data-tone="ink">still</span></div><div class="line" style="font-size:104px"><span data-at="1.52" data-tone="ink">happen</span><span data-at="1.8" data-tone="ink">by</span><span data-at="2.08" data-tone="ink">hand</span></div></div></div>
+</section>
 <section class="scene" style="top:1080px"><div class="mid"><div class="qwin">
   <header><i class="dot"></i><b>Relay</b><small>Queue · relay.example</small><span>4 open</span></header>
   <div class="qbody">
@@ -117,35 +123,36 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 </div></div></section>
 <section class="scene" style="top:2160px">
   <div class="panel">
-    <header class="boardHead"><i class="dot"></i><b>How Relay runs</b><small>relay.example</small><span>6 steps</span></header>
+    <header class="boardHead"><i class="dot"></i><b>How Relay runs</b><small>relay.example</small><span><b data-count="6" data-from="12.65" data-punch="17.35">0</b> <em id="runState">open</em></span></header>
     <div class="board">
-      <svg class="wires" viewBox="0 0 1840 936"><line x1="576" y1="184" x2="620" y2="184" /><line x1="1160" y1="184" x2="1204" y2="184" /><line x1="576" y1="590" x2="620" y2="590" /><line x1="1160" y1="590" x2="1204" y2="590" /></svg>
-      <i id="traveler"></i><div class="node" data-at="12.42" style="left:36px;top:24px">
+      <div class="crop" style="color:#0E7490;top:-80px;font-size:420px" data-slide="12.2" data-from="980" data-to="-1500" data-dur="5.5">LIVE</div>
+      <svg class="wires" viewBox="0 0 1840 936"><line x1="1160" y1="184" x2="1204" y2="184" /><line x1="1744" y1="184" x2="36" y2="184" /><line x1="1160" y1="550" x2="1204" y2="550" /><line x1="1744" y1="550" x2="36" y2="550" /></svg>
+      <i id="traveler"></i><div class="node" data-at="12.42" style="left:620px;top:24px">
         <div class="nh"><i>SN</i><span><b>The snag</b><small>Amina M. · 9:02</small></span><em class="before">Open</em></div>
         <p>Handoffs between tools still happen by hand.</p>
         <ul class="log"><li><b>9:02</b> Opened</li><li><b>9:14</b> Amina M.</li><li><b>Now</b> Open</li></ul>
         <div class="nmeter"><u style="width:28%"></u></div>
-      </div><div class="node" data-at="12.70" style="left:620px;top:24px">
+      </div><div class="node" data-at="12.70" style="left:1204px;top:24px">
         <div class="nh"><i>TW</i><span><b>A trigger when mail arrives</b><small>Maya Chen · 9:14</small></span><em class="before">Trigger</em></div>
         <p>Mail from Maya Chen</p>
         <ul class="log"><li><b>9:06</b> Mail in</li><li><b>9:14</b> Maya Chen</li><li><b>Now</b> Trigger</li></ul>
         <div class="nmeter"><u style="width:46%"></u></div>
-      </div><div class="node" data-at="12.98" style="left:1204px;top:24px">
+      </div><div class="node" data-at="12.98" style="left:36px;top:24px">
         <div class="nh"><i>DV</i><span><b>A draft in your voice</b><small>Jules Okonkwo · 9:28</small></span><em class="before">Draft</em></div>
         <p>Matched to last week&#39;s voice</p>
         <ul class="log"><li><b>9:11</b> Drafted</li><li><b>9:28</b> Jules Okonkwo</li><li><b>Now</b> Draft</li></ul>
         <div class="nmeter"><u style="width:62%"></u></div>
-      </div><div class="node" data-at="13.26" style="left:36px;top:430px">
+      </div><div class="node" data-at="13.26" style="left:620px;top:390px">
         <div class="nh"><i>CB</i><span><b>A check before it sends</b><small>Ari Rahman · 9:41</small></span><em class="before">Check</em></div>
         <p>Waiting on a yes</p>
         <ul class="log"><li><b>9:20</b> Held</li><li><b>9:41</b> Ari Rahman</li><li><b>Now</b> Check</li></ul>
         <div class="nmeter"><u style="width:54%"></u></div>
-      </div><div class="node" data-at="13.54" style="left:620px;top:430px">
+      </div><div class="node" data-at="13.54" style="left:1204px;top:390px">
         <div class="nh"><i>LW</i><span><b>A log of what ran</b><small>Noor L. · 10:02</small></span><em class="before">Log</em></div>
         <p>Written into the log</p>
         <ul class="log"><li><b>9:33</b> Logged</li><li><b>10:02</b> Noor L.</li><li><b>Now</b> Log</li></ul>
         <div class="nmeter"><u style="width:74%"></u></div>
-      </div><div class="node hot" data-at="13.82" style="left:1204px;top:430px">
+      </div><div class="node hot" data-at="13.82" style="left:36px;top:390px">
         <div class="nh"><i>GL</i><span><b>Go live</b><small>Ready · Thursday</small></span><em class="before">Live</em><em class="after">Live</em></div>
         <p>relay.example</p>
         <ul class="log"><li><b>9:40</b> Ready</li><li><b>Thu</b> Go live</li><li><b>Now</b> Live</li></ul>
@@ -162,7 +169,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
     <div class="endRule" style="background:#0E7490" data-grow="27.88"></div>
     <div class="sweep" data-a="27.78" data-b="28.65"></div>
   </div></section></div>
-<script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.72,"end":31.9,"stops":[{"t":0,"y":0},{"t":3.4,"y":1080},{"t":12.2,"y":2160},{"t":27.6,"y":3240}],"map":12.2,"points":[[556,192],[1140,192],[1724,192],[556,598],[1140,598],[1724,598]],"hit":17.35,"logo":null}</script>
+<script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.72,"end":31.9,"stops":[{"t":0,"y":0},{"t":3.4,"y":1080},{"t":12.2,"y":2160},{"t":27.6,"y":3240}],"map":12.2,"points":[[1140,192],[1724,192],[556,192],[1140,558],[1724,558],[556,558]],"hit":17.35,"hotX":506,"hotY":412,"logo":null}</script>
 <script>
 const $ = (id) => document.getElementById(id);
 const STATE = JSON.parse(document.getElementById("state").textContent);
@@ -248,13 +255,46 @@ function paint(t) {
     el.style.opacity = p > 0 && p < 1 ? "0.9" : "0";
     el.style.transform = "translateX(" + lerp(-220, 1760, q5(p)) + "px)";
   });
+  document.querySelectorAll("[data-slide]").forEach((el) => {
+    const dur = +el.dataset.dur || 2.4;
+    const p = q5(seg(t, +el.dataset.slide, +el.dataset.slide + dur));
+    const x = lerp(+el.dataset.from || -900, +el.dataset.to || 900, p);
+    el.style.transform = "translateX(" + x.toFixed(1) + "px)";
+    el.style.opacity = p > 0 && p < 1 ? "0.16" : "0";
+  });
+  document.querySelectorAll("[data-punch]").forEach((el) => {
+    const times = String(el.dataset.punch).split(",").map(Number);
+    let s = 1;
+    for (const at of times) {
+      const p = seg(t, at, at + 0.28);
+      if (p > 0 && p < 1) s = 1 + Math.sin(p * Math.PI) * 0.12;
+    }
+    el.style.transform = "scale(" + s.toFixed(3) + ")";
+  });
   document.querySelectorAll("[data-pop]").forEach((el) => {
-    if (el.dataset.float) return;
+    if (el.dataset.float || el.hasAttribute("data-depth")) return;
     const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.45);
     const s = p <= 0 ? 0.92 : p >= 1 ? 1 : back(p);
     el.style.transform = "scale(" + s.toFixed(3) + ")";
   });
+  document.querySelectorAll("[data-depth]").forEach((el) => {
+    const d = +el.dataset.depth || 0;
+    const k = +(el.dataset.float || d + 1);
+    const amp = 5 + d * 8;
+    const dx = Math.sin(t * 0.42 + k * 1.7) * amp;
+    const dy = Math.cos(t * 0.31 + k) * amp * 0.65;
+    let s = +(el.dataset.scale || 1);
+    if (el.dataset.pop) {
+      const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.42);
+      s *= p <= 0 ? 0.88 : p >= 1 ? 1 : back(p);
+    }
+    if (el.dataset.at) el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.38)));
+    el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px) scale(" + s.toFixed(3) + ")";
+    el.style.filter = d > 0.25 ? "blur(" + (d * 1.15).toFixed(2) + "px)" : "none";
+    if (el.dataset.z) el.style.zIndex = el.dataset.z;
+  });
   document.querySelectorAll("[data-float]").forEach((el) => {
+    if (el.hasAttribute("data-depth")) return;
     const k = +el.dataset.float || 1;
     const dx = Math.sin(t * 0.55 + k * 1.7) * 5;
     const dy = Math.cos(t * 0.4 + k) * 4;
@@ -291,9 +331,20 @@ Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]).th
 
 
 function extra(t) {
-  document.querySelectorAll(".stair,.node").forEach((el) => {
+  document.querySelectorAll(".qrow").forEach((el) => {
     el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.35)));
   });
+  document.querySelectorAll(".node").forEach((el) => {
+    el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.35)));
+    const hero = el.classList.contains("hot");
+    const p = q5(seg(t, STATE.hit, STATE.hit + 0.55));
+    const s = hero ? lerp(1, 1.08, p) : lerp(1, 0.98, p);
+    el.style.transform = "scale(" + s.toFixed(3) + ")";
+    el.style.filter = "none";
+    if (hero) el.style.zIndex = "6";
+  });
+  const runState = document.getElementById("runState");
+  if (runState) runState.textContent = t > STATE.hit ? "closed" : "open";
   const pts = STATE.points;
   let travel = q5(seg(t, STATE.map + 0.9, STATE.map + 4.4));
   if (t > STATE.map + 4.4) {
@@ -310,8 +361,8 @@ function extra(t) {
   $("traveler").style.top = (y - 8) + "px";
   const move = q5(seg(t, STATE.map + 4.45, STATE.hit - 0.08));
   $("cur").style.opacity = String(eo(seg(t, STATE.map + 4.3, STATE.map + 4.65)));
-  $("cur").style.left = lerp(280, 1660, move) + "px";
-  $("cur").style.top = lerp(180, 446, move) + "px";
+  $("cur").style.left = lerp(200, STATE.hotX, move) + "px";
+  $("cur").style.top = lerp(80, STATE.hotY, move) + "px";
   const pressing = t >= STATE.hit && t < STATE.hit + 0.18;
   $("cur").style.transform = "scale(" + (pressing ? 0.82 : 1) + ")";
   const click = seg(t, STATE.hit, STATE.hit + 0.36);

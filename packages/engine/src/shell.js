@@ -86,13 +86,46 @@ function paint(t) {
     el.style.opacity = p > 0 && p < 1 ? "0.9" : "0";
     el.style.transform = "translateX(" + lerp(-220, 1760, q5(p)) + "px)";
   });
+  document.querySelectorAll("[data-slide]").forEach((el) => {
+    const dur = +el.dataset.dur || 2.4;
+    const p = q5(seg(t, +el.dataset.slide, +el.dataset.slide + dur));
+    const x = lerp(+el.dataset.from || -900, +el.dataset.to || 900, p);
+    el.style.transform = "translateX(" + x.toFixed(1) + "px)";
+    el.style.opacity = p > 0 && p < 1 ? "0.16" : "0";
+  });
+  document.querySelectorAll("[data-punch]").forEach((el) => {
+    const times = String(el.dataset.punch).split(",").map(Number);
+    let s = 1;
+    for (const at of times) {
+      const p = seg(t, at, at + 0.28);
+      if (p > 0 && p < 1) s = 1 + Math.sin(p * Math.PI) * 0.12;
+    }
+    el.style.transform = "scale(" + s.toFixed(3) + ")";
+  });
   document.querySelectorAll("[data-pop]").forEach((el) => {
-    if (el.dataset.float) return;
+    if (el.dataset.float || el.hasAttribute("data-depth")) return;
     const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.45);
     const s = p <= 0 ? 0.92 : p >= 1 ? 1 : back(p);
     el.style.transform = "scale(" + s.toFixed(3) + ")";
   });
+  document.querySelectorAll("[data-depth]").forEach((el) => {
+    const d = +el.dataset.depth || 0;
+    const k = +(el.dataset.float || d + 1);
+    const amp = 5 + d * 8;
+    const dx = Math.sin(t * 0.42 + k * 1.7) * amp;
+    const dy = Math.cos(t * 0.31 + k) * amp * 0.65;
+    let s = +(el.dataset.scale || 1);
+    if (el.dataset.pop) {
+      const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.42);
+      s *= p <= 0 ? 0.88 : p >= 1 ? 1 : back(p);
+    }
+    if (el.dataset.at) el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.38)));
+    el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px) scale(" + s.toFixed(3) + ")";
+    el.style.filter = d > 0.25 ? "blur(" + (d * 1.15).toFixed(2) + "px)" : "none";
+    if (el.dataset.z) el.style.zIndex = el.dataset.z;
+  });
   document.querySelectorAll("[data-float]").forEach((el) => {
+    if (el.hasAttribute("data-depth")) return;
     const k = +el.dataset.float || 1;
     const dx = Math.sin(t * 0.55 + k * 1.7) * 5;
     const dy = Math.cos(t * 0.4 + k) * 4;
@@ -133,7 +166,8 @@ const BASE_CSS = `
 html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-family:G,sans-serif;color:#0D1222;-webkit-font-smoothing:antialiased}
 #world{position:absolute;left:0;top:0;width:1920px}
 .scene{position:absolute;left:0;width:1920px;height:1080px;overflow:hidden}
-.mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2}
+.crop{position:absolute;top:-220px;left:0;z-index:0;font-size:720px;font-weight:560;letter-spacing:-.085em;line-height:.76;white-space:nowrap;pointer-events:none;opacity:0}
 .line{display:flex;justify-content:center;gap:.26em;font-weight:560;letter-spacing:-.055em;line-height:1.02;white-space:nowrap}
 .line span{display:inline-block;opacity:0}
 .letters{display:flex;justify-content:center;gap:0.012em;font-weight:560;letter-spacing:-.06em;line-height:.92;white-space:nowrap}
