@@ -1,23 +1,15 @@
 export { screenText } from "./halal.js";
 export { readBrief } from "./brief.js";
-export { planFilm, acceptFill } from "./direct.js";
-export { filmHtml } from "./film.js";
-export { SAMPLE_BRIEF } from "./sample.js";
+export { acceptFill } from "./direct.js";
+export { chooseTemplate } from "./templates/index.js";
+export { SAMPLE_BRIEF, SAMPLES } from "./sample.js";
 
 import { readBrief } from "./brief.js";
-import { planFilm } from "./direct.js";
-import { filmHtml } from "./film.js";
+import { buildFilm } from "./templates/index.js";
 import { withOptionalModel } from "./llm.js";
 
 function finish(brief, opts) {
-  const plan = planFilm(brief);
-  return {
-    ok: true,
-    html: filmHtml(plan, opts),
-    duration: plan.time.end,
-    events: plan.events,
-    hostname: plan.hostname,
-  };
+  return { ok: true, ...buildFilm(brief, opts) };
 }
 
 /** Brief in, film HTML out. No network. The director is rules, not a model. */

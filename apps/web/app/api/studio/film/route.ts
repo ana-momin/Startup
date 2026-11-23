@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, reason: "Too many previews from this network. Please wait a few minutes." }, { status: 429 });
   }
 
-  let body: { name?: string; problem?: string; features?: unknown; accent?: string; url?: string; logo?: string };
+  let body: { name?: string; problem?: string; features?: unknown; accent?: string; url?: string; logo?: string; template?: string };
   try {
     body = await req.json();
   } catch {
@@ -19,8 +19,10 @@ export async function POST(req: Request) {
   }
 
   const features = Array.isArray(body.features) ? body.features.filter((f): f is string => typeof f === "string") : [];
+  const allowed = ["launch", "holo", "workflow", "auto"] as const;
+  const template = allowed.find((item) => item === body.template) ?? "auto";
   const made = compose(
-    { name: body.name, problem: body.problem, features, accent: body.accent, url: body.url, logo: body.logo, sample: true },
+    { name: body.name, problem: body.problem, features, accent: body.accent, url: body.url, logo: body.logo, sample: true, template },
     { fontUrl: "/fonts/Geist-Variable.woff2" },
   );
   if (!made.ok) return NextResponse.json(made, { status: 422 });

@@ -1,0 +1,164 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:G;src:url("../../_template/lib/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-family:G,sans-serif;color:#0D1222;-webkit-font-smoothing:antialiased}
+#world{position:absolute;left:0;top:0;width:1920px}
+.scene{position:absolute;left:0;width:1920px;height:1080px;overflow:hidden}
+.mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.line{display:flex;justify-content:center;gap:.26em;font-weight:560;letter-spacing:-.055em;line-height:1.02;white-space:nowrap}
+.line span{display:inline-block;opacity:0}
+.stack{display:flex;flex-direction:column;align-items:center;gap:14px}
+.logo{display:none;height:64px;width:auto}
+.ctaName{font-size:26px;font-weight:500;color:#5B6275}
+.url{font-size:42px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:10px}
+.sampleLine{margin-top:16px;color:#5B6275;font-size:18px}
+.cursor{position:absolute;z-index:6;width:28px;height:28px;pointer-events:none}
+.cursor svg{display:block}
+.ring{position:absolute;left:-10px;top:-10px;width:36px;height:36px;border-radius:99px;border:2px solid currentColor;opacity:0}
+
+
+.pill{padding:28px 48px;border-radius:999px;background:linear-gradient(100deg, #818ae8, #3D4BDB 45%, #172253);box-shadow:0 20px 60px rgba(13,18,34,.12)}
+.giant{font-weight:560;letter-spacing:-.07em;line-height:.9;background:linear-gradient(100deg, #172253, #3D4BDB 40%, #818ae8);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0}
+.field{background:
+  linear-gradient(90deg, #818ae8 0%, #3D4BDB 22%, #172253 50%, #3D4BDB 78%, #818ae8 100%)}
+.glass{width:920px;height:92px;border-radius:999px;background:rgba(255,255,255,.88);box-shadow:0 16px 50px rgba(13,18,34,.12);display:flex;align-items:center;padding:0 18px 0 32px;gap:16px}
+.glass p{flex:1;font-size:28px;font-weight:500;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0}
+.send{width:64px;height:64px;border-radius:99px;background:#fff;color:#3D4BDB;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 0 1px rgba(13,18,34,.06)}
+.chip{margin-top:22px;background:#fff;color:#3D4BDB;border-radius:99px;padding:8px 14px;font-weight:560;opacity:0}
+.hcard{position:absolute;width:340px;background:#fff;border-radius:22px;box-shadow:0 16px 40px rgba(13,18,34,.08);padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;opacity:0}
+.hcard.wash{background:linear-gradient(160deg, #3D4BDB, #172253);color:#fff}
+.hcard.wash span,.hcard.wash small{color:rgba(255,255,255,.8)}
+.hcard.wash s{background:rgba(255,255,255,.35)}
+.hcard.wash .bars b{background:rgba(255,255,255,.85)}
+.hcard span{color:#3D4BDB;font-size:12px;font-weight:560;letter-spacing:.08em;text-transform:uppercase}
+.hcard h3{font-size:22px;font-weight:560;letter-spacing:-.04em;line-height:1.15}
+.hcard s{height:7px;border-radius:99px;background:#E6E8EE;width:100%}
+.bars{display:flex;align-items:flex-end;gap:5px;height:52px;margin-top:8px}
+.hcard p{font-size:13px;line-height:1.35;opacity:.8}
+.bars b{flex:1;background:#3D4BDB;border-radius:3px 3px 1px 1px}
+.hcard small{font-size:12px;color:#5B6275}
+.centerWord{position:absolute;left:0;right:0;top:470px;text-align:center;font-size:92px;font-weight:560;letter-spacing:-.06em;opacity:0}
+
+</style></head><body>
+<div id="world">
+<section class="scene" style="top:0;background:#F6F7F9"><div class="mid"><div class="pill"><div class="line" style="font-size:64px"><span data-at="0.22" data-tone="light">Follow-ups</span><span data-at="0.5" data-tone="light">sit</span><span data-at="0.78" data-tone="light">in</span><span data-at="1.06" data-tone="light">the</span><span data-at="1.34" data-tone="light">inbox</span></div><div class="line" style="font-size:64px"><span data-at="1.8" data-tone="light">until</span><span data-at="2.08" data-tone="light">the</span><span data-at="2.36" data-tone="light">week</span><span data-at="2.64" data-tone="light">is</span><span data-at="2.92" data-tone="light">gone</span></div></div></div></section>
+<section class="scene" style="top:1080px;background:#F6F7F9"><div class="mid">
+  <img class="logo" alt="">
+  <div class="giant" data-fade="4.02" style="font-size:220px">Lumen</div>
+</div></section>
+<section class="scene field" style="top:2160px"><div class="mid">
+  <div class="glass">
+    <p data-at="8.32" data-tone="ink">Follow-ups sit in the inbox until the week is gone.</p>
+    <div class="send">↑</div>
+  </div>
+  <div id="chip" class="chip">Sample</div>
+  <div id="cur" class="cursor" style="color:#fff"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
+</div></section>
+<section class="scene" style="top:3240px;background:#F6F7F9">
+  <div class="centerWord" data-at="12.94" data-tone="ink">Lumen</div>
+  <article class="hcard wash" style="left:70px;top:80px" data-at="13.12">
+        <span>Sample</span>
+        <h3>Drafts the reply</h3>
+        <p>Sample only. Not a result.</p>
+        <s></s><s style="width:70%"></s>
+        <div class="bars"><b style="height:30%"></b><b style="height:55%"></b><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:62%"></b><b style="height:36%"></b></div>
+        <small>Running · sample</small>
+      </article><article class="hcard" style="left:1500px;top:70px" data-at="13.62">
+        <span>Sample</span>
+        <h3>Finds the right thread</h3>
+        <p>Sample only. Not a result.</p>
+        <s></s><s style="width:70%"></s>
+        <div class="bars"><b style="height:30%"></b><b style="height:55%"></b><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:62%"></b><b style="height:36%"></b></div>
+        <small>Running · sample</small>
+      </article><article class="hcard wash" style="left:80px;top:760px" data-at="14.12">
+        <span>Sample</span>
+        <h3>Asks before it sends</h3>
+        <p>Sample only. Not a result.</p>
+        <s></s><s style="width:70%"></s>
+        <div class="bars"><b style="height:30%"></b><b style="height:55%"></b><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:62%"></b><b style="height:36%"></b></div>
+        <small>Running · sample</small>
+      </article>
+</section>
+<section class="scene" style="top:4320px;background:#F6F7F9"><div class="mid">
+    <img class="logo" alt="">
+    <div class="ctaName">Lumen</div>
+    <div class="url" style="color:#3D4BDB">lumen.example</div>
+    <div class="sampleLine">Sample film · not a real product</div>
+  </div></section></div>
+<script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.7,"end":32.77,"stops":[{"t":0,"y":0},{"t":3.82,"y":1080},{"t":8.02,"y":2160},{"t":12.82,"y":3240},{"t":28.62,"y":4320}],"glass":8.02,"cards":12.82,"logo":null}</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const STATE = JSON.parse(document.getElementById("state").textContent);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, p) => a + (b - a) * p;
+const q5 = (p) => (p < 0.5 ? 16 * p ** 5 : 1 - ((-2 * p + 2) ** 5) / 2);
+const eo = (p) => (p >= 1 ? 1 : 1 - 2 ** (-10 * p));
+const hex = (h) => [0, 2, 4].map((i) => parseInt(String(h).slice(i + 1, i + 3), 16));
+const mix = (a, b, p) => {
+  const A = hex(a), B = hex(b);
+  return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * p)).join(",") + ")";
+};
+function camera(t) {
+  let y = STATE.stops[0].y;
+  let blur = 0;
+  for (let i = 1; i < STATE.stops.length; i++) {
+    const start = STATE.stops[i].t;
+    if (t < start) break;
+    const p = q5(seg(t, start, start + STATE.slide));
+    y = lerp(STATE.stops[i - 1].y, STATE.stops[i].y, p);
+    const u = seg(t, start, start + STATE.slide);
+    if (u > 0 && u < 1) blur = Math.sin(Math.PI * u) * 4;
+  }
+  $("world").style.transform = "translateY(" + (-y) + "px)";
+  $("world").style.filter = blur > 0.3 ? "blur(" + blur.toFixed(2) + "px)" : "none";
+}
+function paint(t) {
+  document.querySelectorAll("[data-at]").forEach((el) => {
+    if (el.closest("#slot") || el.classList.contains("row") || el.classList.contains("node") || el.classList.contains("fcard") || el.classList.contains("stair")) return;
+    const p = eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4));
+    const light = el.dataset.tone === "light";
+    el.style.opacity = String(p);
+    el.style.color = mix(light ? "#D5DAE6" : STATE.grey, light ? "#FFFFFF" : STATE.ink, p);
+  });
+  document.querySelectorAll("[data-fade]").forEach((el) => {
+    el.style.opacity = String(eo(seg(t, +el.dataset.fade, +el.dataset.fade + 0.45)));
+  });
+}
+function render(t) {
+  camera(t);
+  paint(t);
+  if (typeof extra === "function") extra(t);
+}
+window.render = render;
+window.DUR = STATE.end;
+addEventListener("message", (e) => {
+  if (e.data && e.data.type === "harkat-t" && typeof e.data.t === "number") render(e.data.t);
+});
+function boot() {
+  if (STATE.logo) {
+    document.querySelectorAll(".logo").forEach((img) => {
+      img.src = STATE.logo;
+      img.style.display = "block";
+    });
+  }
+  render(0);
+  window.READY = true;
+}
+Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]).then(boot);
+
+
+function extra(t) {
+  document.querySelectorAll(".hcard").forEach((el) => {
+    el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4)));
+  });
+  const move = q5(seg(t, STATE.glass + 0.8, STATE.glass + 1.55));
+  $("cur").style.left = lerp(700, 1340, move) + "px";
+  $("cur").style.top = lerp(640, 520, move) + "px";
+  const click = seg(t, STATE.glass + 1.55, STATE.glass + 1.9);
+  $("ring").style.opacity = String(click > 0 && click < 1 ? 1 - click : 0);
+  $("chip").style.opacity = String(eo(seg(t, STATE.glass + 1.7, STATE.glass + 2.05)));
+}
+</script>
+</body></html>

@@ -1,0 +1,162 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:G;src:url("../../_template/lib/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-family:G,sans-serif;color:#0D1222;-webkit-font-smoothing:antialiased}
+#world{position:absolute;left:0;top:0;width:1920px}
+.scene{position:absolute;left:0;width:1920px;height:1080px;overflow:hidden}
+.mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.line{display:flex;justify-content:center;gap:.26em;font-weight:560;letter-spacing:-.055em;line-height:1.02;white-space:nowrap}
+.line span{display:inline-block;opacity:0}
+.stack{display:flex;flex-direction:column;align-items:center;gap:14px}
+.logo{display:none;height:64px;width:auto}
+.ctaName{font-size:26px;font-weight:500;color:#5B6275}
+.url{font-size:42px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:10px}
+.sampleLine{margin-top:16px;color:#5B6275;font-size:18px}
+.cursor{position:absolute;z-index:6;width:28px;height:28px;pointer-events:none}
+.cursor svg{display:block}
+.ring{position:absolute;left:-10px;top:-10px;width:36px;height:36px;border-radius:99px;border:2px solid currentColor;opacity:0}
+
+
+.note{width:860px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px #E6E8EE,0 24px 60px rgba(13,18,34,.06);padding:42px 48px}
+.note small{color:#5B6275;font-size:16px}
+.stairs{display:flex;flex-direction:column;gap:16px;width:760px}
+.stair{height:108px;background:#fff;border-radius:20px;box-shadow:0 0 0 1px #E6E8EE,0 12px 30px rgba(13,18,34,.05);display:flex;align-items:center;gap:16px;padding:0 22px;opacity:0}
+.stair i{width:48px;height:48px;border-radius:14px;background:#e2eef2;color:#0E7490;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;flex:none}
+.stair div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.stair small{color:#0E7490;font-size:13px;font-weight:560}
+.stair b{font-size:22px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:520px}
+.stair em{margin-left:auto;font-style:normal;background:#0E7490;color:#FFFFFF;border-radius:99px;padding:6px 12px;font-size:13px;font-weight:560}
+.board{position:absolute;inset:0}
+.wire{position:absolute;top:418px;height:3px;background:#0E7490;opacity:.35}
+#traveler{position:absolute;top:422px;width:18px;height:18px;border-radius:99px;background:#0E7490}
+.node{position:absolute;top:470px;width:220px;background:#fff;border-radius:18px;box-shadow:0 0 0 1px #E6E8EE,0 16px 36px rgba(13,18,34,.06);padding:16px;display:flex;flex-direction:column;gap:6px;opacity:0}
+.node i{width:32px;height:32px;border-radius:10px;background:#e2eef2;color:#0E7490;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:12px}
+.node b{font-size:15px;font-weight:560;letter-spacing:-.03em;line-height:1.25}
+.node small{color:#5B6275;font-size:13px}
+.mapTitle{position:absolute;top:150px;left:0;right:0;text-align:center;font-size:48px;font-weight:560;letter-spacing:-.05em;opacity:0}
+
+</style></head><body>
+<div id="world">
+<section class="scene" style="top:0;background:#F6F7F9"><div class="mid"><div class="note"><small>The snag</small><div class="stack" style="margin-top:18px"><div class="line" style="font-size:80px"><span data-at="0.22" data-tone="ink">Handoffs</span><span data-at="0.5" data-tone="ink">between</span><span data-at="0.78" data-tone="ink">tools</span><span data-at="1.06" data-tone="ink">still</span></div><div class="line" style="font-size:80px"><span data-at="1.52" data-tone="ink">happen</span><span data-at="1.8" data-tone="ink">by</span><span data-at="2.08" data-tone="ink">hand</span></div></div></div></div></section>
+<section class="scene" style="top:1080px;background:#F6F7F9"><div class="mid"><div class="stairs"><article class="stair" data-at="3.80" style="margin-left:0px">
+        <i>TW</i>
+        <div><small>A step · sample</small><b>A trigger when mail arrives</b></div>
+        <em>On</em>
+      </article><article class="stair" data-at="4.50" style="margin-left:56px">
+        <i>DV</i>
+        <div><small>A step · sample</small><b>A draft in your voice</b></div>
+        <em>On</em>
+      </article><article class="stair" data-at="5.20" style="margin-left:112px">
+        <i>CB</i>
+        <div><small>A step · sample</small><b>A check before it sends</b></div>
+        <em>On</em>
+      </article><article class="stair" data-at="5.90" style="margin-left:168px">
+        <i>LW</i>
+        <div><small>A step · sample</small><b>A log of what ran</b></div>
+        <em>On</em>
+      </article></div></div></section>
+<section class="scene" style="top:2160px;background:#F6F7F9">
+  <div class="mapTitle" data-at="12.32" data-tone="ink">How Relay runs</div>
+  <div class="board"><i class="wire" style="left:310px;width:260px"></i><i class="wire" style="left:570px;width:260px"></i><i class="wire" style="left:830px;width:260px"></i><i class="wire" style="left:1090px;width:260px"></i><i class="wire" style="left:1350px;width:260px"></i><i id="traveler"></i><div class="node" data-at="12.50" style="left:200px">
+        <i>S</i><b>The snag</b><small>Handoffs between tools still happen by hand.</small>
+      </div><div class="node" data-at="12.88" style="left:460px">
+        <i>TW</i><b>A trigger when mail arrives</b><small>Sample step</small>
+      </div><div class="node" data-at="13.26" style="left:720px">
+        <i>DV</i><b>A draft in your voice</b><small>Sample step</small>
+      </div><div class="node" data-at="13.64" style="left:980px">
+        <i>CB</i><b>A check before it sends</b><small>Sample step</small>
+      </div><div class="node" data-at="14.02" style="left:1240px">
+        <i>LW</i><b>A log of what ran</b><small>Sample step</small>
+      </div><div class="node" data-at="14.40" style="left:1500px">
+        <i>GL</i><b>Go live</b><small>relay.example</small>
+      </div>
+    <div id="cur" class="cursor" style="color:#0E7490"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
+  </div>
+</section>
+<section class="scene" style="top:3240px;background:#F6F7F9"><div class="mid">
+    <img class="logo" alt="">
+    <div class="ctaName">Relay</div>
+    <div class="url" style="color:#0E7490">relay.example</div>
+    <div class="sampleLine">Sample film · not a real product</div>
+  </div></section></div>
+<script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.72,"end":31.9,"stops":[{"t":0,"y":0},{"t":3.4,"y":1080},{"t":12.2,"y":2160},{"t":27.6,"y":3240}],"map":12.2,"nodes":6,"origin":310,"gap":260,"logo":null}</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const STATE = JSON.parse(document.getElementById("state").textContent);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, p) => a + (b - a) * p;
+const q5 = (p) => (p < 0.5 ? 16 * p ** 5 : 1 - ((-2 * p + 2) ** 5) / 2);
+const eo = (p) => (p >= 1 ? 1 : 1 - 2 ** (-10 * p));
+const hex = (h) => [0, 2, 4].map((i) => parseInt(String(h).slice(i + 1, i + 3), 16));
+const mix = (a, b, p) => {
+  const A = hex(a), B = hex(b);
+  return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * p)).join(",") + ")";
+};
+function camera(t) {
+  let y = STATE.stops[0].y;
+  let blur = 0;
+  for (let i = 1; i < STATE.stops.length; i++) {
+    const start = STATE.stops[i].t;
+    if (t < start) break;
+    const p = q5(seg(t, start, start + STATE.slide));
+    y = lerp(STATE.stops[i - 1].y, STATE.stops[i].y, p);
+    const u = seg(t, start, start + STATE.slide);
+    if (u > 0 && u < 1) blur = Math.sin(Math.PI * u) * 4;
+  }
+  $("world").style.transform = "translateY(" + (-y) + "px)";
+  $("world").style.filter = blur > 0.3 ? "blur(" + blur.toFixed(2) + "px)" : "none";
+}
+function paint(t) {
+  document.querySelectorAll("[data-at]").forEach((el) => {
+    if (el.closest("#slot") || el.classList.contains("row") || el.classList.contains("node") || el.classList.contains("fcard") || el.classList.contains("stair")) return;
+    const p = eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4));
+    const light = el.dataset.tone === "light";
+    el.style.opacity = String(p);
+    el.style.color = mix(light ? "#D5DAE6" : STATE.grey, light ? "#FFFFFF" : STATE.ink, p);
+  });
+  document.querySelectorAll("[data-fade]").forEach((el) => {
+    el.style.opacity = String(eo(seg(t, +el.dataset.fade, +el.dataset.fade + 0.45)));
+  });
+}
+function render(t) {
+  camera(t);
+  paint(t);
+  if (typeof extra === "function") extra(t);
+}
+window.render = render;
+window.DUR = STATE.end;
+addEventListener("message", (e) => {
+  if (e.data && e.data.type === "harkat-t" && typeof e.data.t === "number") render(e.data.t);
+});
+function boot() {
+  if (STATE.logo) {
+    document.querySelectorAll(".logo").forEach((img) => {
+      img.src = STATE.logo;
+      img.style.display = "block";
+    });
+  }
+  render(0);
+  window.READY = true;
+}
+Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]).then(boot);
+
+
+function extra(t) {
+  document.querySelectorAll(".stair,.node").forEach((el) => {
+    el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.35)));
+  });
+  const travel = q5(seg(t, STATE.map + 1.6, STATE.map + 4.4));
+  const x = STATE.origin + travel * (STATE.nodes - 1) * STATE.gap;
+  $("traveler").style.left = (x - 9) + "px";
+  const aim = STATE.origin + (STATE.nodes - 1) * STATE.gap;
+  const move = q5(seg(t, STATE.map + 4.6, STATE.map + 5.5));
+  $("cur").style.opacity = String(eo(seg(t, STATE.map + 4.3, STATE.map + 4.7)));
+  $("cur").style.left = lerp(400, aim - 40, move) + "px";
+  $("cur").style.top = lerp(300, 560, move) + "px";
+  const click = seg(t, STATE.map + 5.5, STATE.map + 5.9);
+  $("ring").style.opacity = String(click > 0 && click < 1 ? 1 - click : 0);
+}
+</script>
+</body></html>

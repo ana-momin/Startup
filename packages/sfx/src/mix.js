@@ -1,5 +1,5 @@
 import { spawn, spawnSync } from "node:child_process";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, renameSync } from "node:fs";
 import path from "node:path";
 import ffmpeg from "ffmpeg-static";
 
@@ -86,5 +86,34 @@ export async function mix({ video, cues, sfxDir, out, target = -22 }) {
     D,
     out,
   ]);
-  return { measured: json.input_i, target, out };
+  const after = await integrated(out);
+  const delta = target - after;
+  if (Math.abs(delta) > 0.35) {
+    const fixed = `${out}.level.mp4`;
+    await run([
+      "-y",
+      "-hide_banner",
+      "-i",
+      out,
+      "-c:v",
+      "copy",
+      "-af",
+      `volume=${delta.toFixed(2)}dB`,
+      "-c:a",
+      "aac",
+      "-b:a",
+      "192k",
+      "-movflags",
+      "+faststart",
+      fixed,
+    ]);
+    renameSync(fixed, out);
+  }
+  return { measured: json.input_i, output: after + (Math.abs(delta) > 0.35 ? delta : 0), target, out };
+}
+
+async function integrated(file) {
+  const text = await run(["-hide_banner", "-i", file, "-af", "loudnorm=print_format=json", "-f", "null", "-"]);
+  const json = JSON.parse(text.slice(text.lastIndexOf("{"), text.lastIndexOf("}") + 1));
+  return Number(json.input_i);
 }

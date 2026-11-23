@@ -7,6 +7,8 @@ export type BriefInput = {
   logo?: string | null;
   /** When true, the end card says this is a sample film. */
   sample?: boolean;
+  /** launch, holo, workflow, or omit to let the brief choose. */
+  template?: "launch" | "holo" | "workflow" | "auto";
 };
 
 export type Cue = {
@@ -22,6 +24,7 @@ export type ComposeOk = {
   duration: number;
   events: Cue[];
   hostname: string;
+  template: "launch" | "holo" | "workflow";
 };
 
 export type ComposeNo = { ok: false; reason: string };

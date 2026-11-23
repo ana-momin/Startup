@@ -1,108 +1,94 @@
 {
-  "duration": 34.36,
+  "template": "launch",
+  "duration": 33.84,
   "events": [
     {
-      "t": 0.2,
+      "t": 0.22,
       "sfx": "tick",
       "gain": -8
     },
     {
-      "t": 1.86,
+      "t": 1.8,
       "sfx": "tick",
       "gain": -10
     },
     {
-      "t": 3.61,
+      "t": 3.49,
       "sfx": "whoosh",
       "align": "peak",
       "gain": -2
     },
     {
-      "t": 4.06,
+      "t": 3.89,
       "sfx": "ui",
       "gain": -8
     },
     {
-      "t": 4.96,
-      "sfx": "click",
-      "gain": -8
-    },
-    {
-      "t": 5.81,
-      "sfx": "click",
-      "gain": -8
-    },
-    {
-      "t": 6.66,
-      "sfx": "click",
-      "gain": -8
-    },
-    {
-      "t": 7.91,
+      "t": 7.84,
       "sfx": "whoosh",
       "align": "peak",
       "gain": -2
     },
     {
-      "t": 8.66,
+      "t": 8.54,
       "sfx": "ui",
       "gain": -6
     },
     {
-      "t": 17.26,
+      "t": 9.99,
+      "sfx": "click",
+      "gain": -5
+    },
+    {
+      "t": 16.94,
       "sfx": "whoosh",
       "align": "peak",
       "gain": -2
     },
     {
-      "t": 17.34,
+      "t": 16.99,
       "sfx": "click",
       "gain": -8
     },
     {
-      "t": 20.09,
+      "t": 19.76,
       "sfx": "click",
       "gain": -8
     },
     {
-      "t": 22.84,
+      "t": 22.52,
       "sfx": "click",
       "gain": -8
     },
     {
-      "t": 25.51,
+      "t": 25.24,
       "sfx": "whoosh",
       "align": "peak",
       "gain": -2
     },
     {
-      "t": 25.96,
+      "t": 25.64,
       "sfx": "tick",
       "gain": -8
     },
     {
-      "t": 26.66,
+      "t": 26.24,
       "sfx": "tick",
       "gain": -8
     },
     {
-      "t": 27.36,
-      "sfx": "tick",
-      "gain": -8
-    },
-    {
-      "t": 30.21,
+      "t": 29.79,
       "sfx": "whoosh",
       "align": "peak",
       "gain": -1
     },
     {
-      "t": 30.46,
+      "t": 30.04,
       "sfx": "chime",
       "gain": -6
     },
     {
-      "t": 30.76,
+      "t": 30.34,
       "sfx": "thud",
       "gain": -4
     }

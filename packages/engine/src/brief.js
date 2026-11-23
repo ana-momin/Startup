@@ -75,6 +75,7 @@ export function readBrief(input) {
       accent,
       logo: logoCheck.logo,
       sample: input.sample !== false,
+      template: ["launch", "holo", "workflow"].includes(input.template) ? input.template : "auto",
     },
   };
 }

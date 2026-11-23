@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import s from "./studio.module.css";
 
 type Cue = { t: number; sfx: string };
-type Film = { html: string; duration: number; events: Cue[] };
+type Film = { html: string; duration: number; events: Cue[]; template?: string };
 
 const tone = (ctx: AudioContext, when: number, freq: number, dur: number, gain = 0.08, type: OscillatorType = "sine") => {
   const o = ctx.createOscillator();
@@ -53,6 +53,7 @@ export default function Studio() {
   const [accent, setAccent] = useState("#2E4BDB");
   const [url, setUrl] = useState("");
   const [logo, setLogo] = useState<string | null>(null);
+  const [look, setLook] = useState("auto");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [film, setFilm] = useState<Film | null>(null);
@@ -122,7 +123,7 @@ export default function Studio() {
       const res = await fetch("/api/studio/film", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, problem, features, accent, url, logo, sample: true }),
+        body: JSON.stringify({ name, problem, features, accent, url, logo, sample: true, template: look }),
       });
       const data = await res.json();
       if (!res.ok || !data.ok) {
@@ -130,7 +131,7 @@ export default function Studio() {
         setError(data.reason || "That preview didn’t come through. Please try again.");
         return;
       }
-      setFilm({ html: data.html, duration: data.duration, events: data.events });
+      setFilm({ html: data.html, duration: data.duration, events: data.events, template: data.template });
       setAt(0);
     } catch {
       setError("Network error. Please try again.");
@@ -168,6 +169,14 @@ export default function Studio() {
             <input className={s.input} value={accent} onChange={(e) => setAccent(e.target.value)} maxLength={7} aria-label="Hex colour" />
           </span>
         </label>
+        <div className={s.field}>
+          <span>Look</span>
+          <div className={s.looks}>
+            {[["auto", "Auto"], ["launch", "Launch"], ["holo", "Holo"], ["workflow", "Workflow"]].map(([id, label]) => (
+              <button key={id} type="button" className={look === id ? s.lookOn : s.look} onClick={() => setLook(id)}>{label}</button>
+            ))}
+          </div>
+        </div>
         <label className={s.field}><span>Product link</span><input className={s.input} value={url} onChange={(e) => setUrl(e.target.value)} placeholder="northstar.example" inputMode="url" /></label>
         <label className={s.field}><span>Logo, optional</span><input className={s.file} type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" onChange={(e) => onLogo(e.target.files?.[0])} /></label>
         <p className={s.note}>The picture in the film is a sample interface, labelled as one. Sound is effects only. Harkat never adds music. The film you pay for is still finished by us.</p>
@@ -189,7 +198,10 @@ export default function Studio() {
           {film && <button type="button" className={s.play} onClick={() => (playing ? stop() : play(at > film.duration - 0.2 ? 0 : at))}>{playing ? "Pause" : "Play"}</button>}
         </div>
         {film && (
-          <input className={s.scrub} type="range" min={0} max={film.duration} step={0.05} value={at} aria-label="Film time" onChange={(e) => { stop(); seek(Number(e.target.value)); }} />
+          <>
+            <input className={s.scrub} type="range" min={0} max={film.duration} step={0.05} value={at} aria-label="Film time" onChange={(e) => { stop(); seek(Number(e.target.value)); }} />
+            <p className={s.note}>Look: {film.template}. A sample cut, not the finished film.</p>
+          </>
         )}
       </div>
     </div>

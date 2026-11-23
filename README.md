@@ -10,7 +10,7 @@ The public site is the Harkat site. The studio on that site turns a short brief 
 apps/web          the site (home, work, process, docs, orders, studio)
 packages/engine   turns a brief into a film. Rules pick the scenes. A model is optional.
 packages/sfx      makes short sound effects and mixes them to about −22 dBFS
-films             hand-made films (harkat-hero) and the sample film
+films             hand-made films (harkat-hero) and the three sample films
 docs              brand, pipeline, craft rules, prices, quality checklist
 ```
 
@@ -26,9 +26,15 @@ npm run dev
 
 Open http://localhost:3000. Studio is at http://localhost:3000/studio.
 
-## Render the sample film
+## Render the sample films
 
-The sample product is **Northstar**. It is fake. The film says so on screen.
+Three fake products, one template each. Every film says it is a sample.
+
+| Film | Template | What it is based on |
+|------|----------|---------------------|
+| Northstar | Launch | A product tour: problem, name, a dense sample screen, feature cards |
+| Lumen | Holo | The light Pond agents film: a colour pill, a huge word, a glass bar, cards around the name |
+| Relay | Workflow | A stair of cards, then a map of steps |
 
 ```bash
 cd films
@@ -39,12 +45,11 @@ npm install --prefix packages/sfx
 npm run sample
 ```
 
-That writes:
+That writes `films/samples/<name>/film.html` and `films/samples/<name>/out/<name>-sample.mp4`.
 
-- `films/samples/northstar/film.html` (the source)
-- `films/samples/northstar/out/northstar-sample.mp4` (picture + effects)
+`npm run sample -- --html-only` skips the video. `npm run sample -- northstar` renders one of them.
 
-`npm run sample -- --html-only` writes the HTML and skips the render. `npm run sample -- --llm` asks a model to shorten the words first, if `GROQ_API_KEY` or `OPENAI_API_KEY` is set. With no key, the same rules run. The model is not allowed to invent claims, and it never writes animation code.
+In Studio, Auto picks the look from the brief. You can also choose Launch, Holo, or Workflow. A model is optional (`--llm` is not wired on the site; the rules run for free). The model path in the engine can only shorten words already in the brief. It never writes the animation.
 
 ## Render a hand-made film
 
@@ -59,7 +64,7 @@ npm run render -- harkat-hero
 
 The site is a Next.js app. On Vercel, set the **Root Directory** to `apps/web`.
 
-This repo used to build from `harkat/web`. If Vercel still points there, the next deploy will fail until you change it. A failed deploy should leave the current site up. Don’t deploy until that setting is updated.
+This repo used to build from `harkat/web`. If Vercel still points there, the next deploy will fail until you change it. A failed deploy should leave the current site up. Do not deploy until that setting is updated. Nothing in this project deploys itself.
 
 Set the same env vars as `.env.example` in the Vercel project. `NEXT_PUBLIC_SHOW_POND_WORK=true` is what shows the Pond films.
 

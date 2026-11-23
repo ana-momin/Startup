@@ -1,0 +1,104 @@
+{
+  "template": "workflow",
+  "duration": 31.9,
+  "events": [
+    {
+      "t": 0.22,
+      "sfx": "tick",
+      "gain": -8
+    },
+    {
+      "t": 1.52,
+      "sfx": "tick",
+      "gain": -10
+    },
+    {
+      "t": 3.4,
+      "sfx": "whoosh",
+      "align": "peak",
+      "gain": -2
+    },
+    {
+      "t": 3.8,
+      "sfx": "click",
+      "gain": -7
+    },
+    {
+      "t": 4.5,
+      "sfx": "click",
+      "gain": -7
+    },
+    {
+      "t": 5.2,
+      "sfx": "click",
+      "gain": -7
+    },
+    {
+      "t": 5.9,
+      "sfx": "click",
+      "gain": -7
+    },
+    {
+      "t": 12.2,
+      "sfx": "whoosh",
+      "align": "peak",
+      "gain": -2
+    },
+    {
+      "t": 12.5,
+      "sfx": "tick",
+      "gain": -10
+    },
+    {
+      "t": 12.88,
+      "sfx": "tick",
+      "gain": -10
+    },
+    {
+      "t": 13.26,
+      "sfx": "tick",
+      "gain": -10
+    },
+    {
+      "t": 13.64,
+      "sfx": "tick",
+      "gain": -10
+    },
+    {
+      "t": 14.02,
+      "sfx": "tick",
+      "gain": -10
+    },
+    {
+      "t": 14.4,
+      "sfx": "tick",
+      "gain": -10
+    },
+    {
+      "t": 13.8,
+      "sfx": "ui",
+      "gain": -8
+    },
+    {
+      "t": 17.75,
+      "sfx": "click",
+      "gain": -5
+    },
+    {
+      "t": 27.6,
+      "sfx": "whoosh",
+      "align": "peak",
+      "gain": -1
+    },
+    {
+      "t": 27.85,
+      "sfx": "chime",
+      "gain": -6
+    },
+    {
+      "t": 28.15,
+      "sfx": "thud",
+      "gain": -4
+    }
+  ]
+}

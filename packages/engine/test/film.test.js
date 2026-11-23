@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { acceptFill } from "../src/direct.js";
-import { compose, SAMPLE_BRIEF, screenText } from "../src/index.js";
+import { chooseTemplate, compose, SAMPLE_BRIEF, SAMPLES, screenText } from "../src/index.js";
 
 test("halal screen declines gambling, betting, adult, alcohol and drugs", () => {
   assert.equal(screenText("a sportsbook for friends").ok, false);
@@ -32,6 +32,36 @@ test("a gambling brief is refused before any film is made", () => {
   const film = compose({ ...SAMPLE_BRIEF, name: "Lucky Casino" });
   assert.equal(film.ok, false);
   assert.match(film.reason, /gambling|betting/i);
+});
+
+test("three templates stay distinct and inside 30–40 seconds", () => {
+  const films = SAMPLES.map((brief) => compose(brief, { fontUrl: "/fonts/Geist-Variable.woff2" }));
+  for (const film of films) {
+    assert.equal(film.ok, true);
+    assert.ok(film.duration >= 30 && film.duration <= 40, `${film.template} ${film.duration}`);
+    assert.match(film.html, /Sample film/);
+    assert.doesNotMatch(film.html, /perspective|rotateX|rotateY|matrix3d/i);
+  }
+  assert.equal(films[0].template, "launch");
+  assert.equal(films[1].template, "holo");
+  assert.equal(films[2].template, "workflow");
+  assert.match(films[1].html, /class="pill"/);
+  assert.match(films[2].html, /class="node"/);
+  assert.notEqual(films[0].html, films[1].html);
+});
+
+test("a supplied logo is placed, and an invented claim is not", () => {
+  const logo = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4"/></svg>');
+  const film = compose({ ...SAMPLE_BRIEF, logo });
+  assert.equal(film.ok, true);
+  assert.match(film.html, /class="logo"/);
+  assert.match(film.html, /data:image\/svg\+xml/);
+});
+
+test("the brief picks a template when the user does not", () => {
+  assert.equal(chooseTemplate({ name: "A", problem: "Handoffs stall", features: ["A trigger"] }), "workflow");
+  assert.equal(chooseTemplate({ name: "A", problem: "The inbox piles up", features: ["An agent drafts it"] }), "holo");
+  assert.equal(chooseTemplate({ name: "Northstar", problem: "Posts take a week", features: ["Drafts"] }), "launch");
 });
 
 test("a model cannot invent claims that were not in the brief", () => {
