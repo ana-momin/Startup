@@ -19,8 +19,8 @@ test("sample brief becomes a 30–40s film with no 3D and a real URL", () => {
   assert.ok(film.duration >= 30 && film.duration <= 40, `duration ${film.duration}`);
   assert.match(film.html, /function render\(t\)/);
   assert.match(film.html, /northstar\.example/);
-  assert.match(film.html, /Sample interface/);
-  assert.match(film.html, /Sample film/);
+  assert.match(film.html, /Sample product/);
+  assert.doesNotMatch(film.html, /Sample only|Running · sample|Sample interface/);
   assert.match(film.html, /#0E7C66/i);
   assert.doesNotMatch(film.html, /perspective|rotateX|rotateY|matrix3d/i);
   assert.doesNotMatch(film.html, /soundtrack|spotify|music bed/i);
@@ -39,7 +39,7 @@ test("three templates stay distinct and inside 30–40 seconds", () => {
   for (const film of films) {
     assert.equal(film.ok, true);
     assert.ok(film.duration >= 30 && film.duration <= 40, `${film.template} ${film.duration}`);
-    assert.match(film.html, /Sample film/);
+    assert.match(film.html, /Sample product/);
     assert.doesNotMatch(film.html, /perspective|rotateX|rotateY|matrix3d/i);
   }
   assert.equal(films[0].template, "launch");

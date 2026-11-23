@@ -67,7 +67,7 @@ export function base(brief) {
     logo: brief.logo || null,
     sample: brief.sample !== false,
     hook,
-    hookSize: Math.max(...hook.map((line) => line.length)) > 5 ? 64 : 80,
+    hookSize: Math.max(...hook.map((line) => line.length)) > 5 ? 76 : 104,
     nameSize: brief.name.length > 16 ? 88 : brief.name.length > 10 ? 120 : brief.name.length > 7 ? 168 : 220,
   };
 }

@@ -26,10 +26,12 @@ function camera(t) {
   }
   $("world").style.transform = "translateY(" + (-y) + "px)";
   $("world").style.filter = blur > 0.3 ? "blur(" + blur.toFixed(2) + "px)" : "none";
+  const back = $("back");
+  if (back) back.style.transform = "translateY(" + (-y * 0.45) + "px)";
 }
 function paint(t) {
   document.querySelectorAll("[data-at]").forEach((el) => {
-    if (el.closest("#slot") || el.classList.contains("row") || el.classList.contains("node") || el.classList.contains("fcard") || el.classList.contains("stair")) return;
+    if (el.closest("#slot") || el.closest(".hcard") || el.closest(".row") || el.closest(".node") || el.closest(".fcard") || el.closest(".stair") || el.closest(".metric")) return;
     const p = eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4));
     const light = el.dataset.tone === "light";
     el.style.opacity = String(p);
@@ -37,6 +39,18 @@ function paint(t) {
   });
   document.querySelectorAll("[data-fade]").forEach((el) => {
     el.style.opacity = String(eo(seg(t, +el.dataset.fade, +el.dataset.fade + 0.45)));
+  });
+  document.querySelectorAll("[data-drift]").forEach((el) => {
+    const k = +el.dataset.drift || 1;
+    el.style.transform = "translate(" + (Math.sin(t * 0.35) * 16 * k) + "px," + (Math.cos(t * 0.28) * 10 * k) + "px)";
+  });
+  document.querySelectorAll("[data-count]").forEach((el) => {
+    const p = eo(seg(t, +(el.dataset.from || 0), +(el.dataset.from || 0) + 1.15));
+    const n = Math.round((+el.dataset.count) * p);
+    el.textContent = n.toLocaleString("en-US") + (el.dataset.unit || "");
+  });
+  document.querySelectorAll(".caret").forEach((el) => {
+    el.style.opacity = Math.sin(t * 9) > 0 ? "1" : "0";
   });
 }
 function render(t) {
@@ -74,20 +88,31 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .logo{display:none;height:64px;width:auto}
 .ctaName{font-size:26px;font-weight:500;color:#5B6275}
 .url{font-size:42px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:10px}
-.sampleLine{margin-top:16px;color:#5B6275;font-size:18px}
+.badge{position:fixed;top:22px;left:22px;z-index:20;font-size:13px;font-weight:560;letter-spacing:.12em;text-transform:uppercase;color:#0D1222;background:#fff;border-radius:999px;padding:7px 12px;box-shadow:0 0 0 1px rgba(13,18,34,.18),0 8px 20px rgba(0,0,0,.28)}
+#back{position:absolute;inset:0;width:1920px;pointer-events:none}
+.orb{position:absolute;width:460px;height:460px;border-radius:99px;opacity:.22;filter:blur(30px)}
+.caret{display:inline-block;width:2px;height:.85em;background:currentColor;margin-left:3px;vertical-align:-1px}
 .cursor{position:absolute;z-index:6;width:28px;height:28px;pointer-events:none}
 .cursor svg{display:block}
 .ring{position:absolute;left:-10px;top:-10px;width:36px;height:36px;border-radius:99px;border:2px solid currentColor;opacity:0}
 `;
 
-export function page({ font, css, body, state, extra = "" }) {
+export function page({ font, css, body, state, extra = "", accent = "#2E4BDB" }) {
   const safeFont = String(font || "/fonts/Geist-Variable.woff2").replace(/["'()\\\s]/g, "");
   const json = JSON.stringify(state).replace(/</g, "\\u003c");
+  const orbs = [0, 1, 2, 3, 4, 5]
+    .map(
+      (i) =>
+        `<i class="orb" data-drift="${i % 2 ? 1.2 : 0.7}" style="left:${i % 2 ? 1380 : 80}px;top:${i * 1080 + 160}px;background:${accent}"></i>`,
+    )
+    .join("");
   return `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:G;src:url("${safeFont}") format("woff2");font-weight:100 900;font-display:swap}
 ${BASE_CSS}
 ${css}
 </style></head><body>
+<div id="back">${orbs}</div>
+<div class="badge">Sample product</div>
 <div id="world">${body}</div>
 <script id="state" type="application/json">${json}</script>
 <script>${RUNTIME}
@@ -101,6 +126,5 @@ export function endScene(plan, top) {
     <img class="logo" alt="">
     <div class="ctaName">${esc(plan.name)}</div>
     <div class="url" style="color:${plan.accent}">${esc(plan.hostname)}</div>
-    ${plan.sample ? '<div class="sampleLine">Sample film · not a real product</div>' : ""}
   </div></section>`;
 }

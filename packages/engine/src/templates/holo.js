@@ -20,24 +20,24 @@ export function holoFilm(brief, opts = {}) {
   const hook = plan.hook
     .map((line) => `<div class="line" style="font-size:${Math.min(plan.hookSize, 64)}px">${lineHtml(line, "light")}</div>`)
     .join("");
-  const spots = [
-    [70, 80],
-    [1500, 70],
-    [80, 760],
-    [1490, 730],
+  const layouts = [
+    { x: 48, y: 150, w: 620, h: 460, wash: true },
+    { x: 1280, y: 70, w: 580, h: 420, wash: false },
+    { x: 1240, y: 560, w: 620, h: 440, wash: true },
+  ];
+  const bodies = [
+    `<div class="mail"><b>To Maya Chen · 9:41</b><p>${esc(plan.problem)}</p><p>I kept your last three replies in the same tone.</p><p>Draft saved. Nothing has been sent.</p></div><div class="stat"><b data-count="12" data-from="${(cards + 0.6).toFixed(2)}">0</b><small>drafts today</small></div>`,
+    `<div class="threads"><div><i>MC</i><span><b>Maya Chen</b><small>9:41 · Follow-up</small></span></div><div><i>JL</i><span><b>Jules Okonkwo</b><small>8:15 · Waiting</small></span></div><div><i>AR</i><span><b>Ari Rahman</b><small>Yesterday · Sent</small></span></div></div><div class="stat"><b data-count="48" data-from="${(cards + 1.1).toFixed(2)}">0</b><small>open threads</small></div>`,
+    `<div class="approve"><b>Ready for Thursday, 2:00</b><p>${esc(plan.features[2] || plan.features[0])}</p><em>Approve</em></div><div class="stat"><b data-count="6" data-from="${(cards + 1.6).toFixed(2)}">0</b><small>waiting on you</small></div>`,
   ];
   const cardHtml = plan.features
-    .slice(0, 4)
+    .slice(0, 3)
     .map((title, i) => {
-      const [x, y] = spots[i];
-      const wash = i % 2 === 0;
-      return `<article class="hcard${wash ? " wash" : ""}" style="left:${x}px;top:${y}px" data-at="${(cards + 0.3 + i * 0.5).toFixed(2)}">
-        <span>Sample</span>
+      const box = layouts[i];
+      return `<article class="hcard${box.wash ? " wash" : ""}" style="left:${box.x}px;top:${box.y}px;width:${box.w}px;height:${box.h}px" data-at="${(cards + 0.2 + i * 0.45).toFixed(2)}">
+        <small>${esc(title)}</small>
         <h3>${esc(title)}</h3>
-        <p>Sample only. Not a result.</p>
-        <s></s><s style="width:70%"></s>
-        <div class="bars">${[30, 55, 40, 70, 48, 62, 36].map((h) => `<b style="height:${h}%"></b>`).join("")}</div>
-        <small>Running · sample</small>
+        ${bodies[i]}
       </article>`;
     })
     .join("");
@@ -51,19 +51,22 @@ export function holoFilm(brief, opts = {}) {
 .glass p{flex:1;font-size:28px;font-weight:500;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0}
 .send{width:64px;height:64px;border-radius:99px;background:#fff;color:${plan.accent};display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 0 1px rgba(13,18,34,.06)}
 .chip{margin-top:22px;background:#fff;color:${plan.accent};border-radius:99px;padding:8px 14px;font-weight:560;opacity:0}
-.hcard{position:absolute;width:340px;background:#fff;border-radius:22px;box-shadow:0 16px 40px rgba(13,18,34,.08);padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;opacity:0}
-.hcard.wash{background:linear-gradient(160deg, ${plan.accent}, ${plan.accentDeep});color:#fff}
-.hcard.wash span,.hcard.wash small{color:rgba(255,255,255,.8)}
-.hcard.wash s{background:rgba(255,255,255,.35)}
-.hcard.wash .bars b{background:rgba(255,255,255,.85)}
-.hcard span{color:${plan.accent};font-size:12px;font-weight:560;letter-spacing:.08em;text-transform:uppercase}
-.hcard h3{font-size:22px;font-weight:560;letter-spacing:-.04em;line-height:1.15}
-.hcard s{height:7px;border-radius:99px;background:#E6E8EE;width:100%}
-.bars{display:flex;align-items:flex-end;gap:5px;height:52px;margin-top:8px}
-.hcard p{font-size:13px;line-height:1.35;opacity:.8}
-.bars b{flex:1;background:${plan.accent};border-radius:3px 3px 1px 1px}
-.hcard small{font-size:12px;color:${plan.muted}}
-.centerWord{position:absolute;left:0;right:0;top:470px;text-align:center;font-size:92px;font-weight:560;letter-spacing:-.06em;opacity:0}
+.hcard{position:absolute;background:#fff;color:${plan.ink};border-radius:28px;box-shadow:0 24px 60px rgba(13,18,34,.12);padding:28px;display:flex;flex-direction:column;gap:12px;opacity:0}
+.hcard.wash{background:linear-gradient(165deg, ${plan.accent} 0%, ${plan.accentDeep} 100%);color:#fff}
+.hcard.wash h3,.hcard.wash p,.hcard.wash b,.hcard.wash small,.hcard.wash span{color:#fff}
+.hcard.wash small{color:rgba(255,255,255,.78)}
+.hcard small{font-size:13px;font-weight:560;letter-spacing:.08em;text-transform:uppercase;color:${plan.accent}}
+.hcard h3{font-size:32px;font-weight:560;letter-spacing:-.045em;line-height:1.05;color:${plan.ink}}
+.hcard .stat{margin-top:auto;display:flex;align-items:baseline;gap:8px}
+.hcard .stat b{font-size:42px;letter-spacing:-.05em}
+.mail p,.approve p{font-size:16px;line-height:1.4}
+.threads{display:flex;flex-direction:column;gap:10px}
+.threads div{display:flex;gap:10px;align-items:center}
+.threads i{width:36px;height:36px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:12px}
+.threads span{display:flex;flex-direction:column}
+.threads small{letter-spacing:0;text-transform:none;font-weight:500;color:${plan.muted}}
+.approve em{align-self:flex-start;font-style:normal;background:#fff;color:${plan.accentDeep};border-radius:12px;padding:10px 14px;font-weight:560}
+.centerWord{position:absolute;left:0;right:0;top:430px;text-align:center;font-size:168px;font-weight:560;letter-spacing:-.07em;opacity:0}
 `;
 
   const body = `
@@ -77,7 +80,7 @@ export function holoFilm(brief, opts = {}) {
     <p data-at="${(glass + 0.3).toFixed(2)}" data-tone="ink">${esc(plan.problem)}</p>
     <div class="send">↑</div>
   </div>
-  <div id="chip" class="chip">Sample</div>
+  <div id="chip" class="chip">Queued</div>
   <div id="cur" class="cursor" style="color:#fff"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
 </div></section>
 <section class="scene" style="top:3240px;background:${plan.bg}">
@@ -123,5 +126,5 @@ function extra(t) {
     cue(cta + 0.55, "thud", { gain: -4 }),
   ].filter(Boolean);
 
-  return { html: page({ font: opts.fontUrl, css, body, state, extra }), duration: end, events, hostname: plan.hostname, template: "holo" };
+  return { html: page({ font: opts.fontUrl, css, body, state, extra, accent: plan.accent }), duration: end, events, hostname: plan.hostname, template: "holo" };
 }

@@ -12,7 +12,10 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .logo{display:none;height:64px;width:auto}
 .ctaName{font-size:26px;font-weight:500;color:#5B6275}
 .url{font-size:42px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:10px}
-.sampleLine{margin-top:16px;color:#5B6275;font-size:18px}
+.badge{position:fixed;top:22px;left:22px;z-index:20;font-size:13px;font-weight:560;letter-spacing:.12em;text-transform:uppercase;color:#0D1222;background:#fff;border-radius:999px;padding:7px 12px;box-shadow:0 0 0 1px rgba(13,18,34,.18),0 8px 20px rgba(0,0,0,.28)}
+#back{position:absolute;inset:0;width:1920px;pointer-events:none}
+.orb{position:absolute;width:460px;height:460px;border-radius:99px;opacity:.22;filter:blur(30px)}
+.caret{display:inline-block;width:2px;height:.85em;background:currentColor;margin-left:3px;vertical-align:-1px}
 .cursor{position:absolute;z-index:6;width:28px;height:28px;pointer-events:none}
 .cursor svg{display:block}
 .ring{position:absolute;left:-10px;top:-10px;width:36px;height:36px;border-radius:99px;border:2px solid currentColor;opacity:0}
@@ -24,7 +27,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .nameRow{display:flex;align-items:center;gap:22px}
 .swap{margin-top:16px;font-size:40px;font-weight:560;letter-spacing:-.04em;opacity:0}
 .uiStage{transform-origin:50% 50%}
-.window{width:1360px;height:780px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px #E6E8EE,0 28px 70px rgba(13,18,34,.08);display:flex;overflow:hidden;position:relative}
+.window{width:1760px;height:960px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px #E6E8EE,0 30px 80px rgba(13,18,34,.1);display:flex;overflow:hidden;position:relative}
 .side{width:230px;border-right:1px solid #E6E8EE;padding:18px 14px;display:flex;flex-direction:column;gap:4px}
 .mark{display:flex;align-items:center;gap:10px;font-weight:560;letter-spacing:-.04em;font-size:18px;padding:6px 8px 16px}
 .dot{width:12px;height:12px;border-radius:99px;background:#0E7C66;flex:none}
@@ -35,27 +38,38 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .top{height:64px;border-bottom:1px solid #E6E8EE;display:flex;align-items:center;gap:12px;padding:0 18px}
 .lights{display:flex;gap:6px}.lights i{width:9px;height:9px;border-radius:99px;background:#E4E7EE}
 .top b{font-size:15px;font-weight:560}.top small{color:#5B6275;font-size:13px}
-.pill{margin-left:auto;background:#e2efed;color:#0E7C66;border-radius:99px;padding:5px 10px;font-size:12px;font-weight:560}
-.list{padding:14px 16px;display:flex;flex-direction:column;gap:8px}
-.row{height:64px;border:1px solid #E6E8EE;border-radius:14px;display:flex;align-items:center;gap:12px;padding:0 14px;opacity:0}
-.row>i{width:8px;height:8px;border-radius:99px;background:#0E7C66;flex:none}
-.row span{display:flex;flex-direction:column;gap:2px;min-width:0}
-.row b{font-size:16px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:520px}
+.search{margin-left:auto;background:#F6F7F9;border-radius:10px;padding:8px 12px;color:#5B6275;font-size:13px;min-width:180px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px 6px}
+.metric{background:#F6F7F9;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.metric small{color:#5B6275;font-size:12px}
+.metric b{font-size:28px;letter-spacing:-.04em;font-weight:560}
+.spark{width:72px;height:28px}
+.list{padding:8px 16px;display:flex;flex-direction:column;gap:8px}
+.row{height:62px;border:1px solid #E6E8EE;border-radius:14px;display:flex;align-items:center;gap:12px;padding:0 14px;opacity:0;position:relative}
+.row.hot{background:#e2efed;border-color:transparent}
+.av{width:32px;height:32px;border-radius:99px;background:#fff;color:#0E7C66;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:11px;flex:none;box-shadow:0 0 0 1px #E6E8EE}
+.row span{display:flex;flex-direction:column;gap:2px;min-width:180px}
+.row b{font-size:15px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
 .row small{color:#5B6275;font-size:12px}
-.row em{margin-left:auto;font-style:normal;color:#0E7C66;background:#e2efed;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:560}
-.chart{height:150px;margin:4px 16px 0;border:1px solid #E6E8EE;border-radius:14px;display:flex;align-items:flex-end;gap:8px;padding:14px}
-.today{display:flex;gap:8px;padding:10px 16px 14px}
-.today span{flex:1;background:#F6F7F9;border-radius:10px;padding:8px 10px;font-size:12px;color:#5B6275}
-.today b{display:block;color:#0D1222;font-size:13px;margin-bottom:2px}
-.chart b{flex:1;background:#0E7C66;border-radius:5px 5px 2px 2px;opacity:.85}
-.chart b:nth-child(odd){background:#e2efed}
-.sideR{width:320px;border-left:1px solid #E6E8EE;display:flex;flex-direction:column;padding:16px;gap:10px}
+.row u{height:6px;border-radius:99px;background:#0E7C66;text-decoration:none;flex:1;max-width:120px}
+.row em{font-style:normal;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:560}
+.row em.before{color:#0E7C66;background:#fff}
+.row em.after{display:none;color:#fff;background:#0E7C66}
+.row.show em.before{display:none}
+.row.show em.after{display:inline}
+.chart{flex:1;margin:6px 16px 14px;border:1px solid #E6E8EE;border-radius:14px;display:flex;align-items:flex-end;gap:10px;padding:16px 16px 8px;min-height:120px}
+.bar{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
+.bar b{width:100%;background:#0E7C66;border-radius:6px 6px 2px 2px;display:block}
+.bar:nth-child(odd) b{background:#e2efed}
+.bar small{color:#5B6275;font-size:11px}
+.sideR{width:360px;border-left:1px solid #E6E8EE;display:flex;flex-direction:column;padding:16px;gap:8px}
 .sideR strong{font-size:14px}
 .msg{display:flex;gap:8px;align-items:flex-start}
-.msg i{width:28px;height:28px;border-radius:99px;background:#e2efed;color:#0E7C66;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:11px;flex:none}
+.msg i{width:28px;height:28px;border-radius:99px;background:#e2efed;color:#0E7C66;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:10px;flex:none}
 .msg p{background:#F6F7F9;border-radius:12px;padding:8px 10px;font-size:13px;line-height:1.35}
-.composer{margin-top:auto;border:1px solid #E6E8EE;border-radius:12px;padding:10px 12px;color:#5B6275;font-size:13px}
-.toast{position:absolute;right:340px;bottom:28px;background:#0D1222;color:#fff;border-radius:12px;padding:10px 12px;font-size:13px;opacity:0}
+.msg b{font-weight:560;color:#5B6275;margin-right:6px}
+.composer{margin-top:auto;border:1px solid #E6E8EE;border-radius:12px;padding:10px 12px;color:#0D1222;font-size:13px}
+.toast{position:absolute;right:28px;bottom:28px;background:#0D1222;color:#fff;border-radius:12px;padding:12px 14px;font-size:14px;opacity:0;box-shadow:0 12px 30px rgba(13,18,34,.2)}
 .head{position:absolute;top:92px;left:0;right:0;text-align:center;font-size:52px;font-weight:560;letter-spacing:-.05em;opacity:0}
 .track{position:absolute;top:230px;left:0;display:flex;gap:28px}
 .fcard{width:460px;height:560px;flex:none;background:#fff;border-radius:28px;box-shadow:0 0 0 1px #E6E8EE,0 20px 50px rgba(13,18,34,.06);padding:28px;display:flex;flex-direction:column;gap:14px}
@@ -81,34 +95,62 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .step em{font-style:normal;color:#5B6275;font-size:16px}
 
 </style></head><body>
+<div id="back"><i class="orb" data-drift="0.7" style="left:80px;top:160px;background:#0E7C66"></i><i class="orb" data-drift="1.2" style="left:1380px;top:1240px;background:#0E7C66"></i><i class="orb" data-drift="0.7" style="left:80px;top:2320px;background:#0E7C66"></i><i class="orb" data-drift="1.2" style="left:1380px;top:3400px;background:#0E7C66"></i><i class="orb" data-drift="0.7" style="left:80px;top:4480px;background:#0E7C66"></i><i class="orb" data-drift="1.2" style="left:1380px;top:5560px;background:#0E7C66"></i></div>
+<div class="badge">Sample product</div>
 <div id="world">
-<section class="scene" style="top:0;background:radial-gradient(120% 80% at 50% 120%, #08302f 0%, #070b14 58%)"><div class="mid stack"><div class="line" style="font-size:80px"><span data-at="0.22" data-tone="light">Launch</span><span data-at="0.5" data-tone="light">posts</span><span data-at="0.78" data-tone="light">take</span><span data-at="1.06" data-tone="light">a</span><span data-at="1.34" data-tone="light">week</span></div><div class="line" style="font-size:80px"><span data-at="1.8" data-tone="light">and</span><span data-at="2.08" data-tone="light">still</span><span data-at="2.36" data-tone="light">look</span><span data-at="2.64" data-tone="light">generic</span></div></div></section>
+<section class="scene" style="top:0;background:radial-gradient(120% 80% at 50% 120%, #08302f 0%, #070b14 58%)"><div class="mid stack"><div class="line" style="font-size:104px"><span data-at="0.22" data-tone="light">Launch</span><span data-at="0.5" data-tone="light">posts</span><span data-at="0.78" data-tone="light">take</span><span data-at="1.06" data-tone="light">a</span><span data-at="1.34" data-tone="light">week</span></div><div class="line" style="font-size:104px"><span data-at="1.8" data-tone="light">and</span><span data-at="2.08" data-tone="light">still</span><span data-at="2.36" data-tone="light">look</span><span data-at="2.64" data-tone="light">generic</span></div></div></section>
 <section class="scene" style="top:1080px;background:#F6F7F9"><div class="mid">
   <div class="kicker" data-at="3.64" data-tone="ink">Introducing</div>
   <div class="nameRow"><img class="logo" alt=""><div class="product" data-at="3.89" data-tone="ink" style="font-size:140px">Northstar</div></div>
   <div class="swap" data-at="4.39" data-tone="ink">You get Brand-matched</div>
 </div></section>
 <section class="scene" style="top:2160px;background:#F6F7F9"><div class="mid"><div id="uiStage" class="uiStage"><div class="window">
-  <aside class="side"><div class="mark"><img class="logo" alt="" style="height:22px"><i class="dot"></i>Northstar</div><div class="navbtn on">Overview</div><div class="navbtn">Brand-matched</div><div class="navbtn">Shared board</div><div class="navbtn">Approval before</div></aside>
+  <aside class="side"><div class="mark"><img class="logo" alt="" style="height:22px"><i class="dot"></i>Northstar</div><div class="navbtn">Home</div><div class="navbtn on">Drafts</div><div class="navbtn">Calendar</div><div class="navbtn">Approvals</div><div class="navbtn">Archive</div></aside>
   <div class="main">
     <div class="col">
-      <div class="top"><span class="lights"><i></i><i></i><i></i></span><b>Northstar</b><small>northstar.example</small><span class="pill">Sample interface</span></div>
-      <div class="list"><div class="row" data-at="8.39">
-        <i></i><span><b>Launch posts take a week and still look generic</b><small>Sample</small></span><em>Open</em></div><div class="row" data-at="8.61">
-        <i></i><span><b>Brand-matched drafts</b><small>Sample</small></span><em>Draft</em></div><div class="row" data-at="8.83">
-        <i></i><span><b>One shared board</b><small>Sample</small></span><em>Queued</em></div><div class="row" data-at="9.05">
-        <i></i><span><b>Approval before anything goes live</b><small>Sample</small></span><em>Needs a look</em></div></div>
-      <div class="chart"><b style="height:28%"></b><b style="height:46%"></b><b style="height:38%"></b><b style="height:62%"></b><b style="height:44%"></b><b style="height:70%"></b><b style="height:52%"></b><b style="height:58%"></b></div>
-      <div class="today"><span><b>Brand-matched</b>Sample</span><span><b>Shared board</b>Sample</span><span><b>Approval before</b>Sample</span></div>
+      <div class="top"><span class="lights"><i></i><i></i><i></i></span><b>Northstar</b><small>northstar.example</small><span class="search">Search posts</span></div>
+      <div class="metrics"><div class="metric"><small>Drafts</small><b data-count="24" data-from="8.34" data-unit="">0</b><svg class="spark" viewBox="0 0 72 28"><polyline points="0,22 12,18 24,20 36,12 48,14 60,6 72,8" fill="none" stroke="#0E7C66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="metric"><small>Ready</small><b data-count="12" data-from="8.34" data-unit="">0</b><svg class="spark" viewBox="0 0 72 28"><polyline points="0,20 12,16 24,18 36,10 48,12 60,8 72,4" fill="none" stroke="#0E7C66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="metric"><small>Waiting</small><b data-count="5" data-from="8.34" data-unit="">0</b><svg class="spark" viewBox="0 0 72 28"><polyline points="0,8 12,14 24,10 36,16 48,12 60,18 72,14" fill="none" stroke="#0E7C66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="metric"><small>Sent</small><b data-count="86" data-from="8.34" data-unit="">0</b><svg class="spark" viewBox="0 0 72 28"><polyline points="0,24 12,20 24,16 36,14 48,8 60,6 72,2" fill="none" stroke="#0E7C66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <div class="list"><div class="row" data-at="8.24">
+        <i class="av">AM</i>
+        <span><b>Spring launch</b><small>Amina M. · 9:14</small></span>
+        <u style="width:82%"></u>
+        <em class="before">Draft</em>
+      </div><div class="row hot" data-at="8.40">
+        <i class="av">JK</i>
+        <span><b>Brand-matched drafts</b><small>Jamal K. · 9:41</small></span>
+        <u style="width:64%"></u>
+        <em class="before">Review</em><em class="after">Scheduled</em>
+      </div><div class="row" data-at="8.56">
+        <i class="av">RS</i>
+        <span><b>One shared board</b><small>Rafi S. · 10:06</small></span>
+        <u style="width:48%"></u>
+        <em class="before">Queued</em>
+      </div><div class="row" data-at="8.72">
+        <i class="av">NL</i>
+        <span><b>Approval before anything goes live</b><small>Noor L. · 10:22</small></span>
+        <u style="width:30%"></u>
+        <em class="before">Hold</em>
+      </div><div class="row" data-at="8.88">
+        <i class="av">OT</i>
+        <span><b>Thursday post</b><small>Omar T. · 11:02</small></span>
+        <u style="width:100%"></u>
+        <em class="before">Live</em>
+      </div><div class="row" data-at="9.04">
+        <i class="av">SK</i>
+        <span><b>Caption pass</b><small>Sami K. · 11:18</small></span>
+        <u style="width:55%"></u>
+        <em class="before">Draft</em>
+      </div></div>
+      <div class="chart"><div class="bar"><b style="height:36%"></b><small>Mon</small></div><div class="bar"><b style="height:52%"></b><small>Tue</small></div><div class="bar"><b style="height:44%"></b><small>Wed</small></div><div class="bar"><b style="height:78%"></b><small>Thu</small></div><div class="bar"><b style="height:60%"></b><small>Fri</small></div><div class="bar"><b style="height:28%"></b><small>Sat</small></div><div class="bar"><b style="height:48%"></b><small>Sun</small></div></div>
     </div>
-    <aside class="sideR"><strong>Thread · sample</strong><div class="msg"><i>N</i><p>Launch posts take a week and still look generic.</p></div><div class="msg"><i>AR</i><p>Sample reply. Nothing here is sent.</p></div><div class="msg"><i>BD</i><p>Brand-matched drafts</p></div><div class="composer">Sample reply</div></aside>
+    <aside class="sideR"><strong>Thread · Northstar</strong><div class="msg"><i>AM</i><p><b>9:12</b> Can we ship the spring launch today?</p></div><div class="msg"><i>JK</i><p><b>9:16</b> Brand-matched drafts</p></div><div class="msg"><i>AM</i><p><b>9:21</b> Hold Thursday. I want one more pass.</p></div><div class="msg"><i>RS</i><p><b>9:28</b> One shared board</p></div><div class="msg"><i>JK</i><p><b>9:33</b> Queued. I&#39;ll stay on the thread.</p></div><div class="composer">Reply<span class="caret"></span></div></aside>
   </div>
-  <div id="toast" class="toast">Saved · sample</div>
+  <div id="toast" class="toast">Scheduled for Thursday, 2:00</div>
   <div id="cur" class="cursor" style="color:#0E7C66"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
 </div></div></div></section>
 <section class="scene" style="top:3240px;background:#F6F7F9">
   <div class="head" data-at="17.02" data-tone="ink">What it does</div>
-  <div id="track" class="track"><article class="fcard"><span>Sample</span><h3>Brand-matched drafts</h3><div class="mock doc"><u></u><s></s><s></s><em>Brand-matched drafts</em></div></article><article class="fcard"><span>Sample</span><h3>One shared board</h3><div class="mock board"><div class="mini"><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:86%"></b><b style="height:55%"></b><b style="height:30%"></b><b style="height:44%"></b></div><small>Sample week</small></div></article><article class="fcard"><span>Sample</span><h3>Approval before anything goes live</h3><div class="mock thread"><div class="bubble">Launch posts take a week and still look generic.</div><div class="bubble me">Sample. Not sent.</div></div></article></div>
+  <div id="track" class="track"><article class="fcard"><span>Draft</span><h3>Brand-matched drafts</h3><div class="mock doc"><u></u><s></s><s></s><em>Brand-matched drafts</em></div></article><article class="fcard"><span>This week</span><h3>One shared board</h3><div class="mock board"><div class="mini"><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:86%"></b><b style="height:55%"></b><b style="height:30%"></b><b style="height:44%"></b></div><small>Mon to Sun · 18 posts</small></div></article><article class="fcard"><span>Thread</span><h3>Approval before anything goes live</h3><div class="mock thread"><div class="bubble">Launch posts take a week and still look generic.</div><div class="bubble me">Hold Thursday. One more pass.</div></div></article></div>
 </section>
 <section class="scene" style="top:4320px;background:#F6F7F9"><div class="mid">
   <div class="flowHead" data-at="25.34" data-tone="ink">How it comes together</div>
@@ -119,7 +161,6 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
     <img class="logo" alt="">
     <div class="ctaName">Northstar</div>
     <div class="url" style="color:#0E7C66">northstar.example</div>
-    <div class="sampleLine">Sample film · not a real product</div>
   </div></section></div>
 <script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.68,"end":33.84,"stops":[{"t":0,"y":0},{"t":3.49,"y":1080},{"t":7.84,"y":2160},{"t":16.94,"y":3240},{"t":25.24,"y":4320},{"t":29.79,"y":5400}],"ui":7.84,"features":16.94,"per":2.766666666666667,"flow":25.24,"logo":null,"n":3}</script>
 <script>
@@ -148,10 +189,12 @@ function camera(t) {
   }
   $("world").style.transform = "translateY(" + (-y) + "px)";
   $("world").style.filter = blur > 0.3 ? "blur(" + blur.toFixed(2) + "px)" : "none";
+  const back = $("back");
+  if (back) back.style.transform = "translateY(" + (-y * 0.45) + "px)";
 }
 function paint(t) {
   document.querySelectorAll("[data-at]").forEach((el) => {
-    if (el.closest("#slot") || el.classList.contains("row") || el.classList.contains("node") || el.classList.contains("fcard") || el.classList.contains("stair")) return;
+    if (el.closest("#slot") || el.closest(".hcard") || el.closest(".row") || el.closest(".node") || el.closest(".fcard") || el.closest(".stair") || el.closest(".metric")) return;
     const p = eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4));
     const light = el.dataset.tone === "light";
     el.style.opacity = String(p);
@@ -159,6 +202,18 @@ function paint(t) {
   });
   document.querySelectorAll("[data-fade]").forEach((el) => {
     el.style.opacity = String(eo(seg(t, +el.dataset.fade, +el.dataset.fade + 0.45)));
+  });
+  document.querySelectorAll("[data-drift]").forEach((el) => {
+    const k = +el.dataset.drift || 1;
+    el.style.transform = "translate(" + (Math.sin(t * 0.35) * 16 * k) + "px," + (Math.cos(t * 0.28) * 10 * k) + "px)";
+  });
+  document.querySelectorAll("[data-count]").forEach((el) => {
+    const p = eo(seg(t, +(el.dataset.from || 0), +(el.dataset.from || 0) + 1.15));
+    const n = Math.round((+el.dataset.count) * p);
+    el.textContent = n.toLocaleString("en-US") + (el.dataset.unit || "");
+  });
+  document.querySelectorAll(".caret").forEach((el) => {
+    el.style.opacity = Math.sin(t * 9) > 0 ? "1" : "0";
   });
 }
 function render(t) {
@@ -193,14 +248,16 @@ function extra(t) {
   $("toast").style.opacity = String(eo(seg(t, STATE.ui + 3.4, STATE.ui + 3.7)));
   const active = t > STATE.ui + 3.2 ? 1 : 0;
   document.querySelectorAll(".navbtn").forEach((el, i) => el.classList.toggle("on", i === active));
-  const c1 = t < STATE.ui + 1.1 ? 0 : q5(seg(t, STATE.ui + 1.1, STATE.ui + 1.9));
-  const x = lerp(260, 520, c1);
-  const y = lerp(120, 250, c1);
-  $("cur").style.left = x + "px";
-  $("cur").style.top = y + "px";
-  const click = seg(t, STATE.ui + 2.1, STATE.ui + 2.45);
+  const c1 = t < STATE.ui + 1.05 ? 0 : q5(seg(t, STATE.ui + 1.05, STATE.ui + 1.85));
+  $("cur").style.left = lerp(280, 640, c1) + "px";
+  $("cur").style.top = lerp(180, 310, c1) + "px";
+  const pressing = t >= STATE.ui + 1.85 && t < STATE.ui + 2.05;
+  $("cur").style.transform = "scale(" + (pressing ? 0.82 : 1) + ")";
+  const click = seg(t, STATE.ui + 1.85, STATE.ui + 2.2);
   $("ring").style.opacity = String(click > 0 && click < 1 ? 1 - click : 0);
-  $("ring").style.transform = "scale(" + lerp(0.4, 1.6, click) + ")";
+  const hot = document.querySelector(".row.hot");
+  if (hot) hot.classList.toggle("show", t > STATE.ui + 2.05);
+  $("toast").style.opacity = String(eo(seg(t, STATE.ui + 2.1, STATE.ui + 2.4)));
   const n = document.querySelectorAll("#track .fcard").length || 1;
   let idx = 0;
   for (let i = 1; i < n; i++) {

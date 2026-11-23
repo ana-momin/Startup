@@ -17,34 +17,59 @@ export function launchFilm(brief, opts = {}) {
   const plan = base(brief);
   const time = timing(lastAt(plan.hook), plan.features.length);
   const hook = plan.hook.map((line) => `<div class="line" style="font-size:${plan.hookSize}px">${lineHtml(line, "light")}</div>`).join("");
-  const rows = [plan.problem.replace(/[.?!]+$/, ""), ...plan.features].slice(0, 5);
-  const states = ["Open", "Draft", "Queued", "Needs a look", "Sample"];
-  const rowHtml = rows
+  const tasks = [
+    { who: "AM", name: "Amina M.", title: "Spring launch", tag: "Draft", time: "9:14", pct: 82 },
+    { who: "JK", name: "Jamal K.", title: plan.features[0], tag: "Review", time: "9:41", pct: 64, hot: true },
+    { who: "RS", name: "Rafi S.", title: plan.features[1] || "Board", tag: "Queued", time: "10:06", pct: 48 },
+    { who: "NL", name: "Noor L.", title: plan.features[2] || "Approve", tag: "Hold", time: "10:22", pct: 30 },
+    { who: "OT", name: "Omar T.", title: "Thursday post", tag: "Live", time: "11:02", pct: 100 },
+    { who: "SK", name: "Sami K.", title: "Caption pass", tag: "Draft", time: "11:18", pct: 55 },
+  ];
+  const rowHtml = tasks
     .map(
-      (title, i) => `<div class="row" data-at="${(time.ui + 0.55 + i * 0.22).toFixed(2)}">
-        <i></i><span><b>${esc(title)}</b><small>Sample</small></span><em>${states[i]}</em></div>`,
+      (row, i) => `<div class="row${row.hot ? " hot" : ""}" data-at="${(time.ui + 0.4 + i * 0.16).toFixed(2)}">
+        <i class="av">${row.who}</i>
+        <span><b>${esc(row.title)}</b><small>${esc(row.name)} · ${row.time}</small></span>
+        <u style="width:${row.pct}%"></u>
+        <em class="before">${row.tag}</em>${row.hot ? '<em class="after">Scheduled</em>' : ""}
+      </div>`,
     )
     .join("");
-  const nav = ["Overview", ...plan.features.map(shortLabel)].slice(0, 5);
-  const navHtml = nav.map((item, i) => `<div class="navbtn${i === 0 ? " on" : ""}">${esc(item)}</div>`).join("");
-  const bars = [28, 46, 38, 62, 44, 70, 52, 58].map((h) => `<b style="height:${h}%"></b>`).join("");
-  const chats = [
-    [initials(plan.name), plan.problem],
-    ["AR", "Sample reply. Nothing here is sent."],
-    [initials(plan.features[0]), plan.features[0]],
+  const nav = ["Home", "Drafts", "Calendar", "Approvals", "Archive"];
+  const navHtml = nav.map((item, i) => `<div class="navbtn${i === 1 ? " on" : ""}">${item}</div>`).join("");
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const heights = [36, 52, 44, 78, 60, 28, 48];
+  const bars = days.map((d, i) => `<div class="bar"><b style="height:${heights[i]}%"></b><small>${d}</small></div>`).join("");
+  const spark = (pts) => `<svg class="spark" viewBox="0 0 72 28"><polyline points="${pts}" fill="none" stroke="${plan.accent}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const metrics = [
+    ["Drafts", 24, "", "0,22 12,18 24,20 36,12 48,14 60,6 72,8"],
+    ["Ready", 12, "", "0,20 12,16 24,18 36,10 48,12 60,8 72,4"],
+    ["Waiting", 5, "", "0,8 12,14 24,10 36,16 48,12 60,18 72,14"],
+    ["Sent", 86, "", "0,24 12,20 24,16 36,14 48,8 60,6 72,2"],
   ]
-    .map(([who, text]) => `<div class="msg"><i>${esc(who)}</i><p>${esc(text)}</p></div>`)
+    .map(
+      ([label, value, unit, pts]) => `<div class="metric"><small>${label}</small><b data-count="${value}" data-from="${(time.ui + 0.5).toFixed(2)}" data-unit="${unit}">0</b>${spark(pts)}</div>`,
+    )
+    .join("");
+  const chats = [
+    ["AM", "9:12", "Can we ship the spring launch today?"],
+    ["JK", "9:16", plan.features[0]],
+    ["AM", "9:21", "Hold Thursday. I want one more pass."],
+    ["RS", "9:28", plan.features[1] || "The board is updated."],
+    ["JK", "9:33", "Queued. I'll stay on the thread."],
+  ]
+    .map(([who, time, text]) => `<div class="msg"><i>${who}</i><p><b>${time}</b> ${esc(text)}</p></div>`)
     .join("");
   const cards = plan.features
     .map((title, i) => {
       const kind = ["doc", "board", "thread"][i % 3];
       const body =
         kind === "board"
-          ? `<div class="mini">${[40, 70, 48, 86, 55, 30, 44].map((h) => `<b style="height:${h}%"></b>`).join("")}</div><small>Sample week</small>`
+          ? `<div class="mini">${[40, 70, 48, 86, 55, 30, 44].map((h, n) => `<b style="height:${h}%"></b>`).join("")}</div><small>Mon to Sun · 18 posts</small>`
           : kind === "thread"
-            ? `<div class="bubble">${esc(plan.problem.slice(0, 72))}</div><div class="bubble me">Sample. Not sent.</div>`
+            ? `<div class="bubble">${esc(plan.problem.slice(0, 80))}</div><div class="bubble me">Hold Thursday. One more pass.</div>`
             : `<u></u><s></s><s></s><em>${esc(title)}</em>`;
-      return `<article class="fcard"><span>Sample</span><h3>${esc(title)}</h3><div class="mock ${kind}">${body}</div></article>`;
+      return `<article class="fcard"><span>${["Draft", "This week", "Thread"][i % 3]}</span><h3>${esc(title)}</h3><div class="mock ${kind}">${body}</div></article>`;
     })
     .join("");
   const steps = [
@@ -62,7 +87,7 @@ export function launchFilm(brief, opts = {}) {
 .nameRow{display:flex;align-items:center;gap:22px}
 .swap{margin-top:16px;font-size:40px;font-weight:560;letter-spacing:-.04em;opacity:0}
 .uiStage{transform-origin:50% 50%}
-.window{width:1360px;height:780px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px ${plan.line},0 28px 70px rgba(13,18,34,.08);display:flex;overflow:hidden;position:relative}
+.window{width:1760px;height:960px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px ${plan.line},0 30px 80px rgba(13,18,34,.1);display:flex;overflow:hidden;position:relative}
 .side{width:230px;border-right:1px solid ${plan.line};padding:18px 14px;display:flex;flex-direction:column;gap:4px}
 .mark{display:flex;align-items:center;gap:10px;font-weight:560;letter-spacing:-.04em;font-size:18px;padding:6px 8px 16px}
 .dot{width:12px;height:12px;border-radius:99px;background:${plan.accent};flex:none}
@@ -73,27 +98,38 @@ export function launchFilm(brief, opts = {}) {
 .top{height:64px;border-bottom:1px solid ${plan.line};display:flex;align-items:center;gap:12px;padding:0 18px}
 .lights{display:flex;gap:6px}.lights i{width:9px;height:9px;border-radius:99px;background:#E4E7EE}
 .top b{font-size:15px;font-weight:560}.top small{color:${plan.muted};font-size:13px}
-.pill{margin-left:auto;background:${plan.accentSoft};color:${plan.accent};border-radius:99px;padding:5px 10px;font-size:12px;font-weight:560}
-.list{padding:14px 16px;display:flex;flex-direction:column;gap:8px}
-.row{height:64px;border:1px solid ${plan.line};border-radius:14px;display:flex;align-items:center;gap:12px;padding:0 14px;opacity:0}
-.row>i{width:8px;height:8px;border-radius:99px;background:${plan.accent};flex:none}
-.row span{display:flex;flex-direction:column;gap:2px;min-width:0}
-.row b{font-size:16px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:520px}
+.search{margin-left:auto;background:${plan.bg};border-radius:10px;padding:8px 12px;color:${plan.muted};font-size:13px;min-width:180px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px 6px}
+.metric{background:${plan.bg};border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.metric small{color:${plan.muted};font-size:12px}
+.metric b{font-size:28px;letter-spacing:-.04em;font-weight:560}
+.spark{width:72px;height:28px}
+.list{padding:8px 16px;display:flex;flex-direction:column;gap:8px}
+.row{height:62px;border:1px solid ${plan.line};border-radius:14px;display:flex;align-items:center;gap:12px;padding:0 14px;opacity:0;position:relative}
+.row.hot{background:${plan.accentSoft};border-color:transparent}
+.av{width:32px;height:32px;border-radius:99px;background:#fff;color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:11px;flex:none;box-shadow:0 0 0 1px ${plan.line}}
+.row span{display:flex;flex-direction:column;gap:2px;min-width:180px}
+.row b{font-size:15px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
 .row small{color:${plan.muted};font-size:12px}
-.row em{margin-left:auto;font-style:normal;color:${plan.accent};background:${plan.accentSoft};border-radius:99px;padding:4px 9px;font-size:12px;font-weight:560}
-.chart{height:150px;margin:4px 16px 0;border:1px solid ${plan.line};border-radius:14px;display:flex;align-items:flex-end;gap:8px;padding:14px}
-.today{display:flex;gap:8px;padding:10px 16px 14px}
-.today span{flex:1;background:${plan.bg};border-radius:10px;padding:8px 10px;font-size:12px;color:${plan.muted}}
-.today b{display:block;color:${plan.ink};font-size:13px;margin-bottom:2px}
-.chart b{flex:1;background:${plan.accent};border-radius:5px 5px 2px 2px;opacity:.85}
-.chart b:nth-child(odd){background:${plan.accentSoft}}
-.sideR{width:320px;border-left:1px solid ${plan.line};display:flex;flex-direction:column;padding:16px;gap:10px}
+.row u{height:6px;border-radius:99px;background:${plan.accent};text-decoration:none;flex:1;max-width:120px}
+.row em{font-style:normal;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:560}
+.row em.before{color:${plan.accent};background:#fff}
+.row em.after{display:none;color:#fff;background:${plan.accent}}
+.row.show em.before{display:none}
+.row.show em.after{display:inline}
+.chart{flex:1;margin:6px 16px 14px;border:1px solid ${plan.line};border-radius:14px;display:flex;align-items:flex-end;gap:10px;padding:16px 16px 8px;min-height:120px}
+.bar{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
+.bar b{width:100%;background:${plan.accent};border-radius:6px 6px 2px 2px;display:block}
+.bar:nth-child(odd) b{background:${plan.accentSoft}}
+.bar small{color:${plan.muted};font-size:11px}
+.sideR{width:360px;border-left:1px solid ${plan.line};display:flex;flex-direction:column;padding:16px;gap:8px}
 .sideR strong{font-size:14px}
 .msg{display:flex;gap:8px;align-items:flex-start}
-.msg i{width:28px;height:28px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:11px;flex:none}
+.msg i{width:28px;height:28px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:10px;flex:none}
 .msg p{background:${plan.bg};border-radius:12px;padding:8px 10px;font-size:13px;line-height:1.35}
-.composer{margin-top:auto;border:1px solid ${plan.line};border-radius:12px;padding:10px 12px;color:${plan.muted};font-size:13px}
-.toast{position:absolute;right:340px;bottom:28px;background:${plan.ink};color:#fff;border-radius:12px;padding:10px 12px;font-size:13px;opacity:0}
+.msg b{font-weight:560;color:${plan.muted};margin-right:6px}
+.composer{margin-top:auto;border:1px solid ${plan.line};border-radius:12px;padding:10px 12px;color:${plan.ink};font-size:13px}
+.toast{position:absolute;right:28px;bottom:28px;background:${plan.ink};color:#fff;border-radius:12px;padding:12px 14px;font-size:14px;opacity:0;box-shadow:0 12px 30px rgba(13,18,34,.2)}
 .head{position:absolute;top:92px;left:0;right:0;text-align:center;font-size:52px;font-weight:560;letter-spacing:-.05em;opacity:0}
 .track{position:absolute;top:230px;left:0;display:flex;gap:28px}
 .fcard{width:460px;height:560px;flex:none;background:#fff;border-radius:28px;box-shadow:0 0 0 1px ${plan.line},0 20px 50px rgba(13,18,34,.06);padding:28px;display:flex;flex-direction:column;gap:14px}
@@ -130,14 +166,14 @@ export function launchFilm(brief, opts = {}) {
   <aside class="side"><div class="mark"><img class="logo" alt="" style="height:22px"><i class="dot"></i>${esc(plan.name)}</div>${navHtml}</aside>
   <div class="main">
     <div class="col">
-      <div class="top"><span class="lights"><i></i><i></i><i></i></span><b>${esc(plan.name)}</b><small>${esc(plan.hostname)}</small><span class="pill">Sample interface</span></div>
+      <div class="top"><span class="lights"><i></i><i></i><i></i></span><b>${esc(plan.name)}</b><small>${esc(plan.hostname)}</small><span class="search">Search posts</span></div>
+      <div class="metrics">${metrics}</div>
       <div class="list">${rowHtml}</div>
       <div class="chart">${bars}</div>
-      <div class="today">${plan.features.slice(0, 3).map((f) => `<span><b>${esc(shortLabel(f))}</b>Sample</span>`).join("")}</div>
     </div>
-    <aside class="sideR"><strong>Thread · sample</strong>${chats}<div class="composer">Sample reply</div></aside>
+    <aside class="sideR"><strong>Thread · ${esc(plan.name)}</strong>${chats}<div class="composer">Reply<span class="caret"></span></div></aside>
   </div>
-  <div id="toast" class="toast">Saved · sample</div>
+  <div id="toast" class="toast">Scheduled for Thursday, 2:00</div>
   <div id="cur" class="cursor" style="color:${plan.accent}"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
 </div></div></div></section>
 <section class="scene" style="top:3240px;background:${plan.bg}">
@@ -175,14 +211,16 @@ function extra(t) {
   $("toast").style.opacity = String(eo(seg(t, STATE.ui + 3.4, STATE.ui + 3.7)));
   const active = t > STATE.ui + 3.2 ? 1 : 0;
   document.querySelectorAll(".navbtn").forEach((el, i) => el.classList.toggle("on", i === active));
-  const c1 = t < STATE.ui + 1.1 ? 0 : q5(seg(t, STATE.ui + 1.1, STATE.ui + 1.9));
-  const x = lerp(260, 520, c1);
-  const y = lerp(120, 250, c1);
-  $("cur").style.left = x + "px";
-  $("cur").style.top = y + "px";
-  const click = seg(t, STATE.ui + 2.1, STATE.ui + 2.45);
+  const c1 = t < STATE.ui + 1.05 ? 0 : q5(seg(t, STATE.ui + 1.05, STATE.ui + 1.85));
+  $("cur").style.left = lerp(280, 640, c1) + "px";
+  $("cur").style.top = lerp(180, 310, c1) + "px";
+  const pressing = t >= STATE.ui + 1.85 && t < STATE.ui + 2.05;
+  $("cur").style.transform = "scale(" + (pressing ? 0.82 : 1) + ")";
+  const click = seg(t, STATE.ui + 1.85, STATE.ui + 2.2);
   $("ring").style.opacity = String(click > 0 && click < 1 ? 1 - click : 0);
-  $("ring").style.transform = "scale(" + lerp(0.4, 1.6, click) + ")";
+  const hot = document.querySelector(".row.hot");
+  if (hot) hot.classList.toggle("show", t > STATE.ui + 2.05);
+  $("toast").style.opacity = String(eo(seg(t, STATE.ui + 2.1, STATE.ui + 2.4)));
   const n = document.querySelectorAll("#track .fcard").length || 1;
   let idx = 0;
   for (let i = 1; i < n; i++) {
@@ -217,7 +255,7 @@ function extra(t) {
   ].filter(Boolean);
 
   return {
-    html: page({ font: opts.fontUrl, css, body, state, extra }),
+    html: page({ font: opts.fontUrl, css, body, state, extra, accent: plan.accent }),
     duration: time.end,
     events,
     hostname: plan.hostname,

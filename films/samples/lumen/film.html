@@ -12,7 +12,10 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .logo{display:none;height:64px;width:auto}
 .ctaName{font-size:26px;font-weight:500;color:#5B6275}
 .url{font-size:42px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:10px}
-.sampleLine{margin-top:16px;color:#5B6275;font-size:18px}
+.badge{position:fixed;top:22px;left:22px;z-index:20;font-size:13px;font-weight:560;letter-spacing:.12em;text-transform:uppercase;color:#0D1222;background:#fff;border-radius:999px;padding:7px 12px;box-shadow:0 0 0 1px rgba(13,18,34,.18),0 8px 20px rgba(0,0,0,.28)}
+#back{position:absolute;inset:0;width:1920px;pointer-events:none}
+.orb{position:absolute;width:460px;height:460px;border-radius:99px;opacity:.22;filter:blur(30px)}
+.caret{display:inline-block;width:2px;height:.85em;background:currentColor;margin-left:3px;vertical-align:-1px}
 .cursor{position:absolute;z-index:6;width:28px;height:28px;pointer-events:none}
 .cursor svg{display:block}
 .ring{position:absolute;left:-10px;top:-10px;width:36px;height:36px;border-radius:99px;border:2px solid currentColor;opacity:0}
@@ -26,21 +29,26 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .glass p{flex:1;font-size:28px;font-weight:500;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0}
 .send{width:64px;height:64px;border-radius:99px;background:#fff;color:#3D4BDB;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 0 1px rgba(13,18,34,.06)}
 .chip{margin-top:22px;background:#fff;color:#3D4BDB;border-radius:99px;padding:8px 14px;font-weight:560;opacity:0}
-.hcard{position:absolute;width:340px;background:#fff;border-radius:22px;box-shadow:0 16px 40px rgba(13,18,34,.08);padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;opacity:0}
-.hcard.wash{background:linear-gradient(160deg, #3D4BDB, #172253);color:#fff}
-.hcard.wash span,.hcard.wash small{color:rgba(255,255,255,.8)}
-.hcard.wash s{background:rgba(255,255,255,.35)}
-.hcard.wash .bars b{background:rgba(255,255,255,.85)}
-.hcard span{color:#3D4BDB;font-size:12px;font-weight:560;letter-spacing:.08em;text-transform:uppercase}
-.hcard h3{font-size:22px;font-weight:560;letter-spacing:-.04em;line-height:1.15}
-.hcard s{height:7px;border-radius:99px;background:#E6E8EE;width:100%}
-.bars{display:flex;align-items:flex-end;gap:5px;height:52px;margin-top:8px}
-.hcard p{font-size:13px;line-height:1.35;opacity:.8}
-.bars b{flex:1;background:#3D4BDB;border-radius:3px 3px 1px 1px}
-.hcard small{font-size:12px;color:#5B6275}
-.centerWord{position:absolute;left:0;right:0;top:470px;text-align:center;font-size:92px;font-weight:560;letter-spacing:-.06em;opacity:0}
+.hcard{position:absolute;background:#fff;color:#0D1222;border-radius:28px;box-shadow:0 24px 60px rgba(13,18,34,.12);padding:28px;display:flex;flex-direction:column;gap:12px;opacity:0}
+.hcard.wash{background:linear-gradient(165deg, #3D4BDB 0%, #172253 100%);color:#fff}
+.hcard.wash h3,.hcard.wash p,.hcard.wash b,.hcard.wash small,.hcard.wash span{color:#fff}
+.hcard.wash small{color:rgba(255,255,255,.78)}
+.hcard small{font-size:13px;font-weight:560;letter-spacing:.08em;text-transform:uppercase;color:#3D4BDB}
+.hcard h3{font-size:32px;font-weight:560;letter-spacing:-.045em;line-height:1.05;color:#0D1222}
+.hcard .stat{margin-top:auto;display:flex;align-items:baseline;gap:8px}
+.hcard .stat b{font-size:42px;letter-spacing:-.05em}
+.mail p,.approve p{font-size:16px;line-height:1.4}
+.threads{display:flex;flex-direction:column;gap:10px}
+.threads div{display:flex;gap:10px;align-items:center}
+.threads i{width:36px;height:36px;border-radius:99px;background:#e8e9fb;color:#3D4BDB;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:12px}
+.threads span{display:flex;flex-direction:column}
+.threads small{letter-spacing:0;text-transform:none;font-weight:500;color:#5B6275}
+.approve em{align-self:flex-start;font-style:normal;background:#fff;color:#172253;border-radius:12px;padding:10px 14px;font-weight:560}
+.centerWord{position:absolute;left:0;right:0;top:430px;text-align:center;font-size:168px;font-weight:560;letter-spacing:-.07em;opacity:0}
 
 </style></head><body>
+<div id="back"><i class="orb" data-drift="0.7" style="left:80px;top:160px;background:#3D4BDB"></i><i class="orb" data-drift="1.2" style="left:1380px;top:1240px;background:#3D4BDB"></i><i class="orb" data-drift="0.7" style="left:80px;top:2320px;background:#3D4BDB"></i><i class="orb" data-drift="1.2" style="left:1380px;top:3400px;background:#3D4BDB"></i><i class="orb" data-drift="0.7" style="left:80px;top:4480px;background:#3D4BDB"></i><i class="orb" data-drift="1.2" style="left:1380px;top:5560px;background:#3D4BDB"></i></div>
+<div class="badge">Sample product</div>
 <div id="world">
 <section class="scene" style="top:0;background:#F6F7F9"><div class="mid"><div class="pill"><div class="line" style="font-size:64px"><span data-at="0.22" data-tone="light">Follow-ups</span><span data-at="0.5" data-tone="light">sit</span><span data-at="0.78" data-tone="light">in</span><span data-at="1.06" data-tone="light">the</span><span data-at="1.34" data-tone="light">inbox</span></div><div class="line" style="font-size:64px"><span data-at="1.8" data-tone="light">until</span><span data-at="2.08" data-tone="light">the</span><span data-at="2.36" data-tone="light">week</span><span data-at="2.64" data-tone="light">is</span><span data-at="2.92" data-tone="light">gone</span></div></div></div></section>
 <section class="scene" style="top:1080px;background:#F6F7F9"><div class="mid">
@@ -52,39 +60,29 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
     <p data-at="8.32" data-tone="ink">Follow-ups sit in the inbox until the week is gone.</p>
     <div class="send">↑</div>
   </div>
-  <div id="chip" class="chip">Sample</div>
+  <div id="chip" class="chip">Queued</div>
   <div id="cur" class="cursor" style="color:#fff"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
 </div></section>
 <section class="scene" style="top:3240px;background:#F6F7F9">
   <div class="centerWord" data-at="12.94" data-tone="ink">Lumen</div>
-  <article class="hcard wash" style="left:70px;top:80px" data-at="13.12">
-        <span>Sample</span>
+  <article class="hcard wash" style="left:48px;top:150px;width:620px;height:460px" data-at="13.02">
+        <small>Drafts the reply</small>
         <h3>Drafts the reply</h3>
-        <p>Sample only. Not a result.</p>
-        <s></s><s style="width:70%"></s>
-        <div class="bars"><b style="height:30%"></b><b style="height:55%"></b><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:62%"></b><b style="height:36%"></b></div>
-        <small>Running · sample</small>
-      </article><article class="hcard" style="left:1500px;top:70px" data-at="13.62">
-        <span>Sample</span>
+        <div class="mail"><b>To Maya Chen · 9:41</b><p>Follow-ups sit in the inbox until the week is gone.</p><p>I kept your last three replies in the same tone.</p><p>Draft saved. Nothing has been sent.</p></div><div class="stat"><b data-count="12" data-from="13.42">0</b><small>drafts today</small></div>
+      </article><article class="hcard" style="left:1280px;top:70px;width:580px;height:420px" data-at="13.47">
+        <small>Finds the right thread</small>
         <h3>Finds the right thread</h3>
-        <p>Sample only. Not a result.</p>
-        <s></s><s style="width:70%"></s>
-        <div class="bars"><b style="height:30%"></b><b style="height:55%"></b><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:62%"></b><b style="height:36%"></b></div>
-        <small>Running · sample</small>
-      </article><article class="hcard wash" style="left:80px;top:760px" data-at="14.12">
-        <span>Sample</span>
+        <div class="threads"><div><i>MC</i><span><b>Maya Chen</b><small>9:41 · Follow-up</small></span></div><div><i>JL</i><span><b>Jules Okonkwo</b><small>8:15 · Waiting</small></span></div><div><i>AR</i><span><b>Ari Rahman</b><small>Yesterday · Sent</small></span></div></div><div class="stat"><b data-count="48" data-from="13.92">0</b><small>open threads</small></div>
+      </article><article class="hcard wash" style="left:1240px;top:560px;width:620px;height:440px" data-at="13.92">
+        <small>Asks before it sends</small>
         <h3>Asks before it sends</h3>
-        <p>Sample only. Not a result.</p>
-        <s></s><s style="width:70%"></s>
-        <div class="bars"><b style="height:30%"></b><b style="height:55%"></b><b style="height:40%"></b><b style="height:70%"></b><b style="height:48%"></b><b style="height:62%"></b><b style="height:36%"></b></div>
-        <small>Running · sample</small>
+        <div class="approve"><b>Ready for Thursday, 2:00</b><p>Asks before it sends</p><em>Approve</em></div><div class="stat"><b data-count="6" data-from="14.42">0</b><small>waiting on you</small></div>
       </article>
 </section>
 <section class="scene" style="top:4320px;background:#F6F7F9"><div class="mid">
     <img class="logo" alt="">
     <div class="ctaName">Lumen</div>
     <div class="url" style="color:#3D4BDB">lumen.example</div>
-    <div class="sampleLine">Sample film · not a real product</div>
   </div></section></div>
 <script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.7,"end":32.77,"stops":[{"t":0,"y":0},{"t":3.82,"y":1080},{"t":8.02,"y":2160},{"t":12.82,"y":3240},{"t":28.62,"y":4320}],"glass":8.02,"cards":12.82,"logo":null}</script>
 <script>
@@ -113,10 +111,12 @@ function camera(t) {
   }
   $("world").style.transform = "translateY(" + (-y) + "px)";
   $("world").style.filter = blur > 0.3 ? "blur(" + blur.toFixed(2) + "px)" : "none";
+  const back = $("back");
+  if (back) back.style.transform = "translateY(" + (-y * 0.45) + "px)";
 }
 function paint(t) {
   document.querySelectorAll("[data-at]").forEach((el) => {
-    if (el.closest("#slot") || el.classList.contains("row") || el.classList.contains("node") || el.classList.contains("fcard") || el.classList.contains("stair")) return;
+    if (el.closest("#slot") || el.closest(".hcard") || el.closest(".row") || el.closest(".node") || el.closest(".fcard") || el.closest(".stair") || el.closest(".metric")) return;
     const p = eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4));
     const light = el.dataset.tone === "light";
     el.style.opacity = String(p);
@@ -124,6 +124,18 @@ function paint(t) {
   });
   document.querySelectorAll("[data-fade]").forEach((el) => {
     el.style.opacity = String(eo(seg(t, +el.dataset.fade, +el.dataset.fade + 0.45)));
+  });
+  document.querySelectorAll("[data-drift]").forEach((el) => {
+    const k = +el.dataset.drift || 1;
+    el.style.transform = "translate(" + (Math.sin(t * 0.35) * 16 * k) + "px," + (Math.cos(t * 0.28) * 10 * k) + "px)";
+  });
+  document.querySelectorAll("[data-count]").forEach((el) => {
+    const p = eo(seg(t, +(el.dataset.from || 0), +(el.dataset.from || 0) + 1.15));
+    const n = Math.round((+el.dataset.count) * p);
+    el.textContent = n.toLocaleString("en-US") + (el.dataset.unit || "");
+  });
+  document.querySelectorAll(".caret").forEach((el) => {
+    el.style.opacity = Math.sin(t * 9) > 0 ? "1" : "0";
   });
 }
 function render(t) {
