@@ -1,6 +1,6 @@
 import { base, cue, esc, lastAt, letterLine, lineHtml } from "../copy.js";
 import { constellation, depthFor, layoutVariant, slideDir } from "../layout.js";
-import { endScene, page } from "../shell.js";
+import { endScene, miniUi, page } from "../shell.js";
 
 /**
  * Light launch, distilled from "Introducing Pond for AI Agents":
@@ -27,7 +27,7 @@ export function holoFilm(brief, opts = {}) {
   const tiles = [
     { kicker: plan.features[0], title: "To Maya Chen", body: `<p class="quiet">${esc(plan.problem)}</p>`, wash: true },
     { kicker: plan.features[1], title: "Open threads", body: `<div class="threads"><div><i>MC</i><span><b>Maya Chen</b><small>9:41 · Follow-up</small></span></div><div><i>JO</i><span><b>Jules Okonkwo</b><small>8:15 · Waiting</small></span></div></div>` },
-    { kicker: plan.features[2], title: "Thursday, 2:00", body: `<p class="quiet">Nothing goes out until you say so.</p><em id="approve" class="approve">Approve</em>`, wash: true },
+    { kicker: plan.features[2], title: "Thursday, 2:00", body: `<p class="quiet">Nothing goes out until you say so. The draft stays in the thread until you approve it.</p><em id="approve" class="approve">Approve</em>`, wash: true },
     { kicker: "Follow-up", title: "Maya Chen", body: `<p class="quiet">9:41 · The thread is still open</p>` },
     { kicker: "Waiting", title: "Jules Okonkwo", body: `<p class="quiet">8:15 · Held since this morning</p>`, wash: true },
     { kicker: "Sent", title: "Ari Rahman", body: `<p class="quiet">Yesterday · Already sent</p>` },
@@ -64,14 +64,16 @@ export function holoFilm(brief, opts = {}) {
 .glass{width:920px;height:92px;border-radius:999px;background:rgba(255,255,255,.88);box-shadow:0 16px 50px rgba(13,18,34,.12);display:flex;align-items:center;padding:0 18px 0 32px;gap:16px}
 .glass p{flex:1;font-size:28px;font-weight:500;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0}
 .send{width:64px;height:64px;border-radius:99px;background:#fff;color:${plan.accent};display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 0 1px rgba(13,18,34,.06)}
-.chip{margin-top:22px;background:#fff;color:${plan.accent};border-radius:99px;padding:8px 14px;font-weight:560;opacity:0}
-.hcard{position:absolute;width:340px;height:230px;background:#fff;color:${plan.ink};border-radius:24px;box-shadow:0 18px 50px rgba(13,18,34,.16);padding:22px;display:flex;flex-direction:column;gap:8px;opacity:0}
-.hcard.hero{width:460px;height:380px;padding:28px;gap:14px;box-shadow:0 30px 80px rgba(13,18,34,.22)}
+.chip{margin-top:22px;background:#fff;color:${plan.accent};border-radius:99px;padding:10px 16px;font-size:22px;font-weight:560;opacity:0}
+.hcard{position:absolute;width:340px;height:auto;background:#fff;color:${plan.ink};border-radius:24px;box-shadow:0 18px 50px rgba(13,18,34,.16);padding:22px;display:flex;flex-direction:column;gap:10px;opacity:0}
+.hcard.hero{width:480px;height:auto;padding:28px;gap:16px;box-shadow:0 36px 90px rgba(13,18,34,.28)}
 .hcard.wash{background:linear-gradient(165deg, ${plan.accent} 0%, ${plan.accentDeep} 100%);color:#fff}
 .hcard.wash h3,.hcard.wash p,.hcard.wash b,.hcard.wash small,.hcard.wash span{color:#fff}
 .hcard.wash small{color:rgba(255,255,255,.78)}
-.hcard small{font-size:18px;font-weight:560;letter-spacing:.08em;text-transform:uppercase;color:${plan.accent}}
-.hcard h3{font-size:32px;font-weight:560;letter-spacing:-.04em;line-height:1.05;color:${plan.ink}}
+.hcard small{font-size:22px;font-weight:560;letter-spacing:.08em;text-transform:uppercase;color:${plan.accent}}
+.hcard h3{font-size:32px;font-weight:560;letter-spacing:-.04em;line-height:1.05;color:${plan.ink};min-height:48px}
+.hcard p{min-height:180px}
+.hcard.hero p{min-height:160px}
 .hcard.hero h3{font-size:48px}
 .hcard.hero{box-shadow:0 36px 90px rgba(13,18,34,.28)}
 .big{font-size:72px;letter-spacing:-.05em;line-height:.9}
@@ -80,7 +82,7 @@ export function holoFilm(brief, opts = {}) {
 .hcard .stat b{font-size:84px;letter-spacing:-.06em;line-height:.9}
 .mail p{font-size:22px;line-height:1.35;margin:0}
 .hcard.wash .quiet{color:rgba(255,255,255,.82)}
-.approve{margin-top:auto;align-self:flex-start;font-style:normal;background:#fff;color:${plan.accentDeep};border-radius:14px;padding:16px 24px;font-weight:560;font-size:26px}
+.approve{margin-top:12px;align-self:stretch;text-align:center;font-style:normal;background:#fff;color:${plan.accentDeep};border-radius:14px;padding:16px 24px;font-weight:560;font-size:26px;min-height:64px}
 .who{display:flex;gap:12px;align-items:center;margin-top:8px}
 .who i{width:44px;height:44px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560}
 .hcard.wash .who i{background:rgba(255,255,255,.16);color:#fff}
@@ -91,9 +93,10 @@ export function holoFilm(brief, opts = {}) {
 .hcard.wash .nmeter u{background:#fff}
 .threads{display:flex;flex-direction:column;gap:10px}
 .threads div{display:flex;gap:10px;align-items:center}
-.threads i{width:36px;height:36px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:12px}
+.threads i{width:44px;height:44px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:22px}
+.threads b{font-size:26px}
 .threads span{display:flex;flex-direction:column}
-.threads small{letter-spacing:0;text-transform:none;font-weight:500;color:${plan.muted}}
+.threads small{letter-spacing:0;text-transform:none;font-weight:500;color:${plan.muted};font-size:22px}
 .approve em{font-style:normal;background:#fff;color:${plan.accentDeep};border-radius:12px;padding:10px 16px;font-weight:560}
 .centerWord{position:absolute;left:120px;top:380px;z-index:12;font-size:168px;font-weight:560;letter-spacing:-.06em;color:${plan.ink}}
 .centerWord.letters{justify-content:flex-start}
@@ -102,17 +105,14 @@ export function holoFilm(brief, opts = {}) {
   const body = `
 <section class="scene" style="top:0"><div class="mid"><div class="pill">${hook}</div></div></section>
 <section class="scene" style="top:1080px;background:linear-gradient(145deg, ${plan.accentDeep}, ${plan.accent})" data-variant="${variant}">
-  <div class="crop" style="color:#fff" data-slide="${word}" data-from="${dir.from}" data-to="${dir.to}" data-dur="2.8">${esc(plan.name)}</div>
+  <div class="crop" data-slide="${word}" data-from="${dir.from}" data-to="${dir.to}" data-dur="2.8">${esc(plan.name)}</div>
   <div class="nameBlock">
   <img class="logo" alt="">
   <div class="giant letters" data-punch="${(word + 0.35).toFixed(2)}" style="font-size:${plan.name.length > 10 ? 120 : 150}px;color:#fff">${letterLine(plan.name, word + 0.2, 0.05)}</div>
   <div class="swap" data-at="${(word + 1.1).toFixed(2)}" data-tone="light">${esc(plan.benefits[0] || plan.name)}</div>
   </div>
-  <aside class="sideCard" data-pop="${(word + 1.7).toFixed(2)}">
-    <small>Then</small>
-    <b data-at="${(word + 1.85).toFixed(2)}" data-tone="ink">${esc(plan.benefits[1] || plan.name)}</b>
-    <b data-at="${(word + 2.55).toFixed(2)}" data-tone="ink">${esc(plan.benefits[2] || plan.name)}</b>
-  </aside>
+  ${miniUi(plan, (word + 1.5).toFixed(2))}
+  <div class="wipe" style="background:${plan.accent}" data-wipe="${glass}"></div>
   <div class="sweep" data-a="${(word + 0.45).toFixed(2)}" data-b="${(word + 1.3).toFixed(2)}"></div>
 </section>
 <section class="scene field" style="top:2160px"><div class="mid">
@@ -125,7 +125,7 @@ export function holoFilm(brief, opts = {}) {
 </div></section>
 <section class="scene" style="top:3240px;background:linear-gradient(160deg, ${plan.accentSoft}, #fff 45%)">
   <div id="ringStage">
-  <div class="crop" style="color:${plan.accent};top:80px;font-size:640px" data-slide="${cards}" data-from="${dir.to}" data-to="${dir.from}" data-dur="3.2">${esc(plan.name)}</div>
+  <div class="crop ink" style="top:80px;font-size:640px" data-slide="${cards}" data-from="${dir.to}" data-to="${dir.from}" data-dur="3.2">${esc(plan.name)}</div>
   <div class="centerWord letters">${letterLine(plan.name, cards + 0.05, 0.04)}</div>
   ${cardHtml}
   <div id="cur2" class="cursor" style="color:${plan.accent}"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring2" class="ring"></i></div>

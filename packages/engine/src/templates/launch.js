@@ -1,6 +1,6 @@
 import { base, cue, esc, lastAt, letterLine, lineHtml } from "../copy.js";
 import { clusterSlots, depthFor, layoutVariant, slideDir } from "../layout.js";
-import { endScene, page } from "../shell.js";
+import { endScene, miniUi, page } from "../shell.js";
 
 function timing(last, n) {
   const name = Math.max(3.35, +(last + 0.85).toFixed(2));
@@ -103,32 +103,34 @@ export function launchFilm(brief, opts = {}) {
 .sideCard b{font-size:40px;letter-spacing:-.045em;font-weight:560;line-height:1.15}
 .uiStage{transform-origin:50% 50%}
 .window{width:1760px;height:960px;background:#fff;border-radius:28px;box-shadow:0 40px 100px rgba(0,0,0,.38);display:flex;overflow:hidden;position:relative}
-.side{width:230px;border-right:1px solid ${plan.line};padding:18px 14px;display:flex;flex-direction:column;gap:4px}
-.mark{display:flex;align-items:center;gap:10px;font-weight:560;letter-spacing:-.04em;font-size:18px;padding:6px 8px 16px}
-.dot{width:12px;height:12px;border-radius:99px;background:${plan.accent};flex:none}
-.navbtn{height:38px;border-radius:10px;display:flex;align-items:center;padding:0 12px;color:${plan.muted};font-size:15px;font-weight:500}
-.navbtn.on{background:${plan.accentSoft};color:${plan.accent}}
+.side{width:250px;background:linear-gradient(180deg, ${plan.accent}, ${plan.accentDeep});padding:18px 14px;display:flex;flex-direction:column;gap:6px;color:#fff}
+.mark{display:flex;align-items:center;gap:10px;font-weight:560;letter-spacing:-.04em;font-size:22px;padding:6px 8px 16px;color:#fff}
+.dot{width:12px;height:12px;border-radius:99px;background:#fff;flex:none}
+.navbtn{height:46px;border-radius:10px;display:flex;align-items:center;padding:0 12px;color:rgba(255,255,255,.78);font-size:22px;font-weight:500}
+.navbtn.on{background:rgba(255,255,255,.16);color:#fff}
 .main{flex:1;display:flex;min-width:0}
 .col{flex:1;display:flex;flex-direction:column;min-width:0}
 .top{height:64px;border-bottom:1px solid ${plan.line};display:flex;align-items:center;gap:12px;padding:0 18px}
 .lights{display:flex;gap:6px}.lights i{width:9px;height:9px;border-radius:99px;background:#E4E7EE}
-.top b{font-size:15px;font-weight:560}.top small{color:${plan.muted};font-size:13px}
-.search{margin-left:auto;background:${plan.bg};border-radius:10px;padding:8px 12px;color:${plan.muted};font-size:13px;min-width:180px}
+.top b{font-size:22px;font-weight:560}.top small{color:${plan.muted};font-size:22px}
+.search{margin-left:auto;background:${plan.bg};border-radius:10px;padding:8px 12px;color:${plan.muted};font-size:22px;min-width:180px}
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px 6px}
 .metric{background:${plan.bg};border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
-.metric small{color:${plan.muted};font-size:12px}
+.metric small{color:${plan.muted};font-size:22px}
 .metric b{font-size:28px;letter-spacing:-.04em;font-weight:560}
 .spark{width:72px;height:28px}
 .list{padding:8px 16px;display:flex;flex-direction:column;gap:8px}
-.row{height:62px;border:1px solid ${plan.line};border-radius:14px;display:flex;align-items:center;gap:12px;padding:0 14px;opacity:0;position:relative}
+.row{height:78px;border:1px solid ${plan.line};border-radius:14px;display:flex;align-items:center;gap:12px;padding:0 14px;opacity:0;position:relative}
+.row.hot.show{box-shadow:0 0 0 4px ${plan.accent}}
+.bar b{transform-origin:bottom}
 .row.hot{background:${plan.accentSoft};border-color:transparent}
-.av{width:32px;height:32px;border-radius:99px;background:#fff;color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:11px;flex:none;box-shadow:0 0 0 1px ${plan.line}}
+.av{width:40px;height:40px;border-radius:99px;background:#fff;color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:22px;flex:none;box-shadow:0 0 0 1px ${plan.line}}
 .row span{display:flex;flex-direction:column;gap:2px;min-width:180px}
-.row b{font-size:15px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
-.row small{color:${plan.muted};font-size:12px}
+.row b{font-size:22px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+.row small{color:${plan.muted};font-size:22px}
 .meter{width:96px;height:6px;border-radius:99px;background:#E4E7EE;flex:none;margin-left:auto}
 .meter u{display:block;height:100%;border-radius:99px;background:${plan.accent};text-decoration:none}
-.row em{margin-left:12px;font-style:normal;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:560;flex:none}
+.row em{margin-left:12px;font-style:normal;border-radius:99px;padding:4px 9px;font-size:22px;font-weight:560;flex:none}
 .row em.before{color:${plan.accent};background:#fff}
 .row em.after{display:none;color:#fff;background:${plan.accent}}
 .row.show em.before{display:none}
@@ -137,57 +139,54 @@ export function launchFilm(brief, opts = {}) {
 .bar{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
 .bar b{width:100%;background:${plan.accent};border-radius:6px 6px 2px 2px;display:block}
 .bar:nth-child(odd) b{background:${plan.accentSoft}}
-.bar small{color:${plan.muted};font-size:11px}
+.bar small{color:${plan.muted};font-size:22px}
 .sideR{width:360px;border-left:1px solid ${plan.line};display:flex;flex-direction:column;padding:16px;gap:8px}
-.sideR strong{font-size:14px}
+.sideR strong{font-size:22px}
 .msg{display:flex;gap:8px;align-items:flex-start}
-.msg i{width:28px;height:28px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:10px;flex:none}
-.msg p{background:${plan.bg};border-radius:12px;padding:8px 10px;font-size:13px;line-height:1.35}
+.msg i{width:36px;height:36px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:22px;flex:none}
+.msg p{background:${plan.bg};border-radius:12px;padding:8px 10px;font-size:22px;line-height:1.35}
 .msg b{font-weight:560;color:${plan.muted};margin-right:6px}
-.composer{margin-top:auto;border:1px solid ${plan.line};border-radius:12px;padding:10px 12px;color:${plan.ink};font-size:13px}
-.toast{position:absolute;right:28px;bottom:28px;background:${plan.ink};color:#fff;border-radius:12px;padding:12px 14px;font-size:14px;opacity:0;box-shadow:0 12px 30px rgba(13,18,34,.2)}
+.composer{margin-top:auto;border:1px solid ${plan.line};border-radius:12px;padding:10px 12px;color:${plan.ink};font-size:22px}
+.toast{position:absolute;right:28px;bottom:28px;background:${plan.ink};color:#fff;border-radius:12px;padding:12px 14px;font-size:22px;opacity:0;box-shadow:0 12px 30px rgba(13,18,34,.2)}
 .head{position:absolute;top:92px;left:0;right:0;text-align:center;font-size:52px;font-weight:560;letter-spacing:-.05em;opacity:0}
 .track{position:absolute;top:230px;left:0;display:flex;gap:28px}
-.fcard{width:460px;height:560px;flex:none;background:#fff;border-radius:28px;box-shadow:0 0 0 1px ${plan.line},0 20px 50px rgba(13,18,34,.06);padding:28px;display:flex;flex-direction:column;gap:14px}
+.fcard{width:460px;height:420px;flex:none;background:#fff;border-radius:28px;box-shadow:0 0 0 1px ${plan.line},0 20px 50px rgba(13,18,34,.06);padding:28px;display:flex;flex-direction:column;gap:14px}
 .fcard h3{font-size:30px;font-weight:560;letter-spacing:-.045em;line-height:1.05}
-.fcard>span{color:${plan.accent};font-size:13px;font-weight:560;letter-spacing:.06em;text-transform:uppercase}
-.mock{background:${plan.bg};border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;min-height:180px}
+.fcard>span{color:${plan.accent};font-size:22px;font-weight:560;letter-spacing:.06em;text-transform:uppercase}
+.mock{background:${plan.bg};border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;min-height:240px;flex:1}
 .mock u{height:8px;width:40%;background:${plan.accent};border-radius:99px}
 .mock s{height:8px;background:#E4E7EE;border-radius:99px}
-.mock em{background:${plan.accentSoft};border-radius:8px;padding:8px 10px;font-style:normal;font-size:15px}
+.mock em{background:${plan.accentSoft};border-radius:8px;padding:8px 10px;font-style:normal;font-size:22px}
 .mini{display:flex;align-items:flex-end;gap:6px;height:120px}
 .mini b{flex:1;background:${plan.accent};border-radius:6px 6px 2px 2px}
 .mini b:nth-child(odd){background:${plan.accentSoft}}
-.bubble{background:#fff;border-radius:12px;padding:8px 10px;font-size:14px}
+.bubble{background:#fff;border-radius:12px;padding:8px 10px;font-size:22px}
 .bubble.me{background:${plan.accentSoft}}
-.fcard small{color:${plan.muted}}
+.fcard small{color:${plan.muted};font-size:22px}
 .flowHead{font-size:48px;font-weight:560;letter-spacing:-.05em;opacity:0}
 .rail{position:relative;width:980px;height:2px;background:${plan.line};margin:48px 0 28px}
 #dot{position:absolute;top:50%;width:14px;height:14px;border-radius:99px;background:${plan.accent};transform:translate(-50%,-50%)}
 .steps{display:flex;width:980px;justify-content:space-between}
 .step{width:260px;display:flex;flex-direction:column;gap:6px;opacity:0}
-.step small{color:${plan.accent};font-weight:560}
+.step small{color:${plan.accent};font-weight:560;font-size:22px}
 .step b{font-size:34px;font-weight:560;letter-spacing:-.04em}
-.step em{font-style:normal;color:${plan.muted};font-size:16px}
+.step em{font-style:normal;color:${plan.muted};font-size:22px}
 `;
 
   const body = `
 <section class="scene" style="top:0;background:radial-gradient(120% 80% at 50% 120%, ${plan.accentDeep} 0%, #070b14 58%)" data-variant="${variant}">
-  <div class="crop" style="color:#fff" data-slide="0.2" data-from="${dir.from}" data-to="${dir.to}" data-dur="2.6">${esc(plan.name)}</div>
+  <div class="crop" data-slide="0.2" data-from="${dir.from}" data-to="${dir.to}" data-dur="2.6">${esc(plan.name)}</div>
   <div class="mid stack">${hook}</div>
 </section>
 <section class="scene" style="top:1080px;background:${plan.accentDeep}">
-  <div class="crop" style="color:#fff" data-slide="${time.name}" data-from="${dir.to}" data-to="${dir.from}" data-dur="5.4">${esc(plan.name)}</div>
+  <div class="crop" data-slide="${time.name}" data-from="${dir.to}" data-to="${dir.from}" data-dur="5.4">${esc(plan.name)}</div>
   <div class="nameBlock">
     <div class="kicker" data-at="${(time.name + 0.15).toFixed(2)}" data-tone="light">Introducing</div>
     <div class="product letters" data-punch="${(time.name + 0.45).toFixed(2)}" style="font-size:${plan.name.length > 10 ? 96 : plan.name.length > 7 ? 140 : 168}px">${letterLine(plan.name, time.name + 0.28, 0.045)}</div>
     <div class="swap" data-at="${(time.name + 1.05).toFixed(2)}" data-tone="light">${esc(plan.benefits[0])}</div>
   </div>
-  <aside class="sideCard" data-pop="${(time.name + 1.7).toFixed(2)}">
-    <small>Then</small>
-    <b data-at="${(time.name + 1.85).toFixed(2)}" data-tone="ink">${esc(plan.benefits[1] || plan.benefits[0])}</b>
-    <b data-at="${(time.name + 2.55).toFixed(2)}" data-tone="ink">${esc(plan.benefits[2] || plan.benefits[0])}</b>
-  </aside>
+  ${miniUi(plan, (time.name + 1.5).toFixed(2))}
+  <div class="wipe" style="background:${plan.accent}" data-wipe="${time.ui}"></div>
   <div class="sweep" data-a="${(time.name + 0.55).toFixed(2)}" data-b="${(time.name + 1.35).toFixed(2)}"></div>
 </section>
 <section class="scene" style="top:2160px;background:linear-gradient(145deg, ${plan.accentDeep}, ${plan.accent} 60%, ${plan.accentMid})"><div class="mid"><div id="uiStage" class="uiStage"><div class="window">
@@ -206,7 +205,7 @@ export function launchFilm(brief, opts = {}) {
 </div></div></div></section>
 <section class="scene" style="top:3240px">
   <div class="head" data-at="${(time.features + 0.08).toFixed(2)}" data-tone="ink">What it does</div>
-  ${variant === 0 ? `<div id="track" class="track">${cards}</div>` : `<div class="crop" style="color:${plan.accent};top:80px" data-slide="${time.features}" data-from="${dir.from}" data-to="${dir.to}" data-dur="3">${esc(plan.name)}</div>${cluster}`}
+  ${variant === 0 ? `<div id="track" class="track">${cards}</div>` : `<div class="crop ink" style="top:80px" data-slide="${time.features}" data-from="${dir.from}" data-to="${dir.to}" data-dur="3">${esc(plan.name)}</div>${cluster}`}
 </section>
 <section class="scene" style="top:4320px"><div class="mid">
   <div class="flowHead" data-at="${(time.flow + 0.1).toFixed(2)}" data-tone="ink">How it comes together</div>
@@ -232,7 +231,13 @@ ${endScene(plan, 5400, time.cta)}`;
   const extra = `
 function extra(t) {
   const p = q5(seg(t, STATE.ui, STATE.ui + 0.7));
-  $("uiStage").style.transform = "scale(" + lerp(0.94, 1, p) + ")";
+  const push = q5(seg(t, STATE.ui + 2.3, STATE.ui + 3.5));
+  $("uiStage").style.transformOrigin = "640px 420px";
+  $("uiStage").style.transform = "scale(" + lerp(lerp(0.94, 1, p), 1.16, push).toFixed(3) + ")";
+  document.querySelectorAll(".bar b").forEach((el, i) => {
+    const g = eo(seg(t, STATE.ui + 0.35 + i * 0.1, STATE.ui + 1.15 + i * 0.1));
+    el.style.transform = "scaleY(" + g.toFixed(3) + ")";
+  });
   document.querySelectorAll(".row").forEach((el) => {
     el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.32)));
   });
