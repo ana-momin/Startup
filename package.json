@@ -1,0 +1,14 @@
+{
+  "name": "harkat",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "packages/engine"
+  ],
+  "scripts": {
+    "dev": "npm --prefix apps/web run dev",
+    "build": "npm --prefix apps/web run build",
+    "sample": "node packages/engine/src/cli.js sample",
+    "test": "node --test packages/engine/test/*.js"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "duration": 34.36,
+  "events": [
+    {
+      "t": 0.2,
+      "sfx": "tick",
+      "gain": -8
+    },
+    {
+      "t": 1.86,
+      "sfx": "tick",
+      "gain": -10
+    },
+    {
+      "t": 3.61,
+      "sfx": "whoosh",
+      "align": "peak",
+      "gain": -2
+    },
+    {
+      "t": 4.06,
+      "sfx": "ui",
+      "gain": -8
+    },
+    {
+      "t": 4.96,
+      "sfx": "click",
+      "gain": -8
+    },
+    {
+      "t": 5.81,
+      "sfx": "click",
+      "gain": -8
+    },
+    {
+      "t": 6.66,
+      "sfx": "click",
+      "gain": -8
+    },
+    {
+      "t": 7.91,
+      "sfx": "whoosh",
+      "align": "peak",
+      "gain": -2
+    },
+    {
+      "t": 8.66,
+      "sfx": "ui",
+      "gain": -6
+    },
+    {
+      "t": 17.26,
+      "sfx": "whoosh",
+      "align": "peak",
+      "gain": -2
+    },
+    {
+      "t": 17.34,
+      "sfx": "click",
+      "gain": -8
+    },
+    {
+      "t": 20.09,
+      "sfx": "click",
+      "gain": -8
+    },
+    {
+      "t": 22.84,
+      "sfx": "click",
+      "gain": -8
+    },
+    {
+      "t": 25.51,
+      "sfx": "whoosh",
+      "align": "peak",
+      "gain": -2
+    },
+    {
+      "t": 25.96,
+      "sfx": "tick",
+      "gain": -8
+    },
+    {
+      "t": 26.66,
+      "sfx": "tick",
+      "gain": -8
+    },
+    {
+      "t": 27.36,
+      "sfx": "tick",
+      "gain": -8
+    },
+    {
+      "t": 30.21,
+      "sfx": "whoosh",
+      "align": "peak",
+      "gain": -1
+    },
+    {
+      "t": 30.46,
+      "sfx": "chime",
+      "gain": -6
+    },
+    {
+      "t": 30.76,
+      "sfx": "thud",
+      "gain": -4
+    }
+  ]
+}
