@@ -109,3 +109,21 @@ Scores stayed 8. The pictures are fuller, not a different film.
 The big background word on the Northstar title was gone before the card arrived, so the top went blank. It now keeps sliding until the card is up.
 
 Score stays 8, 8, 8. What is still weak: the product screen is still a white dashboard, and a few cards are plainer than a Pond card. Not a 9.
+
+## Last round — motion, not slides
+
+### Round 1
+
+Relay’s list was 18px because a later rule overrode the 30px, inside a card that was mostly empty. The card is now a step list with checks, a progress bar, and a button, and the type is 32px. The title card is a small product: an inbox row, a toggle, and a chart that grows. The background word is a gradient with a thin stroke, at low opacity. Northstar’s sidebar is brand-coloured, the chart draws in, and the camera pushes into a highlighted row. Each film has a colour wipe on a cut. A checker samples every film at 2fps and fails if text is under 22px or a card’s content fills under 45%.
+
+Scores: Northstar 8, Lumen 8, Relay 8.
+
+### Round 2
+
+The Relay button was still floating in white space. The card is shorter, so the button sits with the list. The checker passes.
+
+Score did not move. 8, 8, 8.
+
+### Round 3
+
+All three films rendered. The stills match those frames. Still not a 9. The wipe is a simple colour pass, and the pictures are still built from the same parts. A paid film should still be finished by a person.
