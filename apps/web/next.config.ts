@@ -38,6 +38,7 @@ const monoRoot = path.join(process.cwd(), "../..");
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
+  experimental: { agentUpgrade: "security" },
   poweredByHeader: false,
   transpilePackages: ["@harkat/engine"],
   ...(existsSync(path.join(monoRoot, "packages/engine/package.json")) ? { outputFileTracingRoot: monoRoot } : {}),
