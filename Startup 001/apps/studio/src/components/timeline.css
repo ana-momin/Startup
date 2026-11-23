@@ -1,0 +1,148 @@
+/*
+ * One bar, not a row of cards.
+ *
+ * Every scene used to be a bordered rectangle with its name and its length stacked
+ * inside it, with gaps between them — a strip four times taller than it needed to be,
+ * taking room from the only thing on this screen anybody came to look at. A timeline's
+ * job is to show proportion and position, and a single track with divisions in it does
+ * that better than cards do, because the divisions ARE the proportions rather than
+ * decoration arranged around them.
+ */
+.tl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* ---------- transport ---------- */
+
+.tl__play {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: var(--btn-text);
+  background: var(--btn);
+  transition: opacity var(--fast) var(--ease);
+}
+
+.tl__play:hover {
+  opacity: 0.88;
+}
+
+/* The play triangle is optically left-heavy; nudging it centres what the eye sees. */
+.tl__play svg {
+  margin-left: 1px;
+}
+
+.tl__time {
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.tl__time em {
+  margin-left: 3px;
+  font-style: normal;
+  font-weight: 450;
+  color: var(--text-faint);
+}
+
+/* ---------- the track ---------- */
+
+.tl__strip {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--surface-hover);
+  overflow: hidden;
+  cursor: ew-resize;
+}
+
+/*
+ * Divisions, not borders.
+ *
+ * A hairline between segments reads as one object divided up. A border around each
+ * segment reads as several objects placed in a row, which is what made the old strip
+ * look like a shelf of cards rather than a length of film.
+ */
+.tl__seg {
+  container-type: inline-size;
+  position: relative;
+  z-index: 1;
+  flex-basis: 0;
+  min-width: 10px;
+  display: grid;
+  place-items: center;
+  padding: 0 6px;
+  border-left: 1px solid var(--bg);
+  font-size: 11px;
+  color: var(--text-muted);
+  overflow: hidden;
+  transition: background var(--fast) var(--ease), color var(--fast) var(--ease);
+}
+
+.tl__seg:first-child {
+  border-left: 0;
+}
+
+.tl__seg:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+
+.tl__seg.is-selected {
+  color: var(--accent-text);
+  font-weight: 560;
+  background: var(--accent);
+}
+
+/*
+ * The name disappears rather than truncating.
+ *
+ * A two-second clip beside a nine-second one is narrow by design, and "Bran" written in
+ * it tells you nothing the tooltip and the selection do not — it just fills the bar with
+ * the beginnings of words. A container query lets the segment measure itself and show
+ * the name only when it genuinely fits, which no amount of ellipsis can decide.
+ */
+.tl__name {
+  display: none;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@container (min-width: 64px) {
+  .tl__name {
+    display: block;
+  }
+}
+
+/* How far through the film we are, under the segments and over the track. */
+.tl__past {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 0;
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  pointer-events: none;
+}
+
+.tl__playhead {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  z-index: 2;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 2px;
+  background: var(--text);
+  box-shadow: 0 0 0 2px var(--surface);
+  pointer-events: none;
+}

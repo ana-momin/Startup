@@ -1,0 +1,16 @@
+{
+  "name": "@motion/server",
+  "private": true,
+  "version": "0.1.0",
+  "description": "API, AI director and render service. Node's own http module, SQLite, no framework.",
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning --watch src/server.ts",
+    "start": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning src/server.ts"
+  },
+  "dependencies": {
+    "@motion/planner": "*",
+    "@motion/renderer": "*",
+    "playwright": "^1.63.0"
+  }
+}

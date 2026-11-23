@@ -1,0 +1,50 @@
+/* =========================================================================
+   The brand mark — one logo treatment, used everywhere.
+   ========================================================================= */
+
+.brandmark {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /*
+   * A hairline, always.
+   *
+   * A white plate on a white panel has no edge otherwise, so the logo appears to float
+   * in nothing. It is the difference between a mark that has been placed and one that
+   * has been dropped.
+   */
+  box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.18);
+}
+
+.brandmark img {
+  /* Contain, never cover. A cropped logo is a damaged logo, and most wordmarks are far
+     wider than they are tall. */
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  display: block;
+}
+
+/* The fallback sits on the brand's own colour, so it needs no inner border. */
+.brandmark--letter {
+  box-shadow: none;
+  color: #fff;
+}
+
+.brandmark__letter {
+  font-weight: 620;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  /*
+   * White on the brand colour, with a shadow for the pale ones.
+   *
+   * A brand whose colour is a light yellow would otherwise get white text on near-white.
+   * Rather than compute contrast per brand — the colour is already contrast-checked
+   * elsewhere for the videos — a faint dark shadow keeps a single letter legible on
+   * anything, and is invisible on the dark colours where it is not needed.
+   */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
+}

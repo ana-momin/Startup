@@ -1,0 +1,337 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px 20px;
+}
+
+/* Before anything is said, the whole screen is the start screen. */
+.chat--empty {
+  align-items: center;
+  justify-content: center;
+  /*
+   * Optically centred, not measured centred.
+   *
+   * A true centre sits low to the eye because the mass is above the midpoint. The lift
+   * used to be a tenth of the viewport, back when there was a heading, a sentence and a
+   * one-line box to balance. With the sentence gone and the box taller, the same lift
+   * pushed the whole thing into the top third — correcting for weight that is no longer
+   * there. Six is the number that looks centred now.
+   */
+  padding-bottom: 6vh;
+}
+
+/* ---------- intro ---------- */
+
+.chat__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/*
+ * The mark sits IN the line, not above it.
+ *
+ * It used to be a 58px circle with a border, stacked over the heading, over a sentence
+ * of instruction — three stacked objects to say one thing. Putting the mark on the
+ * baseline of the greeting makes it one object: a logotype, which is what it was always
+ * trying to be. The circle went with it; a border around a mark that already reads as a
+ * mark is a frame around a frame.
+ */
+.chat__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: clamp(28px, 3.8vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.9px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+/* The mark holds its size while the words scale with the viewport. */
+.chat__title svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* ---------- thread ---------- */
+
+.chat__thread {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 8px 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+}
+
+.bubble {
+  display: flex;
+  gap: 10px;
+  animation: rise 240ms var(--ease) both;
+}
+
+.bubble--user {
+  justify-content: flex-end;
+}
+
+.bubble__avatar {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-soft);
+}
+
+.bubble__body {
+  max-width: 78%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.bubble--assistant .bubble__body {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-top-left-radius: 5px;
+}
+
+/* While thinking the bubble is a status line, not speech — no border, no fill. */
+.bubble--assistant .bubble__body.is-thinking {
+  border-color: transparent;
+  background: transparent;
+  padding-left: 2px;
+}
+
+.bubble--user .bubble__body {
+  background: var(--btn);
+  color: var(--btn-text);
+  border-bottom-right-radius: 5px;
+}
+
+/* ---------- composer ---------- */
+
+.chat__composer {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+/*
+ * The body and its actions, in one column.
+ *
+ * A bubble is a row — avatar, then content — so anything added to it becomes a third
+ * item in that row. The action buttons ended up floating to the right of the message,
+ * vertically centred against it, which looks like a toolbar for the whole thread rather
+ * than for the reply they belong to.
+ */
+.bubble__stack {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+}
+/* ---------- the confirmation ---------- */
+/* =========================================================================
+   Ready to make.
+
+   The moment a conversation becomes a job, and the one card in the thread
+   that asks for something rather than saying something.
+
+   It had grown into a form: a chipped icon, a label, the summary, five
+   numbered beats on a ruled list, a bordered brand row captioned with a
+   definition of what a brand kit is, a swatch repeating the colour already
+   in the mark, and two buttons — nine pieces for one yes-or-no.
+
+   Now it is three parts and they are plainly unequal: the sentence, a line
+   of small facts, and the choice. No internal borders, because every rule
+   drawn across a card of this size turns one object into three.
+   ========================================================================= */
+
+.confirm {
+  align-self: flex-start;
+  width: min(100%, 440px);
+  margin-left: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px 15px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 28px -18px rgba(0, 0, 0, 0.25);
+  /*
+   * A flex item's automatic minimum size is what normally stops it being squashed below
+   * its content — and that rule only applies while `overflow` is `visible`. This card
+   * once clipped its own overflow to round off a tinted footer, which set the automatic
+   * minimum to zero, and as soon as the thread had more content than height the card was
+   * the thing that gave way: two pixels tall, present in the DOM, invisible on screen.
+   * The footer is gone, so the clip is gone; the floor stays, because the bug does not
+   * need the footer to come back.
+   */
+  flex-shrink: 0;
+  animation: rise 280ms var(--ease) both;
+}
+
+/* ---------- the sentence ---------- */
+
+/*
+ * The one line anybody reads before deciding, so it leads.
+ *
+ * It used to be the fourth thing down, under an icon, a label and a rule, at the same
+ * weight as the list below it. Nothing in the card looked like the point because
+ * everything in the card looked the same.
+ */
+.confirm__summary {
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+/* ---------- the small facts ---------- */
+
+.confirm__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.confirm__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  color: var(--text-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.confirm__brand .brandmark {
+  flex-shrink: 0;
+}
+
+.confirm__sep {
+  color: var(--text-faint);
+}
+
+.confirm__peek {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  transition: color var(--fast) var(--ease);
+}
+
+.confirm__peek:hover {
+  color: var(--text);
+}
+
+/* Pointing right while closed and down while open, from the one chevron we have. */
+.confirm__peek svg {
+  transition: transform var(--fast) var(--ease);
+}
+
+.confirm__peek.is-open svg {
+  transform: rotate(90deg);
+}
+
+/* ---------- the shot list ---------- */
+
+.confirm__plan {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  list-style: none;
+  margin: -2px 0 2px;
+  animation: rise 180ms var(--ease) both;
+}
+
+.confirm__plan li {
+  display: flex;
+  gap: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+
+/* The number is a position, not a value, so it stays out of the reading weight. */
+.confirm__beat {
+  flex-shrink: 0;
+  width: 14px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-faint);
+}
+
+/* ---------- actions ---------- */
+
+.confirm__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/*
+ * Deliberately unequal.
+ *
+ * "Make it" is what they came for and takes the width; "Change something" is the escape
+ * and only needs to be findable. Two buttons of equal weight make the person choose
+ * between them, when really only one of them is a decision.
+ */
+.confirm__actions .btn--outline {
+  flex-shrink: 0;
+  font-size: 12.5px;
+  padding: 0 12px;
+  height: 34px;
+  color: var(--text-soft);
+  border-color: var(--border);
+  background: transparent;
+}
+
+.confirm__actions .btn--outline:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.confirm__go {
+  flex: 1;
+  height: 34px;
+  font-size: 13px;
+  font-weight: 560;
+  gap: 7px;
+}
+
+/*
+ * Nothing in a transcript shrinks to fit.
+ *
+ * The thread is a flex column, so every child is shrinkable by default. Anything that
+ * clips its own overflow loses the automatic minimum size that would otherwise protect
+ * it, and gets squashed when the thread is full. That is how the confirmation card
+ * collapsed to two pixels. Applying the floor to every row means the next component
+ * added here cannot rediscover the same bug.
+ */
+.chat__thread > * {
+  flex-shrink: 0;
+}

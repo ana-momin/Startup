@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!--
+    The mark: eight rays opening like a shutter. The same one that sits beside "Motion"
+    in the sidebar.
+
+    Identical on purpose, down to the geometry and the per-ray opacity. It used to be a
+    hand-drawn approximation with its own numbers, which meant the tab and the app were
+    quietly showing two different logos — the kind of difference nobody points at and
+    everybody registers.
+
+    The mark is authored in the same 24x24 box the app icon uses and scaled up by the
+    group transform, so the two can never drift apart again: any change to one is a
+    change to the same nine numbers.
+
+    Drawn on a rounded tile rather than transparent, because a browser renders this at
+    16px against whatever colour the user's theme happens to be, and a bare glyph
+    disappears on half of them. A solid tile always reads.
+  -->
+  <rect width="64" height="64" rx="14" fill="#0B0D16"/>
+  <g transform="translate(6.4 6.4) scale(2.1333)" fill="#6C9BFF">
+    <rect x="11.1" y="1.6" width="1.8" height="7" rx="0.9" opacity="0.45" transform="rotate(0 12 12)"/>
+    <rect x="11.1" y="1.6" width="1.8" height="7" rx="0.9" opacity="0.63" transform="rotate(45 12 12)"/>
+    <rect x="11.1" y="1.6" width="1.8" height="7" rx="0.9" opacity="0.81" transform="rotate(90 12 12)"/>
+    <rect x="11.1" y="1.6" width="1.8" height="7" rx="0.9" opacity="0.99" transform="rotate(135 12 12)"/>
+    <rect x="11.1" y="1.6" width="1.8" height="7" rx="0.9" opacity="0.45" transform="rotate(180 12 12)"/>
+    <rect x="11.1" y="1.6" width="1.8" height="7" rx="0.9" opacity="0.63" transform="rotate(225 12 12)"/>
+    <rect x="11.1" y="1.6" width="1.8" height="7" rx="0.9" opacity="0.81" transform="rotate(270 12 12)"/>
+    <rect x="11.1" y="1.6" width="1.8" height="7" rx="0.9" opacity="0.99" transform="rotate(315 12 12)"/>
+  </g>
+</svg>

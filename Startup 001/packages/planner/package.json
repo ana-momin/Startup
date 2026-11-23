@@ -1,0 +1,12 @@
+{
+  "name": "@motion/planner",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Turns a prompt into a VideoSpec. Runs in the browser and on the server, identically.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

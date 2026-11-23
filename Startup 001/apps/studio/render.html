@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Render surface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* No page chrome at all: this document exists only to be photographed. */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { background: #000; overflow: hidden; }
+      body { -webkit-font-smoothing: antialiased; }
+    </style>
+  </head>
+  <body>
+    <div id="surface"></div>
+    <script type="module" src="/src/render.tsx"></script>
+  </body>
+</html>
