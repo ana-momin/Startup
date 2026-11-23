@@ -1,4 +1,5 @@
 import { base, cue, esc, initials, lastAt, lineHtml } from "../copy.js";
+import { beats } from "../motion.js";
 import { endScene, page } from "../shell.js";
 
 /**
@@ -17,15 +18,24 @@ export function workflowFilm(brief, opts = {}) {
   const slide = 0.72;
 
   const hook = plan.hook.map((line) => `<div class="line" style="font-size:${plan.hookSize}px">${lineHtml(line, "ink")}</div>`).join("");
-  const stairItems = plan.features.map((title) => ({ title, k: "Live" }));
-  const stairs = stairItems
-    .map(
-      (item, i) => `<article class="stair" data-at="${(stair + 0.4 + i * 0.7).toFixed(2)}" style="margin-left:${i * 56}px">
-        <i>${esc(initials(item.title))}</i>
-        <div><small>${["9:14", "9:41", "10:06", "10:28"][i] || "11:02"} · ${esc(item.k)}</small><b>${esc(item.title)}</b></div>
-        <em>On</em>
-      </article>`,
-    )
+  const crew = [
+    ["AM", "Amina M.", "9:14"],
+    ["JK", "Jamal K.", "9:41"],
+    ["RS", "Rafi S.", "10:06"],
+    ["NL", "Noor L.", "10:28"],
+  ];
+  const tags = ["New", "Draft", "Check", "Logged"];
+  const when = beats(stair + 0.4, plan.features.length);
+  const stairs = plan.features
+    .map((title, i) => {
+      const [who, name, clock] = crew[i % crew.length];
+      return `<div class="qrow" data-at="${when[i]}" data-pop="${when[i]}">
+        <i>${who}</i>
+        <span><b>${esc(title)}</b><small>${name} · ${clock}</small></span>
+        <span class="meter"><u style="width:${[42, 68, 36, 84][i] || 50}%"></u></span>
+        <em>${tags[i] || "Live"}</em>
+      </div>`;
+    })
     .join("");
 
   const nodes = [
@@ -49,14 +59,31 @@ export function workflowFilm(brief, opts = {}) {
   const css = `
 .note{width:860px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px ${plan.line},0 24px 60px rgba(13,18,34,.06);padding:42px 48px}
 .note small{color:${plan.muted};font-size:16px}
-.stairs{display:flex;flex-direction:column;gap:18px;width:1080px}
-.stair{height:108px;background:#fff;border-radius:20px;box-shadow:0 0 0 1px ${plan.line},0 12px 30px rgba(13,18,34,.05);display:flex;align-items:center;gap:16px;padding:0 22px;opacity:0}
-.stair{height:128px}
-.stair i{width:48px;height:48px;border-radius:14px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;flex:none}
-.stair div{display:flex;flex-direction:column;gap:4px;min-width:0}
-.stair small{color:${plan.accent};font-size:13px;font-weight:560}
-.stair b{font-size:22px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:520px}
-.stair em{margin-left:auto;font-style:normal;background:${plan.accent};color:${plan.onAccent};border-radius:99px;padding:6px 12px;font-size:13px;font-weight:560}
+.qwin{width:1680px;height:900px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px ${plan.line},0 30px 80px rgba(13,18,34,.1);display:flex;flex-direction:column;overflow:hidden}
+.qwin header{height:72px;display:flex;align-items:center;gap:12px;padding:0 24px;border-bottom:1px solid ${plan.line}}
+.qwin header .dot{width:12px;height:12px;border-radius:99px;background:${plan.accent}}
+.qwin header small{color:${plan.muted}}
+.qwin header span{margin-left:auto;background:${plan.accentSoft};color:${plan.accent};border-radius:99px;padding:6px 10px;font-size:13px;font-weight:560}
+.qbody{flex:1;display:flex;min-height:0}
+.qlist{flex:1;padding:20px;display:flex;flex-direction:column;gap:12px;min-height:0}
+.qchart{flex:1;display:flex;align-items:flex-end;gap:14px;min-height:140px;padding-top:8px}
+.qchart div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
+.qchart b{width:100%;background:${plan.accent};border-radius:6px 6px 2px 2px;display:block}
+.qchart div:nth-child(odd) b{background:${plan.accentSoft}}
+.qchart small{color:${plan.muted};font-size:12px}
+.qrow{height:92px;border:1px solid ${plan.line};border-radius:16px;display:flex;align-items:center;gap:14px;padding:0 16px;opacity:0}
+.qrow i{width:40px;height:40px;border-radius:99px;background:${plan.accentSoft};color:${plan.accent};display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:12px;flex:none}
+.qrow span{display:flex;flex-direction:column;gap:3px;min-width:0}
+.qrow b{font-size:20px;font-weight:560;letter-spacing:-.03em}
+.qrow small{color:${plan.muted};font-size:13px}
+.qrow .meter{width:140px;height:6px;border-radius:99px;background:#E4E7EE;margin-left:auto;flex:none}
+.qrow .meter u{display:block;height:100%;background:${plan.accent};border-radius:99px;text-decoration:none}
+.qrow em{font-style:normal;background:${plan.accentSoft};color:${plan.accent};border-radius:99px;padding:6px 10px;font-size:13px;font-weight:560}
+.qbody aside{width:380px;border-left:1px solid ${plan.line};padding:28px;display:flex;flex-direction:column;gap:12px}
+.qbody aside p{font-size:22px;line-height:1.35;letter-spacing:-.03em}
+.qstat{display:flex;flex-direction:column;gap:6px;line-height:1}
+.qstat b{font-size:56px;letter-spacing:-.05em}
+.qstat small{display:block;color:${plan.muted};font-size:14px}
 .panel{position:absolute;left:60px;top:70px;width:1800px;height:940px;background:#fff;border-radius:32px;box-shadow:0 0 0 1px ${plan.line},0 30px 80px rgba(13,18,34,.08)}
 #traveler{position:absolute;width:16px;height:16px;border-radius:99px;background:${plan.accent};z-index:3}
 .node{position:absolute;width:500px;height:200px;background:#fff;border-radius:22px;box-shadow:0 16px 40px rgba(13,18,34,.08);padding:20px;display:flex;flex-direction:column;gap:8px;opacity:0}
@@ -70,7 +97,13 @@ export function workflowFilm(brief, opts = {}) {
 
   const body = `
 <section class="scene" style="top:0;background:${plan.bg}"><div class="mid"><div class="note"><small>The snag</small><div class="stack" style="margin-top:18px">${hook}</div></div></div></section>
-<section class="scene" style="top:1080px;background:${plan.bg}"><div class="mid"><div class="stairs">${stairs}</div></div></section>
+<section class="scene" style="top:1080px;background:${plan.bg}"><div class="mid"><div class="qwin">
+  <header><i class="dot"></i><b>${esc(plan.name)}</b><small>Queue · ${esc(plan.hostname)}</small><span>${plan.features.length} open</span></header>
+  <div class="qbody">
+    <div class="qlist">${stairs}<div class="qchart">${["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d, i) => `<div><b style="height:${[40, 62, 48, 80, 55, 30, 44][i]}%"></b><small>${d}</small></div>`).join("")}</div></div>
+    <aside><strong>The snag</strong><p>${esc(plan.problem)}</p><div class="qstat"><b data-count="${plan.features.length}" data-from="${(stair + 0.5).toFixed(2)}">0</b><small>steps in this run</small></div></aside>
+  </div>
+</div></div></section>
 <section class="scene" style="top:2160px;background:${plan.bg}">
   <div class="panel">
     <div class="mapTitle" data-at="${(map + 0.12).toFixed(2)}" data-tone="ink">How ${esc(plan.name)} runs</div>
@@ -118,7 +151,7 @@ function extra(t) {
     cue(plan.hook[0][0].at, "tick", { gain: -8 }),
     plan.hook[1]?.[0] ? cue(plan.hook[1][0].at, "tick", { gain: -10 }) : null,
     cue(stair, "whoosh", { align: "peak", gain: -2 }),
-    ...stairItems.map((_, i) => cue(stair + 0.4 + i * 0.7, "click", { gain: -7 })),
+    ...when.map((t) => cue(t, "click", { gain: -7 })),
     cue(map, "whoosh", { align: "peak", gain: -2 }),
     ...nodes.map((_, i) => cue(map + 0.3 + i * 0.38, "tick", { gain: -10 })),
     cue(map + 1.6, "ui", { gain: -8 }),

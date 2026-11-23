@@ -16,6 +16,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 #back{position:absolute;inset:0;width:1920px;pointer-events:none}
 .orb{position:absolute;width:460px;height:460px;border-radius:99px;opacity:.22;filter:blur(30px)}
 .caret{display:inline-block;width:2px;height:.85em;background:currentColor;margin-left:3px;vertical-align:-1px}
+.sweep{position:absolute;top:0;width:160px;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);pointer-events:none;opacity:0}
 .cursor{position:absolute;z-index:6;width:28px;height:28px;pointer-events:none}
 .cursor svg{display:block}
 .ring{position:absolute;left:-10px;top:-10px;width:36px;height:36px;border-radius:99px;border:2px solid currentColor;opacity:0}
@@ -23,14 +24,31 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 
 .note{width:860px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px #E6E8EE,0 24px 60px rgba(13,18,34,.06);padding:42px 48px}
 .note small{color:#5B6275;font-size:16px}
-.stairs{display:flex;flex-direction:column;gap:18px;width:1080px}
-.stair{height:108px;background:#fff;border-radius:20px;box-shadow:0 0 0 1px #E6E8EE,0 12px 30px rgba(13,18,34,.05);display:flex;align-items:center;gap:16px;padding:0 22px;opacity:0}
-.stair{height:128px}
-.stair i{width:48px;height:48px;border-radius:14px;background:#e2eef2;color:#0E7490;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;flex:none}
-.stair div{display:flex;flex-direction:column;gap:4px;min-width:0}
-.stair small{color:#0E7490;font-size:13px;font-weight:560}
-.stair b{font-size:22px;font-weight:560;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:520px}
-.stair em{margin-left:auto;font-style:normal;background:#0E7490;color:#FFFFFF;border-radius:99px;padding:6px 12px;font-size:13px;font-weight:560}
+.qwin{width:1680px;height:900px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px #E6E8EE,0 30px 80px rgba(13,18,34,.1);display:flex;flex-direction:column;overflow:hidden}
+.qwin header{height:72px;display:flex;align-items:center;gap:12px;padding:0 24px;border-bottom:1px solid #E6E8EE}
+.qwin header .dot{width:12px;height:12px;border-radius:99px;background:#0E7490}
+.qwin header small{color:#5B6275}
+.qwin header span{margin-left:auto;background:#e2eef2;color:#0E7490;border-radius:99px;padding:6px 10px;font-size:13px;font-weight:560}
+.qbody{flex:1;display:flex;min-height:0}
+.qlist{flex:1;padding:20px;display:flex;flex-direction:column;gap:12px;min-height:0}
+.qchart{flex:1;display:flex;align-items:flex-end;gap:14px;min-height:140px;padding-top:8px}
+.qchart div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
+.qchart b{width:100%;background:#0E7490;border-radius:6px 6px 2px 2px;display:block}
+.qchart div:nth-child(odd) b{background:#e2eef2}
+.qchart small{color:#5B6275;font-size:12px}
+.qrow{height:92px;border:1px solid #E6E8EE;border-radius:16px;display:flex;align-items:center;gap:14px;padding:0 16px;opacity:0}
+.qrow i{width:40px;height:40px;border-radius:99px;background:#e2eef2;color:#0E7490;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:12px;flex:none}
+.qrow span{display:flex;flex-direction:column;gap:3px;min-width:0}
+.qrow b{font-size:20px;font-weight:560;letter-spacing:-.03em}
+.qrow small{color:#5B6275;font-size:13px}
+.qrow .meter{width:140px;height:6px;border-radius:99px;background:#E4E7EE;margin-left:auto;flex:none}
+.qrow .meter u{display:block;height:100%;background:#0E7490;border-radius:99px;text-decoration:none}
+.qrow em{font-style:normal;background:#e2eef2;color:#0E7490;border-radius:99px;padding:6px 10px;font-size:13px;font-weight:560}
+.qbody aside{width:380px;border-left:1px solid #E6E8EE;padding:28px;display:flex;flex-direction:column;gap:12px}
+.qbody aside p{font-size:22px;line-height:1.35;letter-spacing:-.03em}
+.qstat{display:flex;flex-direction:column;gap:6px;line-height:1}
+.qstat b{font-size:56px;letter-spacing:-.05em}
+.qstat small{display:block;color:#5B6275;font-size:14px}
 .panel{position:absolute;left:60px;top:70px;width:1800px;height:940px;background:#fff;border-radius:32px;box-shadow:0 0 0 1px #E6E8EE,0 30px 80px rgba(13,18,34,.08)}
 #traveler{position:absolute;width:16px;height:16px;border-radius:99px;background:#0E7490;z-index:3}
 .node{position:absolute;width:500px;height:200px;background:#fff;border-radius:22px;box-shadow:0 16px 40px rgba(13,18,34,.08);padding:20px;display:flex;flex-direction:column;gap:8px;opacity:0}
@@ -46,23 +64,33 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 <div class="badge">Sample product</div>
 <div id="world">
 <section class="scene" style="top:0;background:#F6F7F9"><div class="mid"><div class="note"><small>The snag</small><div class="stack" style="margin-top:18px"><div class="line" style="font-size:104px"><span data-at="0.22" data-tone="ink">Handoffs</span><span data-at="0.5" data-tone="ink">between</span><span data-at="0.78" data-tone="ink">tools</span><span data-at="1.06" data-tone="ink">still</span></div><div class="line" style="font-size:104px"><span data-at="1.52" data-tone="ink">happen</span><span data-at="1.8" data-tone="ink">by</span><span data-at="2.08" data-tone="ink">hand</span></div></div></div></div></section>
-<section class="scene" style="top:1080px;background:#F6F7F9"><div class="mid"><div class="stairs"><article class="stair" data-at="3.80" style="margin-left:0px">
-        <i>TW</i>
-        <div><small>9:14 · Live</small><b>A trigger when mail arrives</b></div>
-        <em>On</em>
-      </article><article class="stair" data-at="4.50" style="margin-left:56px">
-        <i>DV</i>
-        <div><small>9:41 · Live</small><b>A draft in your voice</b></div>
-        <em>On</em>
-      </article><article class="stair" data-at="5.20" style="margin-left:112px">
-        <i>CB</i>
-        <div><small>10:06 · Live</small><b>A check before it sends</b></div>
-        <em>On</em>
-      </article><article class="stair" data-at="5.90" style="margin-left:168px">
-        <i>LW</i>
-        <div><small>10:28 · Live</small><b>A log of what ran</b></div>
-        <em>On</em>
-      </article></div></div></section>
+<section class="scene" style="top:1080px;background:#F6F7F9"><div class="mid"><div class="qwin">
+  <header><i class="dot"></i><b>Relay</b><small>Queue · relay.example</small><span>4 open</span></header>
+  <div class="qbody">
+    <div class="qlist"><div class="qrow" data-at="3.8" data-pop="3.8">
+        <i>AM</i>
+        <span><b>A trigger when mail arrives</b><small>Amina M. · 9:14</small></span>
+        <span class="meter"><u style="width:42%"></u></span>
+        <em>New</em>
+      </div><div class="qrow" data-at="3.96" data-pop="3.96">
+        <i>JK</i>
+        <span><b>A draft in your voice</b><small>Jamal K. · 9:41</small></span>
+        <span class="meter"><u style="width:68%"></u></span>
+        <em>Draft</em>
+      </div><div class="qrow" data-at="4.12" data-pop="4.12">
+        <i>RS</i>
+        <span><b>A check before it sends</b><small>Rafi S. · 10:06</small></span>
+        <span class="meter"><u style="width:36%"></u></span>
+        <em>Check</em>
+      </div><div class="qrow" data-at="4.28" data-pop="4.28">
+        <i>NL</i>
+        <span><b>A log of what ran</b><small>Noor L. · 10:28</small></span>
+        <span class="meter"><u style="width:84%"></u></span>
+        <em>Logged</em>
+      </div><div class="qchart"><div><b style="height:40%"></b><small>Mon</small></div><div><b style="height:62%"></b><small>Tue</small></div><div><b style="height:48%"></b><small>Wed</small></div><div><b style="height:80%"></b><small>Thu</small></div><div><b style="height:55%"></b><small>Fri</small></div><div><b style="height:30%"></b><small>Sat</small></div><div><b style="height:44%"></b><small>Sun</small></div></div></div>
+    <aside><strong>The snag</strong><p>Handoffs between tools still happen by hand.</p><div class="qstat"><b data-count="4" data-from="3.90">0</b><small>steps in this run</small></div></aside>
+  </div>
+</div></div></section>
 <section class="scene" style="top:2160px;background:#F6F7F9">
   <div class="panel">
     <div class="mapTitle" data-at="12.32" data-tone="ink">How Relay runs</div>
@@ -102,6 +130,9 @@ const seg = (t, a, b) => clamp((t - a) / (b - a));
 const lerp = (a, b, p) => a + (b - a) * p;
 const q5 = (p) => (p < 0.5 ? 16 * p ** 5 : 1 - ((-2 * p + 2) ** 5) / 2);
 const eo = (p) => (p >= 1 ? 1 : 1 - 2 ** (-10 * p));
+const back = (p) => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * (p - 1) ** 3 + c1 * (p - 1) ** 2; };
+const FADE = 0.42;
+const COUNT = 1.1;
 const hex = (h) => [0, 2, 4].map((i) => parseInt(String(h).slice(i + 1, i + 3), 16));
 const mix = (a, b, p) => {
   const A = hex(a), B = hex(b);
@@ -126,7 +157,7 @@ function camera(t) {
 function paint(t) {
   document.querySelectorAll("[data-at]").forEach((el) => {
     if (el.closest("#slot") || el.closest(".hcard") || el.closest(".row") || el.closest(".node") || el.closest(".fcard") || el.closest(".stair") || el.closest(".metric")) return;
-    const p = eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4));
+    const p = eo(seg(t, +el.dataset.at, +el.dataset.at + FADE));
     const light = el.dataset.tone === "light";
     el.style.opacity = String(p);
     el.style.color = mix(light ? "#D5DAE6" : STATE.grey, light ? "#FFFFFF" : STATE.ink, p);
@@ -139,12 +170,22 @@ function paint(t) {
     el.style.transform = "translate(" + (Math.sin(t * 0.35) * 16 * k) + "px," + (Math.cos(t * 0.28) * 10 * k) + "px)";
   });
   document.querySelectorAll("[data-count]").forEach((el) => {
-    const p = eo(seg(t, +(el.dataset.from || 0), +(el.dataset.from || 0) + 1.15));
+    const p = eo(seg(t, +(el.dataset.from || 0), +(el.dataset.from || 0) + COUNT));
     const n = Math.round((+el.dataset.count) * p);
     el.textContent = n.toLocaleString("en-US") + (el.dataset.unit || "");
   });
   document.querySelectorAll(".caret").forEach((el) => {
     el.style.opacity = Math.sin(t * 9) > 0 ? "1" : "0";
+  });
+  document.querySelectorAll(".sweep").forEach((el) => {
+    const p = seg(t, +el.dataset.a, +el.dataset.b);
+    el.style.opacity = p > 0 && p < 1 ? "0.9" : "0";
+    el.style.transform = "translateX(" + lerp(-220, 1760, q5(p)) + "px)";
+  });
+  document.querySelectorAll("[data-pop]").forEach((el) => {
+    const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.45);
+    const s = p <= 0 ? 0.92 : p >= 1 ? 1 : back(p);
+    el.style.transform = "scale(" + s.toFixed(3) + ")";
   });
 }
 function render(t) {

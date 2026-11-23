@@ -34,7 +34,7 @@ export function holoFilm(brief, opts = {}) {
     .slice(0, 3)
     .map((title, i) => {
       const box = layouts[i];
-      return `<article class="hcard${box.wash ? " wash" : ""}" style="left:${box.x}px;top:${box.y}px;width:${box.w}px;height:${box.h}px" data-at="${(cards + 0.2 + i * 0.45).toFixed(2)}">
+      return `<article class="hcard${box.wash ? " wash" : ""}" style="left:${box.x}px;top:${box.y}px;width:${box.w}px;height:${box.h}px" data-at="${(cards + 0.2 + i * 0.16).toFixed(2)}" data-pop="${(cards + 0.2 + i * 0.16).toFixed(2)}">
         <small>${esc(title)}</small>
         <h3>${esc(title)}</h3>
         ${bodies[i]}
@@ -75,6 +75,7 @@ export function holoFilm(brief, opts = {}) {
 <section class="scene" style="top:1080px;background:${plan.bg}"><div class="mid">
   <img class="logo" alt="">
   <div class="giant" data-fade="${(word + 0.2).toFixed(2)}" style="font-size:${plan.nameSize}px">${esc(plan.name)}</div>
+  <div class="sweep" data-a="${(word + 0.45).toFixed(2)}" data-b="${(word + 1.3).toFixed(2)}"></div>
 </div></section>
 <section class="scene field" style="top:2160px"><div class="mid">
   <div class="glass">

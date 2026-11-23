@@ -162,6 +162,7 @@ export function launchFilm(brief, opts = {}) {
   <div class="kicker" data-at="${(time.name + 0.15).toFixed(2)}" data-tone="ink">Introducing</div>
   <div class="nameRow"><img class="logo" alt=""><div class="product" data-at="${(time.name + 0.4).toFixed(2)}" data-tone="ink" style="font-size:${Math.min(plan.nameSize, 140)}px">${esc(plan.name)}</div></div>
   <div class="swap" data-at="${(time.name + 0.9).toFixed(2)}" data-tone="ink">You get ${esc(shortLabel(plan.features[0]))}</div>
+  <div class="sweep" data-a="${(time.name + 0.55).toFixed(2)}" data-b="${(time.name + 1.35).toFixed(2)}"></div>
 </div></section>
 <section class="scene" style="top:2160px;background:${plan.bg}"><div class="mid"><div id="uiStage" class="uiStage"><div class="window">
   <aside class="side"><div class="mark"><img class="logo" alt="" style="height:22px"><i class="dot"></i>${esc(plan.name)}</div>${navHtml}</aside>

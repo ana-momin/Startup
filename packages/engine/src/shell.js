@@ -1,4 +1,5 @@
 import { esc } from "./copy.js";
+import { MS } from "./motion.js";
 
 const RUNTIME = `
 const $ = (id) => document.getElementById(id);
@@ -8,6 +9,9 @@ const seg = (t, a, b) => clamp((t - a) / (b - a));
 const lerp = (a, b, p) => a + (b - a) * p;
 const q5 = (p) => (p < 0.5 ? 16 * p ** 5 : 1 - ((-2 * p + 2) ** 5) / 2);
 const eo = (p) => (p >= 1 ? 1 : 1 - 2 ** (-10 * p));
+const back = (p) => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * (p - 1) ** 3 + c1 * (p - 1) ** 2; };
+const FADE = ${MS.fade / 1000};
+const COUNT = ${MS.count / 1000};
 const hex = (h) => [0, 2, 4].map((i) => parseInt(String(h).slice(i + 1, i + 3), 16));
 const mix = (a, b, p) => {
   const A = hex(a), B = hex(b);
@@ -32,7 +36,7 @@ function camera(t) {
 function paint(t) {
   document.querySelectorAll("[data-at]").forEach((el) => {
     if (el.closest("#slot") || el.closest(".hcard") || el.closest(".row") || el.closest(".node") || el.closest(".fcard") || el.closest(".stair") || el.closest(".metric")) return;
-    const p = eo(seg(t, +el.dataset.at, +el.dataset.at + 0.4));
+    const p = eo(seg(t, +el.dataset.at, +el.dataset.at + FADE));
     const light = el.dataset.tone === "light";
     el.style.opacity = String(p);
     el.style.color = mix(light ? "#D5DAE6" : STATE.grey, light ? "#FFFFFF" : STATE.ink, p);
@@ -45,12 +49,22 @@ function paint(t) {
     el.style.transform = "translate(" + (Math.sin(t * 0.35) * 16 * k) + "px," + (Math.cos(t * 0.28) * 10 * k) + "px)";
   });
   document.querySelectorAll("[data-count]").forEach((el) => {
-    const p = eo(seg(t, +(el.dataset.from || 0), +(el.dataset.from || 0) + 1.15));
+    const p = eo(seg(t, +(el.dataset.from || 0), +(el.dataset.from || 0) + COUNT));
     const n = Math.round((+el.dataset.count) * p);
     el.textContent = n.toLocaleString("en-US") + (el.dataset.unit || "");
   });
   document.querySelectorAll(".caret").forEach((el) => {
     el.style.opacity = Math.sin(t * 9) > 0 ? "1" : "0";
+  });
+  document.querySelectorAll(".sweep").forEach((el) => {
+    const p = seg(t, +el.dataset.a, +el.dataset.b);
+    el.style.opacity = p > 0 && p < 1 ? "0.9" : "0";
+    el.style.transform = "translateX(" + lerp(-220, 1760, q5(p)) + "px)";
+  });
+  document.querySelectorAll("[data-pop]").forEach((el) => {
+    const p = seg(t, +el.dataset.pop, +el.dataset.pop + 0.45);
+    const s = p <= 0 ? 0.92 : p >= 1 ? 1 : back(p);
+    el.style.transform = "scale(" + s.toFixed(3) + ")";
   });
 }
 function render(t) {
@@ -92,6 +106,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 #back{position:absolute;inset:0;width:1920px;pointer-events:none}
 .orb{position:absolute;width:460px;height:460px;border-radius:99px;opacity:.22;filter:blur(30px)}
 .caret{display:inline-block;width:2px;height:.85em;background:currentColor;margin-left:3px;vertical-align:-1px}
+.sweep{position:absolute;top:0;width:160px;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);pointer-events:none;opacity:0}
 .cursor{position:absolute;z-index:6;width:28px;height:28px;pointer-events:none}
 .cursor svg{display:block}
 .ring{position:absolute;left:-10px;top:-10px;width:36px;height:36px;border-radius:99px;border:2px solid currentColor;opacity:0}

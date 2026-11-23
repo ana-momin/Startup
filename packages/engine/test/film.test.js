@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { acceptFill } from "../src/direct.js";
 import { chooseTemplate, compose, SAMPLE_BRIEF, SAMPLES, screenText } from "../src/index.js";
+import { beats } from "../src/motion.js";
 
 test("halal screen declines gambling, betting, adult, alcohol and drugs", () => {
   assert.equal(screenText("a sportsbook for friends").ok, false);
@@ -62,6 +63,29 @@ test("the brief picks a template when the user does not", () => {
   assert.equal(chooseTemplate({ name: "A", problem: "Handoffs stall", features: ["A trigger"] }), "workflow");
   assert.equal(chooseTemplate({ name: "A", problem: "The inbox piles up", features: ["An agent drafts it"] }), "holo");
   assert.equal(chooseTemplate({ name: "Northstar", problem: "Posts take a week", features: ["Drafts"] }), "launch");
+});
+
+test("the same brief always makes the same film", () => {
+  const a = compose(SAMPLE_BRIEF);
+  const b = compose(SAMPLE_BRIEF);
+  assert.equal(a.html, b.html);
+  assert.deepEqual(a.events, b.events);
+});
+
+test("a name cannot inject markup into the film", () => {
+  const film = compose({ ...SAMPLE_BRIEF, name: "<script>alert(1)</script>" });
+  assert.equal(film.ok, true);
+  assert.doesNotMatch(film.html, /<script>alert/);
+});
+
+test("stagger beats follow the shared motion scale", () => {
+  assert.deepEqual(beats(1, 3), [1, 1.16, 1.32]);
+});
+
+test("workflow uses the shared queue, not an empty stair", () => {
+  const film = compose(SAMPLES[2]);
+  assert.match(film.html, /class="qrow"/);
+  assert.match(film.html, /class="qwin"/);
 });
 
 test("a model cannot invent claims that were not in the brief", () => {
