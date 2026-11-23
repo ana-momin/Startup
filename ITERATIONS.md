@@ -79,3 +79,33 @@ Another pass over the same frames. The ring, the cropped word, and the Relay clo
 Scores stay 8.5, 8.5, 8.5. Two passes with no movement, so this stops.
 
 Still not a 9. Pond’s cards are busier, and its type is sometimes the whole frame with no second line under it. Ours keep a readable headline on top of the big word, and the front card is a real control (Approve, or Live) rather than a poster. A paid film should still be finished by a person.
+
+## Critique pass — copy, colour, type size
+
+The stills were read as about 7: pale, empty, and one broken line.
+
+### Round 1
+
+“You get Brand-matched” is now rejected by a test. Benefit lines are verb-led and at most six words (“Match the brand”, “Share one board”). The title scenes moved onto a deep brand field. Relay’s six small cards became one large card the film pushes through. The sample pill only shows for the first and last 1.5 seconds.
+
+The lower half of the Northstar title was still empty. Lumen’s name sat on top of a card. Relay’s card was one line in a white void.
+
+Scores against this critique: Northstar 7.5, Lumen 7.5, Relay 7.5.
+
+### Round 2
+
+The Northstar card sits on the right, opposite the name. Lumen’s name has the left side to itself. Relay’s card lists every step in large type, and the cursor lands on the button.
+
+Scores: Northstar 8, Lumen 8, Relay 8.
+
+### Round 3
+
+Two Lumen cards were stacked on the same title. They are separated. Relay’s board had sat still for about ten seconds after the click. The queue now walks a highlight down the rows, and the closing card reveals a line at a time. A frame check every 0.8 seconds found no frozen stretch.
+
+Scores stayed 8. The pictures are fuller, not a different film.
+
+### Round 4
+
+The big background word on the Northstar title was gone before the card arrived, so the top went blank. It now keeps sliding until the card is up.
+
+Score stays 8, 8, 8. What is still weak: the product screen is still a white dashboard, and a few cards are plainer than a Pond card. Not a 9.

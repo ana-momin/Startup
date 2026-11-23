@@ -91,7 +91,7 @@ function paint(t) {
     const p = q5(seg(t, +el.dataset.slide, +el.dataset.slide + dur));
     const x = lerp(+el.dataset.from || -900, +el.dataset.to || 900, p);
     el.style.transform = "translateX(" + x.toFixed(1) + "px)";
-    el.style.opacity = p > 0 && p < 1 ? "0.16" : "0";
+    el.style.opacity = p > 0 && p < 1 ? "0.28" : "0";
   });
   document.querySelectorAll("[data-punch]").forEach((el) => {
     const times = String(el.dataset.punch).split(",").map(Number);
@@ -121,9 +121,11 @@ function paint(t) {
     }
     if (el.dataset.at) el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.38)));
     el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px) scale(" + s.toFixed(3) + ")";
-    el.style.filter = d > 0.25 ? "blur(" + (d * 1.15).toFixed(2) + "px)" : "none";
+    el.style.filter = d > 0.8 ? "blur(" + Math.min(1.1, d * 0.35).toFixed(2) + "px)" : "none";
     if (el.dataset.z) el.style.zIndex = el.dataset.z;
   });
+  const badge = document.querySelector(".badge");
+  if (badge) badge.style.opacity = t < 1.5 || t > STATE.end - 1.5 ? "1" : "0";
   document.querySelectorAll("[data-float]").forEach((el) => {
     if (el.hasAttribute("data-depth")) return;
     const k = +el.dataset.float || 1;
@@ -177,7 +179,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .ctaName{font-size:84px;font-weight:560;letter-spacing:-.055em;color:#0D1222}
 .url{font-size:36px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:18px}
 .endRule{width:120px;height:3px;border-radius:99px;margin-top:22px;transform-origin:0 50%}
-.badge{position:fixed;top:22px;left:22px;z-index:20;font-size:13px;font-weight:560;letter-spacing:.12em;text-transform:uppercase;color:#0D1222;background:#fff;border-radius:999px;padding:7px 12px;box-shadow:0 0 0 1px rgba(13,18,34,.18),0 8px 20px rgba(0,0,0,.28)}
+.badge{position:fixed;top:28px;left:28px;z-index:20;font-size:11px;font-weight:560;letter-spacing:.14em;text-transform:uppercase;color:#0D1222;background:#fff;border-radius:999px;padding:4px 8px;box-shadow:0 0 0 1px rgba(13,18,34,.16)}
 #back{position:absolute;left:0;top:0;width:1920px;height:9000px;pointer-events:none}
 #grid{position:absolute;left:0;top:0;width:1920px;height:9000px;pointer-events:none;opacity:.8;background-image:linear-gradient(rgba(13,18,34,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(13,18,34,.08) 1px,transparent 1px);background-size:64px 64px}
 #grain{position:fixed;inset:0;width:1920px;height:1080px;pointer-events:none;opacity:.045;z-index:15}
@@ -222,11 +224,14 @@ ${extra}
 }
 
 export function endScene(plan, top, at = 0) {
-  return `<section class="scene" style="top:${top}px"><div class="mid">
-    <img class="logo" alt="">
-    <div class="ctaName">${esc(plan.name)}</div>
-    <div class="url letters" style="color:${plan.accent}">${letterLine(plan.hostname, at + 0.12, 0.032)}</div>
-    <div class="endRule" style="background:${plan.accent}" data-grow="${(at + 0.28).toFixed(2)}"></div>
+  return `<section class="scene" style="top:${top}px;background:${plan.accentDeep}">
+    <div class="crop" style="color:#fff" data-slide="${at}" data-from="-700" data-to="500" data-dur="2.4">${esc(plan.name)}</div>
+    <div style="position:absolute;left:150px;top:340px;z-index:2">
+      <img class="logo" alt="">
+      <div class="ctaName" style="color:#fff">${esc(plan.name)}</div>
+      <div class="url letters" style="color:#fff">${letterLine(plan.hostname, at + 0.2, 0.032)}</div>
+      <div class="endRule" style="background:#fff" data-grow="${(at + 0.4).toFixed(2)}"></div>
+    </div>
     <div class="sweep" data-a="${(at + 0.18).toFixed(2)}" data-b="${(at + 1.05).toFixed(2)}"></div>
-  </div></section>`;
+  </section>`;
 }

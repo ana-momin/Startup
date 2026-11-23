@@ -16,7 +16,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .ctaName{font-size:84px;font-weight:560;letter-spacing:-.055em;color:#0D1222}
 .url{font-size:36px;font-weight:560;letter-spacing:-.04em;text-decoration:none;margin-top:18px}
 .endRule{width:120px;height:3px;border-radius:99px;margin-top:22px;transform-origin:0 50%}
-.badge{position:fixed;top:22px;left:22px;z-index:20;font-size:13px;font-weight:560;letter-spacing:.12em;text-transform:uppercase;color:#0D1222;background:#fff;border-radius:999px;padding:7px 12px;box-shadow:0 0 0 1px rgba(13,18,34,.18),0 8px 20px rgba(0,0,0,.28)}
+.badge{position:fixed;top:28px;left:28px;z-index:20;font-size:11px;font-weight:560;letter-spacing:.14em;text-transform:uppercase;color:#0D1222;background:#fff;border-radius:999px;padding:4px 8px;box-shadow:0 0 0 1px rgba(13,18,34,.16)}
 #back{position:absolute;left:0;top:0;width:1920px;height:9000px;pointer-events:none}
 #grid{position:absolute;left:0;top:0;width:1920px;height:9000px;pointer-events:none;opacity:.8;background-image:linear-gradient(rgba(13,18,34,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(13,18,34,.08) 1px,transparent 1px);background-size:64px 64px}
 #grain{position:fixed;inset:0;width:1920px;height:1080px;pointer-events:none;opacity:.045;z-index:15}
@@ -29,7 +29,18 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .ring{position:absolute;left:-10px;top:-10px;width:36px;height:36px;border-radius:99px;border:2px solid currentColor;opacity:0}
 
 
-.hookWord{font-size:108px}
+.hookWord{font-size:84px}
+.line.left{justify-content:flex-start}
+.nameBlock{position:absolute;left:140px;top:280px;z-index:3;max-width:1200px}
+.swap{margin-top:28px;font-size:36px;font-weight:560;letter-spacing:-.04em;color:#fff}
+.stepMark{position:absolute;left:90px;top:300px;font-size:220px;font-weight:560;letter-spacing:-.07em;color:rgba(255,255,255,.3);line-height:.8}
+.focus{position:absolute;left:680px;top:140px;width:1080px;height:760px;background:#fff;border-radius:36px;box-shadow:0 46px 110px rgba(0,0,0,.42);z-index:2;opacity:1}
+.face{position:absolute;inset:64px;display:flex;flex-direction:column;gap:20px;opacity:0}
+.face h3{font-size:68px;letter-spacing:-.05em;line-height:1.02;font-weight:560}
+.face small{font-size:22px;letter-spacing:.08em;text-transform:uppercase;color:#5B6275}
+.face p{font-size:30px;line-height:1.35}
+.face em{margin-top:auto;align-self:flex-start;font-style:normal;background:#0E7490;color:#fff;border-radius:16px;padding:18px 28px;font-size:28px;font-weight:560}
+.qwin{box-shadow:0 40px 100px rgba(0,0,0,.35)}
 .qwin{width:1680px;height:900px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px #E6E8EE,0 30px 80px rgba(13,18,34,.1);display:flex;flex-direction:column;overflow:hidden}
 .qwin header{height:72px;display:flex;align-items:center;gap:12px;padding:0 24px;border-bottom:1px solid #E6E8EE}
 .qwin header .dot{width:12px;height:12px;border-radius:99px;background:#0E7490}
@@ -41,17 +52,17 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .qchart div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
 .qchart b{width:100%;background:#0E7490;border-radius:6px 6px 2px 2px;display:block}
 .qchart div:nth-child(odd) b{background:#e2eef2}
-.qchart small{color:#5B6275;font-size:12px}
-.qrow{height:92px;border:1px solid #E6E8EE;border-radius:16px;display:flex;align-items:center;gap:14px;padding:0 16px;opacity:0}
+.qchart small{color:#5B6275;font-size:18px}
+.qrow{height:108px;border:1px solid #E6E8EE;border-radius:16px;display:flex;align-items:center;gap:14px;padding:0 18px;opacity:0}
 .qrow i{width:40px;height:40px;border-radius:99px;background:#e2eef2;color:#0E7490;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:560;font-size:12px;flex:none}
 .qrow span{display:flex;flex-direction:column;gap:3px;min-width:0}
-.qrow b{font-size:20px;font-weight:560;letter-spacing:-.03em}
-.qrow small{color:#5B6275;font-size:13px}
+.qrow b{font-size:28px;font-weight:560;letter-spacing:-.03em}
+.qrow small{color:#5B6275;font-size:22px}
 .qrow .meter{width:140px;height:6px;border-radius:99px;background:#E4E7EE;margin-left:auto;flex:none}
 .qrow .meter u{display:block;height:100%;background:#0E7490;border-radius:99px;text-decoration:none}
 .qrow em{font-style:normal;background:#e2eef2;color:#0E7490;border-radius:99px;padding:6px 10px;font-size:13px;font-weight:560}
 .qbody aside{width:380px;border-left:1px solid #E6E8EE;padding:28px;display:flex;flex-direction:column;gap:12px}
-.qbody aside p{font-size:22px;line-height:1.35;letter-spacing:-.03em}
+.qbody aside p{font-size:28px;line-height:1.35;letter-spacing:-.03em}
 .qstat{display:flex;flex-direction:column;gap:6px;line-height:1}
 .qstat b{font-size:56px;letter-spacing:-.05em}
 .qstat small{display:block;color:#5B6275;font-size:14px}
@@ -67,6 +78,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 .wires line{stroke:#0E7490;stroke-width:2;stroke-dasharray:6 8;opacity:.55}
 #traveler{position:absolute;width:18px;height:18px;border-radius:99px;background:#0E7490;box-shadow:0 0 0 6px #e2eef2;z-index:4}
 .node{position:absolute;width:540px;height:340px;background:#fff;border-radius:22px;box-shadow:0 16px 40px rgba(13,18,34,.1);padding:20px 22px;display:flex;flex-direction:column;gap:12px;opacity:0}
+.node.focus{left:680px;top:140px;width:1080px;height:760px;border-radius:36px;box-shadow:0 46px 110px rgba(0,0,0,.42);opacity:1;padding:0;z-index:2}
 .log{list-style:none;display:flex;flex-direction:column;gap:8px}
 .log li{display:flex;gap:10px;font-size:15px;color:#5B6275}
 .log b{width:64px;flex:none;color:#0D1222;font-weight:560}
@@ -90,11 +102,13 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
 <svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
 <div class="badge">Sample product</div>
 <div id="world">
-<section class="scene" style="top:0;background:radial-gradient(90% 80% at 50% 100%, #e2eef2 0%, #F6F7F9 55%)" data-variant="1">
-  <div class="crop" style="color:#0E7490" data-slide="0.15" data-from="980" data-to="-1500" data-dur="2.8">Relay</div>
-  <div class="mid"><div class="stack hookWord"><div class="line" style="font-size:104px"><span data-at="0.22" data-tone="ink">Handoffs</span><span data-at="0.5" data-tone="ink">between</span><span data-at="0.78" data-tone="ink">tools</span><span data-at="1.06" data-tone="ink">still</span></div><div class="line" style="font-size:104px"><span data-at="1.52" data-tone="ink">happen</span><span data-at="1.8" data-tone="ink">by</span><span data-at="2.08" data-tone="ink">hand</span></div></div></div>
+<section class="scene" style="top:0;background:#082e3c" data-variant="1">
+  <div class="crop" style="color:#fff" data-slide="0.15" data-from="980" data-to="-1500" data-dur="2.8">Relay</div>
+  <div class="nameBlock"><div class="stack hookWord"><div class="line left" style="font-size:84px"><span data-at="0.22" data-tone="light">Handoffs</span><span data-at="0.5" data-tone="light">between</span><span data-at="0.78" data-tone="light">tools</span><span data-at="1.06" data-tone="light">still</span></div><div class="line left" style="font-size:84px"><span data-at="1.52" data-tone="light">happen</span><span data-at="1.8" data-tone="light">by</span><span data-at="2.08" data-tone="light">hand</span></div></div>
+    <div class="swap" data-at="1.6" data-tone="light">Trigger when mail arrives</div>
+  </div>
 </section>
-<section class="scene" style="top:1080px"><div class="mid"><div class="qwin">
+<section class="scene" style="top:1080px;background:linear-gradient(150deg, #082e3c, #0E7490)"><div class="mid"><div class="qwin">
   <header><i class="dot"></i><b>Relay</b><small>Queue · relay.example</small><span>4 open</span></header>
   <div class="qbody">
     <div class="qlist"><div class="qrow" data-at="3.8" data-pop="3.8">
@@ -121,55 +135,27 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:#F6F7F9;font-fam
     <aside><strong>The snag</strong><p>Handoffs between tools still happen by hand.</p><div class="qstat"><b data-count="4" data-from="3.90">0</b><small>steps in this run</small></div></aside>
   </div>
 </div></div></section>
-<section class="scene" style="top:2160px">
-  <div class="panel">
-    <header class="boardHead"><i class="dot"></i><b>How Relay runs</b><small>relay.example</small><span><b data-count="6" data-from="12.65" data-punch="17.35">0</b> <em id="runState">open</em></span></header>
-    <div class="board">
-      <div class="crop" style="color:#0E7490;top:-80px;font-size:420px" data-slide="12.2" data-from="980" data-to="-1500" data-dur="5.5">LIVE</div>
-      <svg class="wires" viewBox="0 0 1840 936"><line x1="1160" y1="184" x2="1204" y2="184" /><line x1="1744" y1="184" x2="36" y2="184" /><line x1="1160" y1="550" x2="1204" y2="550" /><line x1="1744" y1="550" x2="36" y2="550" /></svg>
-      <i id="traveler"></i><div class="node" data-at="12.42" style="left:620px;top:24px">
-        <div class="nh"><i>SN</i><span><b>The snag</b><small>Amina M. · 9:02</small></span><em class="before">Open</em></div>
-        <p>Handoffs between tools still happen by hand.</p>
-        <ul class="log"><li><b>9:02</b> Opened</li><li><b>9:14</b> Amina M.</li><li><b>Now</b> Open</li></ul>
-        <div class="nmeter"><u style="width:28%"></u></div>
-      </div><div class="node" data-at="12.70" style="left:1204px;top:24px">
-        <div class="nh"><i>TW</i><span><b>A trigger when mail arrives</b><small>Maya Chen · 9:14</small></span><em class="before">Trigger</em></div>
-        <p>Mail from Maya Chen</p>
-        <ul class="log"><li><b>9:06</b> Mail in</li><li><b>9:14</b> Maya Chen</li><li><b>Now</b> Trigger</li></ul>
-        <div class="nmeter"><u style="width:46%"></u></div>
-      </div><div class="node" data-at="12.98" style="left:36px;top:24px">
-        <div class="nh"><i>DV</i><span><b>A draft in your voice</b><small>Jules Okonkwo · 9:28</small></span><em class="before">Draft</em></div>
-        <p>Matched to last week&#39;s voice</p>
-        <ul class="log"><li><b>9:11</b> Drafted</li><li><b>9:28</b> Jules Okonkwo</li><li><b>Now</b> Draft</li></ul>
-        <div class="nmeter"><u style="width:62%"></u></div>
-      </div><div class="node" data-at="13.26" style="left:620px;top:390px">
-        <div class="nh"><i>CB</i><span><b>A check before it sends</b><small>Ari Rahman · 9:41</small></span><em class="before">Check</em></div>
-        <p>Waiting on a yes</p>
-        <ul class="log"><li><b>9:20</b> Held</li><li><b>9:41</b> Ari Rahman</li><li><b>Now</b> Check</li></ul>
-        <div class="nmeter"><u style="width:54%"></u></div>
-      </div><div class="node" data-at="13.54" style="left:1204px;top:390px">
-        <div class="nh"><i>LW</i><span><b>A log of what ran</b><small>Noor L. · 10:02</small></span><em class="before">Log</em></div>
-        <p>Written into the log</p>
-        <ul class="log"><li><b>9:33</b> Logged</li><li><b>10:02</b> Noor L.</li><li><b>Now</b> Log</li></ul>
-        <div class="nmeter"><u style="width:74%"></u></div>
-      </div><div class="node hot" data-at="13.82" style="left:36px;top:390px">
-        <div class="nh"><i>GL</i><span><b>Go live</b><small>Ready · Thursday</small></span><em class="before">Live</em><em class="after">Live</em></div>
-        <p>relay.example</p>
-        <ul class="log"><li><b>9:40</b> Ready</li><li><b>Thu</b> Go live</li><li><b>Now</b> Live</li></ul>
-        <div class="nmeter"><u style="width:100%"></u></div>
-      </div>
-      <div id="cur" class="cursor" style="color:#0E7490"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
-    </div>
-  </div>
+<section class="scene" style="top:2160px;background:#082e3c">
+  <div class="crop" style="color:#fff" data-slide="14.6" data-from="980" data-to="-1500" data-dur="3">Relay</div>
+  <div class="stepMark" id="stepMark">01</div>
+  <article class="node hot focus" id="focus">
+    <div class="face" data-face="0"><small>The snag</small><h3>Trigger when mail arrives</h3><p>Handoffs between tools still happen by hand.</p><p>Draft in your voice</p></div>
+    <div class="face" data-face="1"><small>The work</small><h3>Draft in your voice</h3><p>Trigger when mail arrives</p><p>Draft in your voice</p><p>Check before it sends</p><p>Log of what ran</p></div>
+    <div class="face" data-face="2"><small>Go live</small><h3><b data-count="4" data-from="17.00">0</b> steps closed</h3><p>Trigger when mail arrives</p><p>Draft in your voice</p><p>Check before it sends</p><p>Log of what ran</p><em id="liveBtn">Go live</em></div>
+    <div id="cur" class="cursor" style="color:#0E7490"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 3 L5 19 L10 15 L14 21 L17 19 L13 13 L19 13 Z" fill="#0D1222"/></svg><i id="ring" class="ring"></i></div>
+  </article>
 </section>
-<section class="scene" style="top:3240px"><div class="mid">
-    <img class="logo" alt="">
-    <div class="ctaName">Relay</div>
-    <div class="url letters" style="color:#0E7490"><span data-rise="27.72">r</span><span data-rise="27.75">e</span><span data-rise="27.78">l</span><span data-rise="27.82">a</span><span data-rise="27.85">y</span><span data-rise="27.88">.</span><span data-rise="27.91">e</span><span data-rise="27.94">x</span><span data-rise="27.98">a</span><span data-rise="28.01">m</span><span data-rise="28.04">p</span><span data-rise="28.07">l</span><span data-rise="28.1">e</span></div>
-    <div class="endRule" style="background:#0E7490" data-grow="27.88"></div>
-    <div class="sweep" data-a="27.78" data-b="28.65"></div>
-  </div></section></div>
-<script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.72,"end":31.9,"stops":[{"t":0,"y":0},{"t":3.4,"y":1080},{"t":12.2,"y":2160},{"t":27.6,"y":3240}],"map":12.2,"points":[[1140,192],[1724,192],[556,192],[1140,558],[1724,558],[556,558]],"hit":17.35,"hotX":506,"hotY":412,"logo":null}</script>
+<section class="scene" style="top:3240px;background:#082e3c">
+    <div class="crop" style="color:#fff" data-slide="23" data-from="-700" data-to="500" data-dur="2.4">Relay</div>
+    <div style="position:absolute;left:150px;top:340px;z-index:2">
+      <img class="logo" alt="">
+      <div class="ctaName" style="color:#fff">Relay</div>
+      <div class="url letters" style="color:#fff"><span data-rise="23.2">r</span><span data-rise="23.23">e</span><span data-rise="23.26">l</span><span data-rise="23.3">a</span><span data-rise="23.33">y</span><span data-rise="23.36">.</span><span data-rise="23.39">e</span><span data-rise="23.42">x</span><span data-rise="23.46">a</span><span data-rise="23.49">m</span><span data-rise="23.52">p</span><span data-rise="23.55">l</span><span data-rise="23.58">e</span></div>
+      <div class="endRule" style="background:#fff" data-grow="23.40"></div>
+    </div>
+    <div class="sweep" data-a="23.18" data-b="24.05"></div>
+  </section></div>
+<script id="state" type="application/json">{"grey":"#B4B9C6","ink":"#0D1222","slide":0.72,"end":31,"stops":[{"t":0,"y":0},{"t":3.4,"y":1080},{"t":14.6,"y":2160},{"t":23,"y":3240}],"map":14.6,"stair":3.4,"soft":"#e2eef2","hit":18.1,"logo":null}</script>
 <script>
 const $ = (id) => document.getElementById(id);
 const STATE = JSON.parse(document.getElementById("state").textContent);
@@ -260,7 +246,7 @@ function paint(t) {
     const p = q5(seg(t, +el.dataset.slide, +el.dataset.slide + dur));
     const x = lerp(+el.dataset.from || -900, +el.dataset.to || 900, p);
     el.style.transform = "translateX(" + x.toFixed(1) + "px)";
-    el.style.opacity = p > 0 && p < 1 ? "0.16" : "0";
+    el.style.opacity = p > 0 && p < 1 ? "0.28" : "0";
   });
   document.querySelectorAll("[data-punch]").forEach((el) => {
     const times = String(el.dataset.punch).split(",").map(Number);
@@ -290,9 +276,11 @@ function paint(t) {
     }
     if (el.dataset.at) el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.38)));
     el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px) scale(" + s.toFixed(3) + ")";
-    el.style.filter = d > 0.25 ? "blur(" + (d * 1.15).toFixed(2) + "px)" : "none";
+    el.style.filter = d > 0.8 ? "blur(" + Math.min(1.1, d * 0.35).toFixed(2) + "px)" : "none";
     if (el.dataset.z) el.style.zIndex = el.dataset.z;
   });
+  const badge = document.querySelector(".badge");
+  if (badge) badge.style.opacity = t < 1.5 || t > STATE.end - 1.5 ? "1" : "0";
   document.querySelectorAll("[data-float]").forEach((el) => {
     if (el.hasAttribute("data-depth")) return;
     const k = +el.dataset.float || 1;
@@ -331,44 +319,40 @@ Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]).th
 
 
 function extra(t) {
-  document.querySelectorAll(".qrow").forEach((el) => {
+  const rows = [...document.querySelectorAll(".qrow")];
+  const hi = rows.length ? Math.floor((t - STATE.stair) / 1.15) % rows.length : 0;
+  rows.forEach((el, i) => {
     el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.35)));
+    const on = t >= STATE.stair + 1.2 && t < STATE.map && i === hi;
+    el.style.background = on ? STATE.soft : "transparent";
   });
-  document.querySelectorAll(".node").forEach((el) => {
-    el.style.opacity = String(eo(seg(t, +el.dataset.at, +el.dataset.at + 0.35)));
-    const hero = el.classList.contains("hot");
-    const p = q5(seg(t, STATE.hit, STATE.hit + 0.55));
-    const s = hero ? lerp(1, 1.08, p) : lerp(1, 0.98, p);
-    el.style.transform = "scale(" + s.toFixed(3) + ")";
-    el.style.filter = "none";
-    if (hero) el.style.zIndex = "6";
+  const faces = [...document.querySelectorAll(".face")];
+  const idx = Math.max(0, Math.min(faces.length - 1, Math.floor((t - STATE.map) / 1.15)));
+  faces.forEach((el, i) => {
+    const on = i === idx;
+    el.style.opacity = on ? "1" : "0";
   });
-  const runState = document.getElementById("runState");
-  if (runState) runState.textContent = t > STATE.hit ? "closed" : "open";
-  const pts = STATE.points;
-  let travel = q5(seg(t, STATE.map + 0.9, STATE.map + 4.4));
-  if (t > STATE.map + 4.4) {
-    const loop = (Math.sin((t - STATE.map - 4.4) * 1.6) + 1) / 2;
-    travel = 0.78 + loop * 0.22;
-  }
-  const span = Math.max(pts.length - 1, 1);
-  const f = travel * span;
-  const i = Math.min(span - 1, Math.floor(f));
-  const local = f - i;
-  const x = lerp(pts[i][0], pts[Math.min(i + 1, pts.length - 1)][0], local);
-  const y = lerp(pts[i][1], pts[Math.min(i + 1, pts.length - 1)][1], local);
-  $("traveler").style.left = (x - 8) + "px";
-  $("traveler").style.top = (y - 8) + "px";
-  const move = q5(seg(t, STATE.map + 4.45, STATE.hit - 0.08));
-  $("cur").style.opacity = String(eo(seg(t, STATE.map + 4.3, STATE.map + 4.65)));
-  $("cur").style.left = lerp(200, STATE.hotX, move) + "px";
-  $("cur").style.top = lerp(80, STATE.hotY, move) + "px";
+  const mark = document.getElementById("stepMark");
+  if (mark) mark.textContent = "0" + (idx + 1);
+  const local = seg(t, STATE.map + idx * 1.15, STATE.map + idx * 1.15 + 0.45);
+  const focus = document.getElementById("focus");
+  if (focus) focus.style.transform = "scale(" + lerp(0.96, 1, q5(Math.min(1, local + 0.2))).toFixed(3) + ")";
+  const move = q5(seg(t, STATE.hit - 0.7, STATE.hit - 0.08));
+  $("cur").style.opacity = String(idx === 2 ? eo(seg(t, STATE.hit - 0.8, STATE.hit - 0.45)) : 0);
+  $("cur").style.left = lerp(420, 150, move) + "px";
+  $("cur").style.top = lerp(220, 600, move) + "px";
   const pressing = t >= STATE.hit && t < STATE.hit + 0.18;
   $("cur").style.transform = "scale(" + (pressing ? 0.82 : 1) + ")";
   const click = seg(t, STATE.hit, STATE.hit + 0.36);
   $("ring").style.opacity = String(click > 0 && click < 1 ? 1 - click : 0);
-  const last = document.querySelector(".node.hot");
-  if (last) last.classList.toggle("show", t > STATE.hit + 0.12);
+  const btn = document.getElementById("liveBtn");
+  if (btn && t > STATE.hit) btn.textContent = "Live now";
+  if (idx === 2 && faces[2]) {
+    const since = t - (STATE.map + 2.3);
+    faces[2].querySelectorAll("p").forEach((el, i) => {
+      el.style.opacity = since > 0.35 + i * 1.05 ? "1" : "0.22";
+    });
+  }
 }
 </script>
 </body></html>

@@ -1,4 +1,4 @@
-import { base, cue, esc, initials, lastAt, letterLine, lineHtml, shortLabel } from "../copy.js";
+import { base, cue, esc, lastAt, letterLine, lineHtml } from "../copy.js";
 import { clusterSlots, depthFor, layoutVariant, slideDir } from "../layout.js";
 import { endScene, page } from "../shell.js";
 
@@ -94,9 +94,15 @@ export function launchFilm(brief, opts = {}) {
 .kicker{font-size:26px;font-weight:500;opacity:0}
 .product{font-weight:560;letter-spacing:-.06em;line-height:.95;color:${plan.ink}}
 .nameRow{display:flex;align-items:center;gap:22px}
-.swap{margin-top:16px;font-size:40px;font-weight:560;letter-spacing:-.04em;opacity:0}
+.swap{margin-top:22px;font-size:40px;font-weight:560;letter-spacing:-.04em;opacity:0;color:#fff}
+.nameBlock{position:absolute;left:140px;top:460px;z-index:3;max-width:900px}
+.nameBlock .letters{justify-content:flex-start}
+.nameBlock .product{color:#fff}
+.sideCard{position:absolute;left:1180px;top:500px;width:580px;background:#fff;color:${plan.ink};border-radius:28px;padding:40px;box-shadow:0 36px 90px rgba(0,0,0,.32);z-index:3;display:flex;flex-direction:column;gap:20px}
+.sideCard small{font-size:22px;color:${plan.muted};font-weight:560}
+.sideCard b{font-size:40px;letter-spacing:-.045em;font-weight:560;line-height:1.15}
 .uiStage{transform-origin:50% 50%}
-.window{width:1760px;height:960px;background:#fff;border-radius:28px;box-shadow:0 0 0 1px ${plan.line},0 30px 80px rgba(13,18,34,.1);display:flex;overflow:hidden;position:relative}
+.window{width:1760px;height:960px;background:#fff;border-radius:28px;box-shadow:0 40px 100px rgba(0,0,0,.38);display:flex;overflow:hidden;position:relative}
 .side{width:230px;border-right:1px solid ${plan.line};padding:18px 14px;display:flex;flex-direction:column;gap:4px}
 .mark{display:flex;align-items:center;gap:10px;font-weight:560;letter-spacing:-.04em;font-size:18px;padding:6px 8px 16px}
 .dot{width:12px;height:12px;border-radius:99px;background:${plan.accent};flex:none}
@@ -170,15 +176,21 @@ export function launchFilm(brief, opts = {}) {
   <div class="crop" style="color:#fff" data-slide="0.2" data-from="${dir.from}" data-to="${dir.to}" data-dur="2.6">${esc(plan.name)}</div>
   <div class="mid stack">${hook}</div>
 </section>
-<section class="scene" style="top:1080px">
-  <div class="crop" style="color:${plan.accent}" data-slide="${time.name}" data-from="${dir.to}" data-to="${dir.from}" data-dur="2.6">${esc(plan.name)}</div>
-  <div class="mid">
-  <div class="kicker" data-at="${(time.name + 0.15).toFixed(2)}" data-tone="ink">Introducing</div>
-  <div class="nameRow"><img class="logo" alt=""><div class="product letters" data-punch="${(time.name + 0.4).toFixed(2)}" style="font-size:${plan.name.length > 10 ? 120 : plan.name.length > 7 ? 200 : 280}px">${letterLine(plan.name, time.name + 0.18, 0.045)}</div></div>
-  <div class="swap" data-at="${(time.name + 0.9).toFixed(2)}" data-tone="ink">You get ${esc(shortLabel(plan.features[0]))}</div>
+<section class="scene" style="top:1080px;background:${plan.accentDeep}">
+  <div class="crop" style="color:#fff" data-slide="${time.name}" data-from="${dir.to}" data-to="${dir.from}" data-dur="5.4">${esc(plan.name)}</div>
+  <div class="nameBlock">
+    <div class="kicker" data-at="${(time.name + 0.15).toFixed(2)}" data-tone="light">Introducing</div>
+    <div class="product letters" data-punch="${(time.name + 0.45).toFixed(2)}" style="font-size:${plan.name.length > 10 ? 96 : plan.name.length > 7 ? 140 : 168}px">${letterLine(plan.name, time.name + 0.28, 0.045)}</div>
+    <div class="swap" data-at="${(time.name + 1.05).toFixed(2)}" data-tone="light">${esc(plan.benefits[0])}</div>
+  </div>
+  <aside class="sideCard" data-pop="${(time.name + 1.7).toFixed(2)}">
+    <small>Then</small>
+    <b data-at="${(time.name + 1.85).toFixed(2)}" data-tone="ink">${esc(plan.benefits[1] || plan.benefits[0])}</b>
+    <b data-at="${(time.name + 2.55).toFixed(2)}" data-tone="ink">${esc(plan.benefits[2] || plan.benefits[0])}</b>
+  </aside>
   <div class="sweep" data-a="${(time.name + 0.55).toFixed(2)}" data-b="${(time.name + 1.35).toFixed(2)}"></div>
-</div></section>
-<section class="scene" style="top:2160px"><div class="mid"><div id="uiStage" class="uiStage"><div class="window">
+</section>
+<section class="scene" style="top:2160px;background:linear-gradient(145deg, ${plan.accentDeep}, ${plan.accent} 60%, ${plan.accentMid})"><div class="mid"><div id="uiStage" class="uiStage"><div class="window">
   <aside class="side"><div class="mark"><img class="logo" alt="" style="height:22px"><i class="dot"></i>${esc(plan.name)}</div>${navHtml}</aside>
   <div class="main">
     <div class="col">
@@ -259,7 +271,10 @@ function extra(t) {
     cue(plan.hook[0][0].at, "tick", { gain: -8 }),
     plan.hook[1]?.[0] ? cue(plan.hook[1][0].at, "tick", { gain: -10 }) : null,
     cue(time.name, "whoosh", { align: "peak", gain: -2 }),
-    cue(time.name + 0.4, "ui", { gain: -8 }),
+    cue(time.name + 0.45, "ui", { gain: -8 }),
+    cue(time.name + 1.05, "tick", { gain: -8 }),
+    cue(time.name + 1.7, "tick", { gain: -7 }),
+    cue(time.name + 2.55, "tick", { gain: -8 }),
     cue(time.ui, "whoosh", { align: "peak", gain: -2 }),
     cue(time.ui + 0.7, "ui", { gain: -6 }),
     cue(time.ui + 2.15, "click", { gain: -5 }),

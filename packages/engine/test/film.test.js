@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { acceptFill } from "../src/direct.js";
 import { chooseTemplate, compose, SAMPLE_BRIEF, SAMPLES, screenText } from "../src/index.js";
+import { benefitLine, isPunchy } from "../src/copy.js";
 import { constellation, layoutVariant } from "../src/layout.js";
 import { beats } from "../src/motion.js";
 
@@ -48,7 +49,7 @@ test("three templates stay distinct and inside 30–40 seconds", () => {
   assert.equal(films[1].template, "holo");
   assert.equal(films[2].template, "workflow");
   assert.match(films[1].html, /class="pill"/);
-  assert.match(films[2].html, /class="node"/);
+  assert.match(films[2].html, /class="node/);
   assert.notEqual(films[0].html, films[1].html);
 });
 
@@ -102,6 +103,20 @@ test("two briefs pick different layouts, and the same brief does not", () => {
     assert.ok(hero[1] >= 0 && hero[1] + 380 <= 1080, `hero y ${v}`);
   }
   assert.doesNotMatch(a.html + b.html, /perspective|rotateX|rotateY|matrix3d|rotate\(/i);
+});
+
+test("benefit lines stay grammatical and short", () => {
+  assert.equal(isPunchy("You get Brand-matched"), false);
+  assert.equal(benefitLine("Brand-matched drafts"), "Match the brand");
+  assert.equal(benefitLine("One shared board"), "Share one board");
+  assert.equal(isPunchy(benefitLine("Approval before anything goes live")), true);
+  assert.equal(isPunchy(benefitLine("A check before it sends")), true);
+  const film = compose(SAMPLE_BRIEF);
+  assert.doesNotMatch(film.html, /You get /);
+  assert.match(film.html, /Match the brand/);
+  for (const brief of SAMPLES) {
+    for (const line of brief.features.map(benefitLine)) assert.equal(isPunchy(line), true, line);
+  }
 });
 
 test("workflow uses the shared queue, not an empty stair", () => {

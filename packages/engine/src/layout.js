@@ -28,15 +28,11 @@ export function ringSlots(count, variant = 0) {
  * A band in the middle stays clear for the readable name.
  */
 export function constellation(count, variant = 0, heroIndex = 0) {
-  const hero = [
-    [1180, 150],
-    [64, 130],
-    [64, 620],
-  ][variant % 3];
+  const hero = [1120, 240];
   const clear = { x: 660, y: 390, w: 600, h: 200 };
-  return ringSlots(count, variant).map(([x, y], i) => {
+  const placed = ringSlots(count, variant).map(([x, y], i) => {
     if (i === heroIndex) return hero;
-    let px = Math.max(24, Math.min(1540, x));
+    let px = Math.max(760, Math.min(1540, x));
     let py = Math.max(88, Math.min(800, y));
     const hits = px < clear.x + clear.w && px + 340 > clear.x && py < clear.y + clear.h && py + 210 > clear.y;
     if (hits) py = py < 500 ? 120 : 700;
@@ -49,6 +45,20 @@ export function constellation(count, variant = 0, heroIndex = 0) {
     }
     return [px, Math.max(88, Math.min(800, py))];
   });
+  for (let pass = 0; pass < 3; pass++) {
+    for (let i = 0; i < placed.length; i++) {
+      if (i === heroIndex) continue;
+      for (let j = 0; j < i; j++) {
+        if (j === heroIndex) continue;
+        const a = placed[i];
+        const b = placed[j];
+        const ox = Math.min(a[0] + 340, b[0] + 340) - Math.max(a[0], b[0]);
+        const oy = Math.min(a[1] + 140, b[1] + 140) - Math.max(a[1], b[1]);
+        if (ox > 16 && oy > 8) a[1] = Math.min(800, Math.max(a[1], b[1] + 210));
+      }
+    }
+  }
+  return placed;
 }
 
 /** Same ring, pulled inward so a short list overlaps instead of sitting in the corners. */

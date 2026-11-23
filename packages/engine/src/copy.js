@@ -58,6 +58,65 @@ export function shortLabel(feature) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
+const ARTICLE = new Set(["a", "an", "the", "your", "our", "one"]);
+const AS_VERB = {
+  drafts: "Draft",
+  draft: "Draft",
+  finds: "Find",
+  find: "Find",
+  asks: "Ask",
+  ask: "Ask",
+  approval: "Approve",
+  approve: "Approve",
+  shared: "Share",
+  share: "Share",
+  trigger: "Trigger",
+  triggers: "Trigger",
+  check: "Check",
+  checks: "Check",
+  log: "Log",
+  logs: "Log",
+  write: "Write",
+  writes: "Write",
+  send: "Send",
+  sends: "Send",
+  match: "Match",
+  matches: "Match",
+};
+
+export function sentenceCase(text) {
+  const s = String(text).replace(/\s+/g, " ").trim();
+  if (!s) return "";
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+/** A headline is punchy when it is sentence case, two to six words, and not a chopped modifier. */
+export function isPunchy(line) {
+  const text = String(line || "").trim();
+  if (!/^[A-Z]/.test(text)) return false;
+  const w = words(text);
+  if (w.length < 2 || w.length > 6) return false;
+  const last = w[w.length - 1];
+  if (/-(matched|based|ready|led)$/i.test(last)) return false;
+  if (/^you get\b/i.test(text)) return false;
+  return true;
+}
+
+/** Verb-led benefit, at most six words. Never "You get Brand-matched". */
+export function benefitLine(feature) {
+  let parts = words(feature);
+  while (parts.length && ARTICLE.has(parts[0].toLowerCase())) parts = parts.slice(1);
+  if (!parts.length) return "See it work";
+  if (/-matched$/i.test(parts[0])) return "Match the brand";
+  const verb = AS_VERB[parts[0].toLowerCase()];
+  let line;
+  if (verb === "Share") line = ["Share", "one", ...parts.slice(1)].slice(0, 6).join(" ");
+  else if (verb) line = [verb, ...parts.slice(1)].slice(0, 6).join(" ");
+  else line = ["See", ...parts].slice(0, 6).join(" ");
+  line = sentenceCase(line);
+  return isPunchy(line) ? line : "See it work";
+}
+
 export function initials(text) {
   const raw = words(text).filter((w) => !STOP.has(w.toLowerCase()));
   const parts = (raw.length ? raw : words(text)).slice(0, 2);
@@ -80,6 +139,7 @@ export function base(brief) {
     logo: brief.logo || null,
     sample: brief.sample !== false,
     hook,
+    benefits: (brief.features || []).map((feature) => benefitLine(feature)),
     hookSize: Math.max(...hook.map((line) => line.length)) > 5 ? 76 : 104,
     nameSize: brief.name.length > 16 ? 88 : brief.name.length > 10 ? 120 : brief.name.length > 7 ? 168 : 220,
   };
